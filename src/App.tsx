@@ -7,19 +7,15 @@ import 'onsenui/css/onsen-css-components.css';
 import './App.scss';
 
 const App = (): JSX.Element => {
-  const [year, setYear] = useState(1945);
-
-  const handleOnYear = (val: string): void => {
-    const year = val as unknown as number;
-    setYear(year);
-  }
+  const [year, setYear] = useState('1945');
 
   return (
     <Page>
       <div className="main">
         <Select
           modifier="material"
-          onChange={(e): void => handleOnYear(e.target.value)}>
+          value={year}
+          onChange={(e): void => setYear(e.target.value)}>
           <option value="1912">大正元年 (1912)</option>
           <option value="1913">大正２年 (1913)</option>
           <option value="1914">大正３年 (1914)</option>
