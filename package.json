@@ -1,0 +1,56 @@
+{
+  "name": "myapp",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "homepage": "https://sprout2000.github.io/react-typescript-webpack",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:sprout2000/react-typescript-webpack.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sprout2000/react-typescript-webpack/issues"
+  },
+  "scripts": {
+    "start": "cross-env NODE_ENV=\"development\" webpack-dev-server",
+    "build": "cross-env NODE_ENV=\"production\" webpack --progress --hide-modules",
+    "clean": "rimraf build/*",
+    "predeploy": "npm-run-all clean build",
+    "deploy": "gh-pages -d build --git git"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
+    "@types/react-onsenui": "^2.9.8",
+    "@types/webpack": "^4.39.1",
+    "@typescript-eslint/eslint-plugin": "^2.2.0",
+    "@typescript-eslint/parser": "^2.2.0",
+    "copy-webpack-plugin": "^5.0.4",
+    "cross-env": "^5.2.0",
+    "css-loader": "^3.2.0",
+    "eslint": "^6.3.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.3",
+    "file-loader": "^4.2.0",
+    "gh-pages": "^2.1.1",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.12.0",
+    "npm-run-all": "^4.1.5",
+    "onsenui": "^2.10.10",
+    "prettier": "^1.18.2",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-onsenui": "^1.11.2",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "ts-loader": "^6.1.0",
+    "typescript": "^3.6.3",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.8",
+    "webpack-dev-server": "^3.8.0",
+    "workbox-sw": "^4.3.1",
+    "workbox-webpack-plugin": "^4.3.1"
+  }
+}
