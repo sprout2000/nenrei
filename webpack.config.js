@@ -76,6 +76,9 @@ module.exports = {
     }),
   ],
   stats: 'minimal',
+  performance: {
+    hints: false,
+  },
   devtool: isDev ? 'inline-source-map' : false,
   devServer: {
     contentBase: path.resolve(__dirname, 'build'),
