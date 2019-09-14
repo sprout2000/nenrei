@@ -1,6 +1,6 @@
 {
-  "short_name": "React_TypeScript",
-  "name": "react-typescript-webpack",
+  "short_name": "年齢計算",
+  "name": "nenrei",
   "icons": [
     {
       "src": "favicon.ico",
@@ -26,6 +26,6 @@
   "start_url": "./?utm_source=homescreen",
   "display": "standalone",
   "orientation": "portrait",
-  "theme_color": "#3f51b5",
+  "theme_color": "#007aff",
   "background_color": "#ffffff"
 }
