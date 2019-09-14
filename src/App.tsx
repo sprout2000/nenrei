@@ -29,7 +29,6 @@ const App = (): JSX.Element => {
       .getFullYear()
       .toString()
       .padStart(4, '0');
-
     const m2 = (birthDate.getMonth() + 1).toString().padStart(2, '0');
     const d2 = birthDate
       .getDate()
@@ -37,6 +36,7 @@ const App = (): JSX.Element => {
       .padStart(2, '0');
 
     const today = new Date();
+
     const y1 = today
       .getFullYear()
       .toString()
