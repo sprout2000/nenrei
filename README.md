@@ -1,4 +1,4 @@
-# :beers: nenrei
+# :family: nenrei
 
 ![GitHub build](https://img.shields.io/badge/build-passing-brightgreen?style=flat&logo=appveyor)
 [![GitHub license](https://img.shields.io/github/license/sprout2000/nenrei)](https://github.com/sprout2000/nenrei/blob/master/LICENSE.txt)
