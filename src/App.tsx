@@ -56,6 +56,44 @@ const App = (): JSX.Element => {
 
   const age = calcAge(birthday);
 
+  const uru = [
+    '1912',
+    '1916',
+    '1920',
+    '1924',
+    '1928',
+    '1932',
+    '1936',
+    '1940',
+    '1944',
+    '1948',
+    '1952',
+    '1956',
+    '1960',
+    '1964',
+    '1968',
+    '1972',
+    '1976',
+    '1980',
+    '1984',
+    '1988',
+    '1992',
+    '1996',
+    '2000',
+    '2004',
+    '2008',
+    '2012',
+    '2016',
+    '2020',
+    '2024',
+    '2028',
+  ];
+  const isUru = uru.includes(year);
+
+  const samurai = ['2', '4', '6', '9', '11'];
+  const isSam = samurai.includes(month);
+  const isFeb = month === '2';
+
   return (
     <Page>
       <div className="main">
@@ -240,9 +278,9 @@ const App = (): JSX.Element => {
               <option value="26">26日</option>
               <option value="27">27日</option>
               <option value="28">28日</option>
-              <option value="29">29日</option>
-              <option value="30">30日</option>
-              <option value="31">31日</option>
+              {isFeb && !isUru ? undefined : <option value="29">29日</option>}
+              {isFeb ? undefined : <option value="30">30日</option>}
+              {isFeb || isSam ? undefined : <option value="31">31日</option>}
             </Select>
           </div>
         </Card>
