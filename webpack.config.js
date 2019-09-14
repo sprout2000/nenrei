@@ -13,7 +13,7 @@ module.exports = {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
   },
   entry: {
-    app: './src/App.tsx',
+    app: './src/index.tsx',
   },
   output: {
     path: path.resolve(__dirname, 'build'),

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
 import { Page, Card, Select } from 'react-onsenui';
 
 import 'onsenui/css/onsenui.css';
@@ -256,4 +255,4 @@ const App = (): JSX.Element => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+export default App;
