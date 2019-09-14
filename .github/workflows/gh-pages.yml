@@ -3,7 +3,9 @@ name: github pages
 on:
   push:
     branches:
-    - master
+      - '!*'
+    tags:
+      - 'v*'
 
 jobs:
   build-deploy:
