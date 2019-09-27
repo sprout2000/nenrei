@@ -17,27 +17,6 @@ jobs:
           paths:
             - ./node_modules
           key: dependency-cache-{{ checksum "package.json" }}
-  deploy:
-    docker:
-      - image: circleci/node:10.16
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - dependency-cache-{{ checksum "package.json" }}
-      - run: yarn install
-      - run: git config user.name sprout2000
-      - run: git config user.email k_konno1983@yahoo.co.jp
-      - run: yarn build
-      - run: yarn deploy
-workflows:
-  version: 2
-  build-deploy:
-    jobs:
-      - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
+      - run:
+          name: deploy
+          command: yarn deploy
