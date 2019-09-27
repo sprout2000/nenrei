@@ -15,7 +15,7 @@
     "start": "cross-env NODE_ENV=\"development\" webpack-dev-server",
     "build": "cross-env NODE_ENV=\"production\" webpack --progress --hide-modules",
     "clean": "rimraf build/*",
-    "predeploy": "npm-run-all clean build",
+    "build:prod": "npm-run-all clean build",
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {
