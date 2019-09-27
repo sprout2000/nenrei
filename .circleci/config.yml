@@ -18,5 +18,10 @@ jobs:
             - ./node_modules
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
+          name: setup-github
+          command: |
+            git config --global user.name sprout2000
+            git config --global user.email k_konno1983@yahoo.co.jp
+      - run:
           name: deploy
           command: yarn deploy
