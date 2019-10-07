@@ -41,5 +41,7 @@ workflows:
     jobs:
       - build:
           filters:
+            tags: 
+              only: /^v*/
             branches:
               only: master
