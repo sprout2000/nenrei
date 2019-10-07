@@ -13,7 +13,7 @@
   },
   "scripts": {
     "start": "cross-env NODE_ENV=\"development\" webpack-dev-server",
-    "build": "cross-env NODE_ENV=\"production\" webpack --progress --hide-modules",
+    "build": "cross-env NODE_ENV=\"production\" webpack --hide-modules",
     "clean": "rimraf build/*",
     "build:prod": "npm-run-all clean build"
   },
