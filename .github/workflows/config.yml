@@ -1,19 +1,29 @@
+# ワークフロー名
 name: github deploy
 
+# アクションのトリガー
 on:
+  # push されたら起動
   push:
+    # フィルタ
     branches:
-      - '!*'
-    tags:
-      - 'v*'
+      # master ブランチのみ
+      - master
 
 jobs:
+  # ジョブ名
   build-deploy:
+    # 仮想環境の選択
     runs-on: ubuntu-18.04
     steps:
+    # 標準の checkout
     - uses: actions/checkout@master
+      # レポジトリの最新状態のみ checkout すれば良いときは fetch-depth を指定する
+      with:
+        fetch-depth: 1
 
     - name: build
+      # node のセットアップ
       uses: actions/setup-node@v1
       with:
         node-version: '10.16'
