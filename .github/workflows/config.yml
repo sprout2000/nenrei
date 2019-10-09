@@ -1,29 +1,19 @@
-# ワークフロー名
 name: github deploy
 
-# アクションのトリガー
 on:
-  # push されたら起動
   push:
-    # フィルタ
     branches:
-      # master ブランチのみ
       - master
 
 jobs:
-  # ジョブ名
   build-deploy:
-    # 仮想環境の選択
     runs-on: ubuntu-18.04
     steps:
-    # 標準の checkout
     - uses: actions/checkout@master
-      # レポジトリの最新状態のみ checkout すれば良いときは fetch-depth を指定する
       with:
         fetch-depth: 1
 
     - name: build
-      # node のセットアップ
       uses: actions/setup-node@v1
       with:
         node-version: '10.16'
@@ -31,7 +21,7 @@ jobs:
         yarn install
         yarn build:prod
     - name: deploy
-      uses: sprout2000/actions-gh-pages@v2.5.0
+      uses: peaceiris/actions-gh-pages@v2.5.0
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
