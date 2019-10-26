@@ -34,13 +34,6 @@ module.exports = {
             loader: 'css-loader',
             options: {
               sourceMap: isDev,
-              importLoaders: 2,
-            },
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: isDev,
             },
           },
         ],
