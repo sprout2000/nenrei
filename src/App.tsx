@@ -20,9 +20,9 @@ interface BirthDay {
 const useStyles = makeStyles(() =>
   createStyles({
     root: {
-      height: '100vh',
       margin: 0,
       padding: 0,
+      height: '100%',
       overflow: 'hidden',
       backgroundColor: '#f5f5f5',
       fontFamily: '-apple-system, BlinkMacSystemFont, Roboto, sans-serif',
@@ -32,14 +32,16 @@ const useStyles = makeStyles(() =>
       padding: 0,
     },
     content: {
-      padding: '1em',
       textAlign: 'center',
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
     },
     card: {
       margin: '1em auto',
       width: '80vw',
       maxWidth: 400,
-      minWidth: 275,
     },
     label: {
       fontWeight: 'bold',
