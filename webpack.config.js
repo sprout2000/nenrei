@@ -2,7 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -16,7 +15,7 @@ module.exports = {
     app: './src/index.tsx',
   },
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
   },
   module: {
@@ -27,19 +26,7 @@ module.exports = {
         loader: 'ts-loader',
       },
       {
-        test: /\.s?css$/,
-        use: [
-          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: isDev,
-            },
-          },
-        ],
-      },
-      {
-        test: /\.(bmp|gif|tiff?|png|jpe?g|svg|ttf|eot|woff?2?)$/,
+        test: /\.(bmp|gif|png|jpe?g|svg|ttf|eot|woff?2?)$/,
         loader: 'file-loader',
         options: {
           name: 'images/[name].[ext]',
@@ -54,7 +41,6 @@ module.exports = {
       chunks: ['app'],
       filename: 'index.html',
     }),
-    new MiniCssExtractPlugin({}),
     new CopyWebpackPlugin([
       {
         from: 'assets',
@@ -68,13 +54,13 @@ module.exports = {
       clientsClaim: true,
     }),
   ],
-  stats: 'minimal',
   performance: {
     hints: false,
   },
   devtool: isDev ? 'inline-source-map' : false,
   devServer: {
-    contentBase: path.resolve(__dirname, 'build'),
+    contentBase: path.resolve(__dirname, 'dist'),
     port: 3000,
+    open: true,
   },
 };

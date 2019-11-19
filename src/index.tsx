@@ -1,15 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ons from 'onsenui';
 
 import App from './App';
 
 ReactDOM.render(<App />, document.getElementById('root'));
-
-if (ons.platform.isIPhoneX()) {
-  document.documentElement.setAttribute('onsflag-iphonex-portrait', '');
-  document.documentElement.setAttribute('onsflag-iphonex-landscape', '');
-}
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
