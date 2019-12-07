@@ -79,9 +79,9 @@ const App = (): JSX.Element => {
   };
 
   const birthday: BirthDay = {
-    year: (year as unknown) as number,
-    month: (month as unknown) as number,
-    date: (day as unknown) as number,
+    year: year,
+    month: month,
+    date: day,
   };
 
   const calcAge = (obj: BirthDay): number => {
