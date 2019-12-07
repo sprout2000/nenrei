@@ -12,7 +12,7 @@
     "esModuleInterop": true,
     "lib": [
       "dom",
-      "esnext"
+      "es2015"
     ],
     "sourceMap": true,
     "strict": true,
