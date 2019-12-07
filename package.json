@@ -13,7 +13,7 @@
   },
   "scripts": {
     "start": "cross-env NODE_ENV=\"development\" webpack-dev-server",
-    "build": "cross-env NODE_ENV=\"production\" webpack",
+    "build": "cross-env NODE_ENV=\"production\" webpack --progress",
     "clean": "rimraf dist/*",
     "gh-pages": "gh-pages -d dist",
     "deploy": "npm-run-all clean build gh-pages"

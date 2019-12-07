@@ -58,9 +58,6 @@ module.exports = {
       clientsClaim: true,
     }),
   ],
-  performance: {
-    hints: false,
-  },
   devtool: isDev ? 'inline-source-map' : false,
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
