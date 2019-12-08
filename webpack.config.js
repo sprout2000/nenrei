@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -45,7 +46,11 @@ module.exports = {
   },
   optimization: {
     minimize: true,
-    minimizer: [new TerserWebpackPlugin()],
+    minimizer: [
+      new TerserWebpackPlugin({
+        test: /\.js(\?.*)?$/i,
+      }),
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({}),
