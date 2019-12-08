@@ -167,7 +167,7 @@ const App = (): JSX.Element => {
         <Titlebar toggleDrawer={toggleDrawer} drawerOpen={drawerOpen} />
         <div className={classes.content}>
           <div className={classes.icon}>
-            <img src={Icon} width={64} height={64} />
+            <img src={Icon} width={64} height={64} alt="年齢計算" />
           </div>
           <Card className={classes.card}>
             <CardContent>
