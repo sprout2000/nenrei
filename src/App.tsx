@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 
@@ -10,6 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 import Titlebar from './Titlebar';
 import Icon from './icon-144.png';
+import './index.css';
 
 interface BirthDay {
   year: number;
@@ -363,4 +365,17 @@ const App = (): JSX.Element => {
   );
 };
 
-export default App;
+ReactDOM.render(<App />, document.getElementById('root'));
+
+if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker
+      .register('./service-worker.js')
+      .then((registration) => {
+        console.log('SW registered: ', registration);
+      })
+      .catch((registrationError) => {
+        console.log('SW registration failed: ', registrationError);
+      });
+  });
+}
