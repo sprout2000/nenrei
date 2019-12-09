@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -16,10 +15,12 @@ module.exports = {
   },
   entry: {
     app: './src/App.tsx',
+    drawer: './src/Drawer.tsx',
+    titlebar: './src/Titlebar.tsx',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
+    filename: '[name].bundle.js',
   },
   module: {
     rules: [
@@ -45,6 +46,16 @@ module.exports = {
     ],
   },
   optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /node_modules/,
+          name: 'vendor',
+          chunks: 'initial',
+          enforce: true,
+        },
+      },
+    },
     minimize: true,
     minimizer: [
       new TerserWebpackPlugin({
@@ -57,7 +68,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
       favicon: './src/favicon.ico',
-      chunks: ['app'],
+      chunks: ['app', 'vendor'],
       filename: 'index.html',
     }),
     new CopyWebpackPlugin([
