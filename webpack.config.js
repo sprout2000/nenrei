@@ -15,8 +15,6 @@ module.exports = {
   },
   entry: {
     app: './src/App.tsx',
-    drawer: './src/Drawer.tsx',
-    titlebar: './src/Titlebar.tsx',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
