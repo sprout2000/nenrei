@@ -43,6 +43,10 @@ module.exports = {
       },
     ],
   },
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDOM',
+  },
   optimization: {
     splitChunks: {
       cacheGroups: {
@@ -69,17 +73,33 @@ module.exports = {
       chunks: ['app', 'vendor'],
       filename: 'index.html',
     }),
-    new CopyWebpackPlugin([
+    new CopyWebpackPlugin(
+      [
+        {
+          from: 'assets',
+          to: '.',
+          toType: 'dir',
+        },
+      ],
       {
-        from: 'assets',
-        to: '.',
-        toType: 'dir',
-      },
-    ]),
+        ignore: ['.DS_Store'],
+      }
+    ),
     new WorkboxWebpackPlugin.GenerateSW({
       swDest: 'service-worker.js',
       skipWaiting: true,
       clientsClaim: true,
+      runtimeCaching: [
+        {
+          urlPattern: 'https://unpkg.com/react@16/umd/react.production.min.js',
+          handler: 'CacheFirst',
+        },
+        {
+          urlPattern:
+            'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js',
+          handler: 'CacheFirst',
+        },
+      ],
     }),
   ],
   devtool: isDev ? 'inline-source-map' : false,
