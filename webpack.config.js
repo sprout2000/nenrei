@@ -91,12 +91,7 @@ module.exports = {
       clientsClaim: true,
       runtimeCaching: [
         {
-          urlPattern: 'https://unpkg.com/react@16/umd/react.production.min.js',
-          handler: 'CacheFirst',
-        },
-        {
-          urlPattern:
-            'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js',
+          urlPattern: /.+\.min\.js$/,
           handler: 'CacheFirst',
         },
       ],
