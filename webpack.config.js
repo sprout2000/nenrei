@@ -43,10 +43,6 @@ module.exports = {
       },
     ],
   },
-  externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM',
-  },
   optimization: {
     splitChunks: {
       cacheGroups: {
@@ -89,12 +85,6 @@ module.exports = {
       swDest: 'service-worker.js',
       skipWaiting: true,
       clientsClaim: true,
-      runtimeCaching: [
-        {
-          urlPattern: /.+\.min\.js$/,
-          handler: 'CacheFirst',
-        },
-      ],
     }),
   ],
   devtool: isDev ? 'inline-source-map' : false,
