@@ -12,7 +12,7 @@ import InfoIcon from '@material-ui/icons/InfoOutlined';
 
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 
-import Icon from './icon-144.png';
+import Icon from './icon-192.png';
 import pjson from '../package.json';
 
 interface Props {
