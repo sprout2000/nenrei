@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const TerserWebpackPlugin = require('terser-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -46,12 +45,6 @@ module.exports = {
         },
       },
     },
-    minimize: true,
-    minimizer: [
-      new TerserWebpackPlugin({
-        test: /\.js(\?.*)?$/i,
-      }),
-    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
