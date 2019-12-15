@@ -11,7 +11,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 import Titlebar from './Titlebar';
 import Icon from './icon-192.png';
-import './index.css';
 
 interface BirthDay {
   year: number;
@@ -21,6 +20,23 @@ interface BirthDay {
 
 const useStyles = makeStyles(() =>
   createStyles({
+    '@global': {
+      html: {
+        margin: 0,
+        padding: 0,
+        height: '100%',
+      },
+      body: {
+        margin: 0,
+        padding: 0,
+        height: '100%',
+      },
+      '#root': {
+        margin: 0,
+        padding: 0,
+        height: '100%',
+      },
+    },
     root: {
       margin: 0,
       padding: 0,

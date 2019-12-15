@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -26,13 +25,6 @@ module.exports = {
         test: /\.tsx?$/,
         exclude: /node_modules/,
         loader: 'ts-loader',
-      },
-      {
-        test: /\.css$/,
-        use: [
-          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader',
-        ],
       },
       {
         test: /\.(bmp|gif|png|jpe?g|svg|ttf|eot|woff?2?)$/,
@@ -62,7 +54,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new MiniCssExtractPlugin({}),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       favicon: './src/favicon.ico',
