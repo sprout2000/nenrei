@@ -5,4 +5,4 @@
 [![GitHub issues](https://img.shields.io/github/issues/sprout2000/nenrei)](https://github.com/sprout2000/nenrei/issues)
 [![Twitter](https://img.shields.io/twitter/url/https/github.com/sprout2000/nenrei?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fsprout2000%2Fnenrei)
 
-<img width="640" alt="2019-12-08 13 48 17" src="https://user-images.githubusercontent.com/52094761/70384430-8f31a780-19c1-11ea-9c2f-e7c2af569354.png">
+<img width="1280" alt="2019-12-16" src="https://user-images.githubusercontent.com/52094761/70870884-4b036000-1fdc-11ea-9860-6b5cc130c944.png">
