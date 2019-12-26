@@ -48,7 +48,10 @@ const Drawer = (props: Props): JSX.Element => {
 
   const handleReload = (): void => location.reload();
   const handleInfo = (): void => {
-    location.href = 'https://github.com/sprout2000/nenrei/';
+    window.open(
+      'https://github.com/sprout2000/nenrei/blob/master/README.md',
+      '_blank'
+    );
   };
 
   return (
@@ -67,13 +70,13 @@ const Drawer = (props: Props): JSX.Element => {
         <List>
           <ListItem button onClick={handleReload}>
             <ListItemIcon>
-              <RefreshIcon />
+              <RefreshIcon color="primary" />
             </ListItemIcon>
-            <ListItemText primary="再読込み" />
+            <ListItemText primary="アプリを再読込" />
           </ListItem>
           <ListItem button onClick={handleInfo}>
             <ListItemIcon>
-              <InfoIcon />
+              <InfoIcon color="action" />
             </ListItemIcon>
             <ListItemText primary="このアプリについて" />
           </ListItem>
