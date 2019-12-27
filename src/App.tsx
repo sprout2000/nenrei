@@ -70,6 +70,10 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: '6em',
       color: '#1f1f21',
     },
+    month: {
+      fontSize: '3em',
+      color: '#434345',
+    },
   })
 );
 
@@ -169,8 +173,8 @@ const App = (): JSX.Element => {
         <Card className={classes.card}>
           <CardContent>
             <div className={classes.answer}>年齢</div>
-            <span className={classes.age}>{y}</span>歳
-            <span className={classes.age}>{m}</span>ヶ月
+            <span className={classes.age}>{y}</span>歳と
+            <span className={classes.month}>{m}</span>ヶ月
           </CardContent>
         </Card>
       </div>
