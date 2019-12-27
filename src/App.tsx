@@ -89,17 +89,13 @@ const App = (): JSX.Element => {
     setDrawerOpen(open);
   };
 
-  const Wareki = (
-    start: number,
-    end: number,
-    wareki: string
-  ): JSX.Element[] => {
+  const Wareki = (start: number, end: number, gengo: string): JSX.Element[] => {
     const items = [];
     for (let i = start + 1; i < end; i++) {
-      const key = wareki + i;
+      const key = gengo + i;
       items.push(
         <MenuItem key={key} value={i}>
-          {wareki}
+          {gengo}
           {i - start + 1}年 ({i})
         </MenuItem>
       );
@@ -154,7 +150,7 @@ const App = (): JSX.Element => {
                   {Syowa}
                   <MenuItem value={1989}>昭和64年,平成元年 (1989)</MenuItem>
                   {Heisei}
-                  <MenuItem value={2019}>平成31年, 令和元年 (2019)</MenuItem>
+                  <MenuItem value={2019}>平成31年,令和元年 (2019)</MenuItem>
                 </Select>
               </FormControl>
             </div>
