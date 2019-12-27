@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
+import moment from 'moment';
 
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
@@ -11,12 +12,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 import Titlebar from './Titlebar';
 import Icon from './icon-192.png';
-
-interface BirthDay {
-  year: number;
-  month: number;
-  date: number;
-}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -85,7 +80,10 @@ const App = (): JSX.Element => {
 
   const [year, setYear] = useState(1955);
   const [month, setMonth] = useState(4);
-  const [day, setDay] = useState(1);
+
+  const toggleDrawer = (open: boolean): void => {
+    setDrawerOpen(open);
+  };
 
   const Wareki = (
     start: number,
@@ -106,96 +104,28 @@ const App = (): JSX.Element => {
     return items;
   };
 
+  const Tsuki = (): JSX.Element[] => {
+    const items = [];
+    for (let i = 1; i <= 12; i++) {
+      items.push(
+        <MenuItem key={i} value={i}>
+          {i}月
+        </MenuItem>
+      );
+    }
+
+    return items;
+  };
+
   const Taisyo = Wareki(1912, 1926, '大正');
   const Syowa = Wareki(1926, 1989, '昭和');
   const Heisei = Wareki(1989, 2019, '平成');
+  const monthItems = Tsuki();
 
-  const toggleDrawer = (open: boolean): void => {
-    setDrawerOpen(open);
-  };
-
-  const birthday: BirthDay = {
-    year: year,
-    month: month,
-    date: day,
-  };
-
-  const calcAge = (obj: BirthDay): number => {
-    const birthDate = new Date(obj.year, obj.month - 1, obj.date);
-
-    const y2 = birthDate
-      .getFullYear()
-      .toString()
-      .padStart(4, '0');
-    const m2 = (birthDate.getMonth() + 1).toString().padStart(2, '0');
-    const d2 = birthDate
-      .getDate()
-      .toString()
-      .padStart(2, '0');
-
-    const today = new Date();
-
-    const y1 = today
-      .getFullYear()
-      .toString()
-      .padStart(4, '0');
-    const m1 = (today.getMonth() + 1).toString().padStart(2, '0');
-    const d1 = today
-      .getDate()
-      .toString()
-      .padStart(2, '0');
-
-    const age = Math.floor(
-      (Number(y1 + m1 + d1) - Number(y2 + m2 + d2)) / 10000
-    );
-
-    return age;
-  };
-
-  const age = calcAge(birthday);
-
-  const uru = [
-    1912,
-    1916,
-    1920,
-    1924,
-    1928,
-    1932,
-    1936,
-    1940,
-    1944,
-    1948,
-    1952,
-    1956,
-    1960,
-    1964,
-    1968,
-    1972,
-    1976,
-    1980,
-    1984,
-    1988,
-    1992,
-    1996,
-    2000,
-    2004,
-    2008,
-    2012,
-    2016,
-  ];
-  const isUru = uru.includes(year);
-
-  const samurai = [2, 4, 6, 9, 11];
-  const isSam = samurai.includes(month);
-  const isFeb = month === 2;
-
-  if (isFeb && !isUru && day > 28) {
-    setDay(28);
-  } else if (isFeb && day > 29) {
-    setDay(29);
-  } else if (isSam && day > 30) {
-    setDay(30);
-  }
+  const birthday = moment(`${year}-${month}-01`, 'YYYY-MM-DD');
+  const today = moment();
+  const y = today.diff(birthday, 'years');
+  const m = Math.floor(moment.duration(today.diff(birthday)).as('months') % 12);
 
   return (
     <div className={classes.root}>
@@ -207,7 +137,7 @@ const App = (): JSX.Element => {
         </div>
         <Card className={classes.card}>
           <CardContent>
-            <div className={classes.label}>生年月日</div>
+            <div className={classes.label}>生まれ年と月</div>
             <div>
               <FormControl className={classes.form}>
                 <Select
@@ -230,66 +160,7 @@ const App = (): JSX.Element => {
                   className={classes.select}
                   value={month}
                   onChange={(e): void => setMonth(e.target.value as number)}>
-                  <MenuItem value={1}>1月</MenuItem>
-                  <MenuItem value={2}>2月</MenuItem>
-                  <MenuItem value={3}>3月</MenuItem>
-                  <MenuItem value={4}>4月</MenuItem>
-                  <MenuItem value={5}>5月</MenuItem>
-                  <MenuItem value={6}>6月</MenuItem>
-                  <MenuItem value={7}>7月</MenuItem>
-                  <MenuItem value={8}>8月</MenuItem>
-                  <MenuItem value={9}>9月</MenuItem>
-                  <MenuItem value={10}>10月</MenuItem>
-                  <MenuItem value={11}>11月</MenuItem>
-                  <MenuItem value={12}>12月</MenuItem>
-                </Select>
-              </FormControl>
-            </div>
-            <div>
-              <FormControl className={classes.form}>
-                <Select
-                  className={classes.select}
-                  value={day}
-                  onChange={(e): void => setDay(e.target.value as number)}>
-                  <MenuItem value={1}>1日</MenuItem>
-                  <MenuItem value={2}>2日</MenuItem>
-                  <MenuItem value={3}>3日</MenuItem>
-                  <MenuItem value={4}>4日</MenuItem>
-                  <MenuItem value={5}>5日</MenuItem>
-                  <MenuItem value={6}>6日</MenuItem>
-                  <MenuItem value={7}>7日</MenuItem>
-                  <MenuItem value={8}>8日</MenuItem>
-                  <MenuItem value={9}>9日</MenuItem>
-                  <MenuItem value={10}>10日</MenuItem>
-                  <MenuItem value={11}>11日</MenuItem>
-                  <MenuItem value={12}>12日</MenuItem>
-                  <MenuItem value={13}>13日</MenuItem>
-                  <MenuItem value={14}>14日</MenuItem>
-                  <MenuItem value={15}>15日</MenuItem>
-                  <MenuItem value={16}>16日</MenuItem>
-                  <MenuItem value={17}>17日</MenuItem>
-                  <MenuItem value={18}>18日</MenuItem>
-                  <MenuItem value={19}>19日</MenuItem>
-                  <MenuItem value={20}>20日</MenuItem>
-                  <MenuItem value={21}>21日</MenuItem>
-                  <MenuItem value={22}>22日</MenuItem>
-                  <MenuItem value={23}>23日</MenuItem>
-                  <MenuItem value={24}>24日</MenuItem>
-                  <MenuItem value={25}>25日</MenuItem>
-                  <MenuItem value={26}>26日</MenuItem>
-                  <MenuItem value={27}>27日</MenuItem>
-                  <MenuItem value={28}>28日</MenuItem>
-                  {isFeb && !isUru ? (
-                    undefined
-                  ) : (
-                    <MenuItem value={29}>29日</MenuItem>
-                  )}
-                  {isFeb ? undefined : <MenuItem value={30}>30日</MenuItem>}
-                  {isFeb || isSam ? (
-                    undefined
-                  ) : (
-                    <MenuItem value={31}>31日</MenuItem>
-                  )}
+                  {monthItems}
                 </Select>
               </FormControl>
             </div>
@@ -298,7 +169,8 @@ const App = (): JSX.Element => {
         <Card className={classes.card}>
           <CardContent>
             <div className={classes.answer}>年齢</div>
-            <span className={classes.age}>{age}</span>歳
+            <span className={classes.age}>{y}</span>歳
+            <span className={classes.age}>{m}</span>ヶ月
           </CardContent>
         </Card>
       </div>
