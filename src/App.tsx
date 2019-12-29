@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: '1em auto',
       width: '80vw',
       maxWidth: 400,
+      color: '#666',
     },
     label: {
       fontWeight: 'bold',
@@ -72,7 +73,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     month: {
       fontSize: '3em',
-      color: '#434345',
+      color: '#1f1f21',
     },
   })
 );
