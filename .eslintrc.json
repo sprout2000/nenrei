@@ -1,9 +1,9 @@
 {
   "env": {
-    "browser": true,
-    "commonjs": true,
+    "es6": true,
     "node": true,
-    "es6": true
+    "browser": true,
+    "commonjs": true
   },
   "settings": {
     "react": {
@@ -13,20 +13,22 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2018,
-    "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
-    }
+    },
+    "sourceType": "module"
   },
   "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
     "plugin:react/recommended",
+    "prettier/@typescript-eslint",
     "plugin:prettier/recommended"
   ],
   "plugins": [
+    "@typescript-eslint",
     "react",
-    "react-hooks",
     "prettier"
   ],
   "rules": {
@@ -36,12 +38,9 @@
         "singleQuote": true,
         "trailingComma": "es5",
         "arrowParens": "always",
-        "endOfLine": "lf",
         "jsxBracketSameLine": true
       }
-    ],
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
+    ]
   },
   "overrides": [
     {
@@ -49,7 +48,8 @@
         "*.js"
       ],
       "rules": {
-        "@typescript-eslint/no-var-requires": "off"
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/explicit-function-return-type": "off"
       }
     }
   ]
