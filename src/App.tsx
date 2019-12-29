@@ -4,6 +4,7 @@ import moment from 'moment';
 
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import FormControl from '@material-ui/core/FormControl';
@@ -15,21 +16,6 @@ import Icon from './icon-192.png';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    '@global': {
-      html: {
-        margin: 0,
-        padding: 0,
-      },
-      body: {
-        margin: 0,
-        padding: 0,
-        backgroundColor: '#efeff4',
-      },
-      '#root': {
-        margin: 0,
-        padding: 0,
-      },
-    },
     toolbar: theme.mixins.toolbar,
     root: {
       margin: 0,
@@ -130,6 +116,7 @@ const App = (): JSX.Element => {
 
   return (
     <div className={classes.root}>
+      <CssBaseline />
       <Titlebar toggleDrawer={toggleDrawer} drawerOpen={drawerOpen} />
       <div className={classes.toolbar} />
       <div className={classes.content}>
