@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: 0,
       padding: 0,
       fontFamily: '-apple-system, BlinkMacSystemFont, Roboto, sans-serif',
+      backgroundColor: '#efeff4',
     },
     icon: {
       margin: '0 auto',
