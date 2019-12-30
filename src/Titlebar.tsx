@@ -8,7 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
-import Drawer from './Drawer';
+import Drawer from './SideBar';
 
 interface Props {
   toggleDrawer: Function;

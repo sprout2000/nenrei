@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -20,10 +20,19 @@ interface Props {
   drawerOpen: boolean;
 }
 
+const drawerWidth = 250;
+
 const useStyles = makeStyles(() =>
   createStyles({
+    drawer: {
+      width: drawerWidth,
+      flexShrink: 0,
+    },
+    drawerPaper: {
+      width: drawerWidth,
+    },
     drawerHeader: {
-      height: 120,
+      height: 150,
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
@@ -34,16 +43,12 @@ const useStyles = makeStyles(() =>
       fontFamily: '-apple-system, BlinkMacSystemFont, Roboto, sans-serif',
     },
     list: {
-      width: 250,
-    },
-    link: {
-      textDecoration: 'none',
-      color: '#333',
+      width: drawerWidth,
     },
   })
 );
 
-const Drawer = (props: Props): JSX.Element => {
+const SideBar = (props: Props): JSX.Element => {
   const classes = useStyles();
 
   const handleReload = (): void => location.reload();
@@ -55,10 +60,12 @@ const Drawer = (props: Props): JSX.Element => {
   };
 
   return (
-    <SwipeableDrawer
+    <Drawer
+      className={classes.drawer}
+      variant="temporary"
+      classes={{ paper: classes.drawerPaper }}
       open={props.drawerOpen}
-      onClose={(): void => props.toggleDrawer(false)}
-      onOpen={(): void => props.toggleDrawer(true)}>
+      onClose={(): void => props.toggleDrawer(false)}>
       <div
         className={classes.list}
         role="presentation"
@@ -72,7 +79,7 @@ const Drawer = (props: Props): JSX.Element => {
             <ListItemIcon>
               <RefreshIcon color="primary" />
             </ListItemIcon>
-            <ListItemText primary="アプリを再読込" />
+            <ListItemText primary="アプリを再読込み" />
           </ListItem>
           <ListItem button onClick={handleInfo}>
             <ListItemIcon>
@@ -83,8 +90,8 @@ const Drawer = (props: Props): JSX.Element => {
           <Divider />
         </List>
       </div>
-    </SwipeableDrawer>
+    </Drawer>
   );
 };
 
-export default Drawer;
+export default SideBar;
