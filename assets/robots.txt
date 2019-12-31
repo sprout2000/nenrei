@@ -1,2 +1,0 @@
-User-agent: *
-Sitemap: https://sprout2000.github.io/nenrei/sitemap.xml

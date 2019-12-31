@@ -2,17 +2,25 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
 
-import { createStyles, makeStyles } from '@material-ui/core/styles';
+/** Styles */
+import createStyles from '@material-ui/core/styles/createStyles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
+/** Common components */
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
+
+/** Card */
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+
+/** Form (Select) */
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
-import Titlebar from './Titlebar';
-import Icon from './icon-192.png';
+/** App Shell for PWA */
+import AppShell from './AppShell';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -72,9 +80,7 @@ const App = (): JSX.Element => {
   const [year, setYear] = useState(1955);
   const [month, setMonth] = useState(4);
 
-  const toggleDrawer = (open: boolean): void => {
-    setDrawerOpen(open);
-  };
+  const toggleDrawer = (): void => setDrawerOpen(!drawerOpen);
 
   const Wareki = (start: number, end: number, gengo: string): JSX.Element[] => {
     const items = [];
@@ -82,8 +88,10 @@ const App = (): JSX.Element => {
       const key = gengo + i;
       items.push(
         <MenuItem key={key} value={i}>
-          {gengo}
-          {i - start + 1}年 ({i})
+          <Typography>
+            {gengo}
+            {i - start + 1}年 ({i})
+          </Typography>
         </MenuItem>
       );
     }
@@ -96,7 +104,7 @@ const App = (): JSX.Element => {
     for (let i = 1; i <= 12; i++) {
       items.push(
         <MenuItem key={i} value={i}>
-          {i}月
+          <Typography>{i}月</Typography>
         </MenuItem>
       );
     }
@@ -109,35 +117,42 @@ const App = (): JSX.Element => {
   const Heisei = Wareki(1989, 2019, '平成');
   const monthItems = Tsuki();
 
-  const birthday = moment(`${year}-${month}-01`, 'YYYY-MM-DD');
+  const birthday = moment(`${year}-${month}`, 'YYYY-MM');
   const today = moment();
-  const y = today.diff(birthday, 'years');
-  const m = Math.floor(moment.duration(today.diff(birthday)).as('months') % 12);
+  const age = today.diff(birthday, 'years');
 
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Titlebar toggleDrawer={toggleDrawer} drawerOpen={drawerOpen} />
+      <AppShell toggleDrawer={toggleDrawer} drawerOpen={drawerOpen} />
       <div className={classes.content}>
         <div className={classes.icon}>
-          <img src={Icon} width={64} height={64} alt="年齢計算" />
+          <img src="icons/icon-192.png" width={64} height={64} alt="年齢計算" />
         </div>
         <Card className={classes.card}>
           <CardContent>
-            <div className={classes.label}>生まれ年と月</div>
+            <Typography className={classes.label}>生まれ年と月</Typography>
             <div>
               <FormControl className={classes.form}>
                 <Select
                   className={classes.select}
                   value={year}
                   onChange={(e): void => setYear(e.target.value as number)}>
-                  <MenuItem value={1926}>大正元年 (1912)</MenuItem>
+                  <MenuItem value={1926}>
+                    <Typography>大正元年 (1912)</Typography>
+                  </MenuItem>
                   {Taisyo}
-                  <MenuItem value={1926}>大正15年,昭和元年 (1926)</MenuItem>
+                  <MenuItem value={1926}>
+                    <Typography>大正15年,昭和元年 (1926)</Typography>
+                  </MenuItem>
                   {Syowa}
-                  <MenuItem value={1989}>昭和64年,平成元年 (1989)</MenuItem>
+                  <MenuItem value={1989}>
+                    <Typography>昭和64年,平成元年 (1989)</Typography>
+                  </MenuItem>
                   {Heisei}
-                  <MenuItem value={2019}>平成31年,令和元年 (2019)</MenuItem>
+                  <MenuItem value={2019}>
+                    <Typography>平成31年,令和元年 (2019)</Typography>
+                  </MenuItem>
                 </Select>
               </FormControl>
             </div>
@@ -155,9 +170,10 @@ const App = (): JSX.Element => {
         </Card>
         <Card className={classes.card}>
           <CardContent>
-            <div className={classes.answer}>年齢</div>
-            <span className={classes.age}>{y}</span>歳と
-            <span className={classes.month}>{m}</span>ヶ月
+            <Typography className={classes.answer}>年齢</Typography>
+            <Typography>
+              満<span className={classes.age}>{age}</span>歳
+            </Typography>
           </CardContent>
         </Card>
       </div>
