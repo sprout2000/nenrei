@@ -53,10 +53,7 @@ const SideBar = (props: Props): JSX.Element => {
 
   const handleReload = (): void => location.reload();
   const handleInfo = (): void => {
-    window.open(
-      'https://github.com/sprout2000/nenrei/blob/master/README.md',
-      '_blank'
-    );
+    window.open('https://github.com/sprout2000/nenrei', '_blank');
   };
 
   return (
