@@ -23,12 +23,14 @@
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "prettier/react",
+    "prettier/@typescript-eslint"
   ],
   "plugins": [
     "@typescript-eslint",
     "react",
+    "react-hooks",
     "prettier"
   ],
   "rules": {
@@ -40,7 +42,9 @@
         "arrowParens": "always",
         "jsxBracketSameLine": true
       }
-    ]
+    ],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   },
   "overrides": [
     {
