@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
 
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Card from '@material-ui/core/Card';
@@ -14,14 +14,12 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Titlebar from './Titlebar';
 import Icon from './icon-192.png';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
-    toolbar: theme.mixins.toolbar,
     root: {
       margin: 0,
       padding: 0,
       fontFamily: '-apple-system, BlinkMacSystemFont, Roboto, sans-serif',
-      backgroundColor: '#efeff4',
     },
     icon: {
       margin: '0 auto',
@@ -29,6 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     content: {
       textAlign: 'center',
+      padding: '1em 0',
     },
     card: {
       margin: '1em auto',
@@ -119,7 +118,6 @@ const App = (): JSX.Element => {
     <div className={classes.root}>
       <CssBaseline />
       <Titlebar toggleDrawer={toggleDrawer} drawerOpen={drawerOpen} />
-      <div className={classes.toolbar} />
       <div className={classes.content}>
         <div className={classes.icon}>
           <img src={Icon} width={64} height={64} alt="年齢計算" />

@@ -37,7 +37,7 @@ const Titlebar = (props: Props): JSX.Element => {
 
   return (
     <div className={classes.titlebar}>
-      <AppBar position="static">
+      <AppBar position="sticky">
         <Toolbar className={classes.toolbar}>
           <IconButton
             onClick={(): void => props.toggleDrawer(true)}
