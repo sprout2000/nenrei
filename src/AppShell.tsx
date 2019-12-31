@@ -20,7 +20,8 @@ import RefreshIcon from '@material-ui/icons/RefreshOutlined';
 import InfoIcon from '@material-ui/icons/InfoOutlined';
 
 /** Styles */
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import createStyles from '@material-ui/core/styles/createStyles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
 /** Resources */
 import pjson from '../package.json';
@@ -31,7 +32,7 @@ interface Props {
 }
 
 const drawerWidth = 250;
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     titlebar: {
       flexGrow: 1,
