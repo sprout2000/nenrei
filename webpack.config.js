@@ -55,27 +55,19 @@ module.exports = {
       chunks: ['app', 'vendor'],
       filename: 'index.html',
     }),
-    new CopyWebpackPlugin(
-      [
-        {
-          from: 'assets',
-          to: '.',
-          toType: 'dir',
-        },
-      ],
+    new CopyWebpackPlugin([
       {
-        ignore: ['.DS_Store'],
-      }
-    ),
+        from: 'assets',
+        to: '.',
+        toType: 'dir',
+      },
+    ]),
     new WorkboxWebpackPlugin.GenerateSW({
       swDest: 'service-worker.js',
       skipWaiting: true,
       clientsClaim: true,
     }),
   ],
-  performance: {
-    hints: false,
-  },
   devtool: isDev ? 'inline-source-map' : false,
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),

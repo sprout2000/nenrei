@@ -20,7 +20,8 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
 /** App Shell for PWA */
-import AppShell from './AppShell';
+import Header from './Header';
+import SideBar from './SideBar';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -123,7 +124,8 @@ const App = (): JSX.Element => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppShell toggleDrawer={toggleDrawer} drawerOpen={drawerOpen} />
+      <Header toggleDrawer={toggleDrawer} />
+      <SideBar toggleDrawer={toggleDrawer} drawerOpen={drawerOpen} />
       <div className={classes.content}>
         <div className={classes.icon}>
           <img src='icons/icon-192.png' width={64} height={64} alt='年齢計算' />
