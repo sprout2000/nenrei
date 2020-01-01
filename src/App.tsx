@@ -112,7 +112,8 @@ const App = (): JSX.Element => {
     return items;
   };
 
-  const Etos = [
+  const es = ['庚', '辛', '壬', '癸', '甲', '乙', '丙', '丁', '戊', '己'];
+  const tos = [
     '申（さる）',
     '酉（とり）',
     '戌（いぬ）',
@@ -135,7 +136,8 @@ const App = (): JSX.Element => {
   const birthday = moment(`${year}-${month}`, 'YYYY-MM');
   const today = moment();
   const age = today.diff(birthday, 'years');
-  const eto = Etos[year % 12];
+  const e = es[year % 10];
+  const to = tos[year % 12];
 
   return (
     <div className={classes.root}>
@@ -192,7 +194,10 @@ const App = (): JSX.Element => {
             <Typography>
               満<span className={classes.age}>{age}</span>歳
             </Typography>
-            <Typography>{eto}</Typography>
+            <Typography>
+              {e}
+              {to}
+            </Typography>
           </CardContent>
         </Card>
       </div>

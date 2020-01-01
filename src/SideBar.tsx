@@ -14,6 +14,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
+import Avatar from '@material-ui/core/Avatar';
 
 /** Icons */
 import RefreshIcon from '@material-ui/icons/RefreshOutlined';
@@ -77,7 +78,8 @@ const SideBar = (props: Props): JSX.Element => {
         role='presentation'
         onClick={(): void => props.toggleDrawer()}>
         <div className={classes.drawerHeader}>
-          <img src='icons/icon-192.png' alt='Icon' width={48} />
+          <Avatar alt='Logo' src='icons/icon-192.png' />
+          {/* <img src='icons/icon-192.png' alt='Icon' width={48} /> */}
           <Typography className={classes.version}>
             年齢計算 v{pjson.version}
           </Typography>
