@@ -6,7 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 
-/** Drawer and List */
+/** Drawer */
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -20,8 +20,8 @@ import RefreshIcon from '@material-ui/icons/RefreshOutlined';
 import InfoIcon from '@material-ui/icons/InfoOutlined';
 
 /** Styles */
-import styled from '@material-ui/core/styles/styled';
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import createStyles from '@material-ui/core/styles/createStyles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
 /** Resources */
 import pjson from '../package.json';
@@ -31,99 +31,101 @@ interface Props {
   drawerOpen: boolean;
 }
 
-const theme = createMuiTheme();
+const drawerWidth = 250;
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    titlebar: {
+      flexGrow: 1,
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+    title: {
+      flexGrow: 1,
+    },
+    toolbar: {
+      backgroundColor: '#ff375f',
+    },
+    drawer: {
+      width: drawerWidth,
+      flexShrink: 0,
+    },
+    drawerPaper: {
+      width: drawerWidth,
+    },
+    drawerHeader: {
+      height: 150,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: '1em',
+      backgroundColor: '#ff375f',
+      color: '#ffffff',
+      fontFamily: '-apple-system, BlinkMacSystemFont, Roboto, sans-serif',
+    },
+    list: {
+      width: drawerWidth,
+    },
+  })
+);
 
-const Titlebar = styled('div')({
-  flexGrow: 1,
-});
+const Titlebar = (props: Props): JSX.Element => {
+  const classes = useStyles();
 
-const StyledToolbar = styled(Toolbar)({
-  backgroundColor: '#ff375f',
-});
-
-const MenuButton = styled(IconButton)({
-  marginRight: theme.spacing(1),
-});
-
-const Title = styled(Typography)({
-  flexGrow: 1,
-});
-
-const StyledDrawer = styled(Drawer)({
-  width: 250,
-  flexShrink: 0,
-});
-
-const ListContainer = styled('div')({
-  width: 250,
-});
-
-const DrawerHeader = styled(List)({
-  height: 150,
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  padding: '1em',
-  backgroundColor: '#ff375f',
-  color: '#ffffff',
-  fontFamily: '-apple-system, BlinkMacSystemFont, Roboto, sans-serif',
-});
-
-const Version = styled(Typography)({
-  marginTop: theme.spacing(1),
-});
-
-const AppShell = (props: Props): JSX.Element => {
   const handleReload = (): void => location.reload();
   const handleInfo = (): void => {
     window.open('https://github.com/sprout2000/nenrei', '_blank');
   };
 
   return (
-    <Titlebar>
-      <AppBar position="sticky">
-        <StyledToolbar>
-          <MenuButton
+    <div className={classes.titlebar}>
+      <AppBar position='sticky'>
+        <Toolbar className={classes.toolbar}>
+          <IconButton
             onClick={(): void => props.toggleDrawer()}
-            edge="start"
-            color="inherit"
-            aria-label="menu">
+            edge='start'
+            className={classes.menuButton}
+            color='inherit'
+            aria-label='menu'>
             <MenuIcon />
-          </MenuButton>
-          <Title>ウェブ年齢計算機</Title>
-        </StyledToolbar>
+          </IconButton>
+          <Typography className={classes.title}>ウェブ年齢計算機</Typography>
+        </Toolbar>
       </AppBar>
-      <StyledDrawer
-        variant="temporary"
+      <Drawer
+        className={classes.drawer}
+        variant='temporary'
+        classes={{ paper: classes.drawerPaper }}
         open={props.drawerOpen}
         onClose={(): void => props.toggleDrawer()}>
-        <ListContainer
-          role="presentation"
+        <div
+          className={classes.list}
+          role='presentation'
           onClick={(): void => props.toggleDrawer()}>
-          <DrawerHeader>
-            <img src="icons/icon-192.png" alt="Icon" width={48} />
-            <Version>年齢計算 v{pjson.version}</Version>
-          </DrawerHeader>
+          <div className={classes.drawerHeader}>
+            <img src='icons/icon-192.png' alt='Icon' width={48} />
+            <Typography>年齢計算 v{pjson.version}</Typography>
+          </div>
           <List>
             <ListItem button onClick={handleReload}>
               <ListItemIcon>
-                <RefreshIcon color="primary" />
+                <RefreshIcon color='primary' />
               </ListItemIcon>
-              <ListItemText secondary="アプリを再読込み" />
+              <ListItemText secondary='アプリを再読込み' />
             </ListItem>
             <ListItem button onClick={handleInfo}>
               <ListItemIcon>
-                <InfoIcon color="secondary" />
+                <InfoIcon color='action' />
               </ListItemIcon>
-              <ListItemText secondary="このアプリについて" />
+              <ListItemText secondary='このアプリについて' />
             </ListItem>
             <Divider />
           </List>
-        </ListContainer>
-      </StyledDrawer>
-    </Titlebar>
+        </div>
+      </Drawer>
+    </div>
   );
 };
 
-export default AppShell;
+export default Titlebar;

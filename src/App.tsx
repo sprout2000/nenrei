@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import moment from 'moment';
 
 /** Styles */
-import CssBaseline from '@material-ui/core/CssBaseline';
-import styled from '@material-ui/core/styles/styled';
+import createStyles from '@material-ui/core/styles/createStyles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
 /** Common components */
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 
 /** Card */
@@ -21,57 +22,59 @@ import MenuItem from '@material-ui/core/MenuItem';
 /** App Shell for PWA */
 import AppShell from './AppShell';
 
-const Container = styled('div')({
-  margin: 0,
-  padding: 0,
-  fontFamily: '-apple-system, BlinkMacSystemFont, Roboto, sans-serif',
-});
-
-const Content = styled('div')({
-  textAlign: 'center',
-  padding: '1em 0',
-});
-
-const IconContainer = styled('div')({
-  margin: '0 auto',
-  padding: 0,
-});
-
-const StyledCard = styled(Card)({
-  margin: '1em auto',
-  width: '80vw',
-  maxWidth: 400,
-  color: '#666',
-});
-
-const Label = styled(Typography)({
-  fontWeight: 'bold',
-  color: 'rgb(0, 122, 255)',
-  letterSpacing: '0.25em',
-  userSelect: 'none',
-});
-
-const FormContainer = styled(FormControl)({
-  minWidth: 250,
-  padding: 10,
-});
-
-const StyledSelect = styled(Select)({
-  minWidth: 200,
-});
-
-const Answer = styled(Typography)({
-  fontWeight: 'bold',
-  color: 'rgb(255, 45, 85)',
-  letterSpacing: '0.25em',
-});
-
-const Age = styled('span')({
-  fontSize: '6em',
-  color: '#1f1f21',
-});
+const useStyles = makeStyles(() =>
+  createStyles({
+    root: {
+      margin: 0,
+      padding: 0,
+      fontFamily: '-apple-system, BlinkMacSystemFont, Roboto, sans-serif',
+    },
+    icon: {
+      margin: '0 auto',
+      padding: 0,
+    },
+    content: {
+      textAlign: 'center',
+      padding: '1em 0',
+    },
+    card: {
+      margin: '1em auto',
+      width: '80vw',
+      maxWidth: 400,
+      color: '#666',
+    },
+    label: {
+      fontWeight: 'bold',
+      color: 'rgb(0, 122, 255)',
+      letterSpacing: '0.25em',
+      userSelect: 'none',
+    },
+    form: {
+      minWidth: 250,
+      padding: 10,
+    },
+    select: {
+      minWidth: 200,
+    },
+    answer: {
+      fontWeight: 'bold',
+      color: 'rgb(255, 45, 85)',
+      letterSpacing: '0.25em',
+    },
+    age: {
+      fontSize: '6em',
+      color: '#1f1f21',
+    },
+    month: {
+      fontSize: '3em',
+      color: '#1f1f21',
+    },
+  })
+);
 
 const App = (): JSX.Element => {
+  const classes = useStyles();
+
   const [year, setYear] = useState(1955);
   const [month, setMonth] = useState(4);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -118,56 +121,62 @@ const App = (): JSX.Element => {
   const age = today.diff(birthday, 'years');
 
   return (
-    <Container>
+    <div className={classes.root}>
       <CssBaseline />
       <AppShell toggleDrawer={toggleDrawer} drawerOpen={drawerOpen} />
-      <Content>
-        <IconContainer>
-          <img src="icons/icon-192.png" width={64} height={64} alt="年齢計算" />
-        </IconContainer>
-        <StyledCard>
+      <div className={classes.content}>
+        <div className={classes.icon}>
+          <img src='icons/icon-192.png' width={64} height={64} alt='年齢計算' />
+        </div>
+        <Card className={classes.card}>
           <CardContent>
-            <Label>生まれ年と月</Label>
-            <FormContainer>
-              <StyledSelect
-                value={year}
-                onChange={(e): void => setYear(e.target.value as number)}>
-                <MenuItem value={1926}>
-                  <Typography>大正元年 (1912)</Typography>
-                </MenuItem>
-                {Taisyo}
-                <MenuItem value={1926}>
-                  <Typography>大正15年,昭和元年 (1926)</Typography>
-                </MenuItem>
-                {Syowa}
-                <MenuItem value={1989}>
-                  <Typography>昭和64年,平成元年 (1989)</Typography>
-                </MenuItem>
-                {Heisei}
-                <MenuItem value={2019}>
-                  <Typography>平成31年,令和元年 (2019)</Typography>
-                </MenuItem>
-              </StyledSelect>
-            </FormContainer>
-            <FormContainer>
-              <StyledSelect
-                value={month}
-                onChange={(e): void => setMonth(e.target.value as number)}>
-                {monthItems}
-              </StyledSelect>
-            </FormContainer>
+            <Typography className={classes.label}>生まれ年と月</Typography>
+            <div>
+              <FormControl variant='outlined' className={classes.form}>
+                <Select
+                  className={classes.select}
+                  value={year}
+                  onChange={(e): void => setYear(e.target.value as number)}>
+                  <MenuItem value={1926}>
+                    <Typography>大正元年 (1912)</Typography>
+                  </MenuItem>
+                  {Taisyo}
+                  <MenuItem value={1926}>
+                    <Typography>大正15年,昭和元年 (1926)</Typography>
+                  </MenuItem>
+                  {Syowa}
+                  <MenuItem value={1989}>
+                    <Typography>昭和64年,平成元年 (1989)</Typography>
+                  </MenuItem>
+                  {Heisei}
+                  <MenuItem value={2019}>
+                    <Typography>平成31年,令和元年 (2019)</Typography>
+                  </MenuItem>
+                </Select>
+              </FormControl>
+            </div>
+            <div>
+              <FormControl variant='outlined' className={classes.form}>
+                <Select
+                  className={classes.select}
+                  value={month}
+                  onChange={(e): void => setMonth(e.target.value as number)}>
+                  {monthItems}
+                </Select>
+              </FormControl>
+            </div>
           </CardContent>
-        </StyledCard>
-        <StyledCard>
+        </Card>
+        <Card className={classes.card}>
           <CardContent>
-            <Answer>年齢</Answer>
+            <Typography className={classes.answer}>年齢</Typography>
             <Typography>
-              満<Age>{age}</Age>歳
+              満<span className={classes.age}>{age}</span>歳
             </Typography>
           </CardContent>
-        </StyledCard>
-      </Content>
-    </Container>
+        </Card>
+      </div>
+    </div>
   );
 };
 
