@@ -67,6 +67,9 @@ const useStyles = makeStyles((theme) =>
     list: {
       width: drawerWidth,
     },
+    version: {
+      marginTop: theme.spacing(2),
+    },
   })
 );
 
@@ -105,7 +108,9 @@ const Titlebar = (props: Props): JSX.Element => {
           onClick={(): void => props.toggleDrawer()}>
           <div className={classes.drawerHeader}>
             <img src='icons/icon-192.png' alt='Icon' width={48} />
-            <Typography>年齢計算 v{pjson.version}</Typography>
+            <Typography className={classes.version}>
+              年齢計算 v{pjson.version}
+            </Typography>
           </div>
           <List>
             <ListItem button onClick={handleReload}>
@@ -116,7 +121,7 @@ const Titlebar = (props: Props): JSX.Element => {
             </ListItem>
             <ListItem button onClick={handleInfo}>
               <ListItemIcon>
-                <InfoIcon color='action' />
+                <InfoIcon color='secondary' />
               </ListItemIcon>
               <ListItemText secondary='このアプリについて' />
             </ListItem>
