@@ -47,7 +47,7 @@ const TitleBar = (props: Props): JSX.Element => {
           aria-label='menu'>
           <MenuIcon />
         </IconButton>
-        <Typography className={classes.title}>ウェブ年齢計算機</Typography>
+        <Typography className={classes.title}>年齢計算</Typography>
       </Toolbar>
     </AppBar>
   );
