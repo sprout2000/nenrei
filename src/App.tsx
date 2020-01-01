@@ -20,7 +20,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
 /** App Shell for PWA */
-import Header from './Header';
+import TitleBar from './TitleBar';
 import SideBar from './SideBar';
 
 const useStyles = makeStyles(() =>
@@ -112,19 +112,35 @@ const App = (): JSX.Element => {
     return items;
   };
 
+  const Etos = [
+    '申（さる）',
+    '酉（とり）',
+    '戌（いぬ）',
+    '亥（いのしし）',
+    '子（ねずみ）',
+    '丑（うし）',
+    '寅（とら）',
+    '卯（うさぎ）',
+    '辰（たつ）',
+    '巳（へび）',
+    '午（うま）',
+    '未（ひつじ）',
+  ];
   const Taisyo = Wareki(1912, 1926, '大正');
   const Syowa = Wareki(1926, 1989, '昭和');
   const Heisei = Wareki(1989, 2019, '平成');
+  const Reiwa = Wareki(2019, 2031, '令和');
   const monthItems = Tsuki();
 
   const birthday = moment(`${year}-${month}`, 'YYYY-MM');
   const today = moment();
   const age = today.diff(birthday, 'years');
+  const eto = Etos[year % 12];
 
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Header toggleDrawer={toggleDrawer} />
+      <TitleBar toggleDrawer={toggleDrawer} />
       <SideBar toggleDrawer={toggleDrawer} drawerOpen={drawerOpen} />
       <div className={classes.content}>
         <div className={classes.icon}>
@@ -154,6 +170,7 @@ const App = (): JSX.Element => {
                   <MenuItem value={2019}>
                     <Typography>平成31年,令和元年 (2019)</Typography>
                   </MenuItem>
+                  {Reiwa}
                 </Select>
               </FormControl>
             </div>
@@ -175,6 +192,7 @@ const App = (): JSX.Element => {
             <Typography>
               満<span className={classes.age}>{age}</span>歳
             </Typography>
+            <Typography>{eto}</Typography>
           </CardContent>
         </Card>
       </div>

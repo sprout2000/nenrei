@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const Header = (props: Props): JSX.Element => {
+const TitleBar = (props: Props): JSX.Element => {
   const classes = useStyles();
 
   return (
@@ -53,4 +53,4 @@ const Header = (props: Props): JSX.Element => {
   );
 };
 
-export default Header;
+export default TitleBar;
