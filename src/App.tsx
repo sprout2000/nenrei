@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
 
@@ -76,6 +76,10 @@ const useStyles = makeStyles(() =>
 const App = (): JSX.Element => {
   const classes = useStyles();
 
+  const ageRef = useRef<HTMLSpanElement>(null);
+  const eRef = useRef<HTMLSpanElement>(null);
+  const toRef = useRef<HTMLSpanElement>(null);
+
   const [year, setYear] = useState(1955);
   const [month, setMonth] = useState(4);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -112,32 +116,50 @@ const App = (): JSX.Element => {
     return items;
   };
 
-  const es = ['庚', '辛', '壬', '癸', '甲', '乙', '丙', '丁', '戊', '己'];
-  const tos = [
-    '申（さる）',
-    '酉（とり）',
-    '戌（いぬ）',
-    '亥（いのしし）',
-    '子（ねずみ）',
-    '丑（うし）',
-    '寅（とら）',
-    '卯（うさぎ）',
-    '辰（たつ）',
-    '巳（へび）',
-    '午（うま）',
-    '未（ひつじ）',
-  ];
-  const Taisyo = Wareki(1912, 1926, '大正');
-  const Syowa = Wareki(1926, 1989, '昭和');
-  const Heisei = Wareki(1989, 2019, '平成');
-  const Reiwa = Wareki(2019, 2031, '令和');
-  const monthItems = Tsuki();
+  const Taisyo = useMemo(() => Wareki(1912, 1926, '大正'), []);
+  const Syowa = useMemo(() => Wareki(1926, 1989, '昭和'), []);
+  const Heisei = useMemo(() => Wareki(1989, 2019, '平成'), []);
+  const Reiwa = useMemo(() => Wareki(2019, 2031, '令和'), []);
+  const monthItems = useMemo(() => Tsuki(), []);
 
-  const birthday = moment(`${year}-${month}`, 'YYYY-MM');
-  const today = moment();
-  const age = today.diff(birthday, 'years');
-  const e = es[year % 10];
-  const to = tos[year % 12];
+  const es = useMemo(
+    () => ['庚', '辛', '壬', '癸', '甲', '乙', '丙', '丁', '戊', '己'],
+    []
+  );
+  const tos = useMemo(
+    () => [
+      '申（さる）',
+      '酉（とり）',
+      '戌（いぬ）',
+      '亥（いのしし）',
+      '子（ねずみ）',
+      '丑（うし）',
+      '寅（とら）',
+      '卯（うさぎ）',
+      '辰（たつ）',
+      '巳（へび）',
+      '午（うま）',
+      '未（ひつじ）',
+    ],
+    []
+  );
+
+  useEffect(() => {
+    const birthday = moment(`${year}-${month}`, 'YYYY-MM');
+    const today = moment();
+
+    if (ageRef && ageRef.current) {
+      ageRef.current.textContent = today.diff(birthday, 'years').toString();
+    }
+
+    if (eRef && eRef.current) {
+      eRef.current.textContent = es[year % 10];
+    }
+
+    if (toRef && toRef.current) {
+      toRef.current.textContent = tos[year % 12];
+    }
+  }, [year, month, es, tos]);
 
   return (
     <div className={classes.root}>
@@ -157,7 +179,7 @@ const App = (): JSX.Element => {
                   className={classes.select}
                   value={year}
                   onChange={(e): void => setYear(e.target.value as number)}>
-                  <MenuItem value={1926}>
+                  <MenuItem value={1912}>
                     <Typography>大正元年 (1912)</Typography>
                   </MenuItem>
                   {Taisyo}
@@ -192,11 +214,11 @@ const App = (): JSX.Element => {
           <CardContent>
             <Typography className={classes.answer}>年齢</Typography>
             <Typography>
-              満<span className={classes.age}>{age}</span>歳
+              満<span ref={ageRef} className={classes.age} />歳
             </Typography>
             <Typography>
-              {e}
-              {to}
+              <span ref={eRef} />
+              <span ref={toRef} />
             </Typography>
           </CardContent>
         </Card>
