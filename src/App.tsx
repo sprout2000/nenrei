@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
 import localforage from 'localforage';
@@ -92,13 +92,12 @@ const useStyles = makeStyles(() =>
 const App = (): JSX.Element => {
   const classes = useStyles();
 
-  const ageRef = useRef<HTMLSpanElement>(null);
-  const eRef = useRef<HTMLSpanElement>(null);
-  const toRef = useRef<HTMLSpanElement>(null);
-
   const [year, setYear] = useState(1955);
   const [month, setMonth] = useState(4);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [age, setAge] = useState(0);
+  const [e, setE] = useState('');
+  const [to, setTo] = useState('');
 
   const toggleDrawer = (): void => setDrawerOpen(!drawerOpen);
 
@@ -138,28 +137,6 @@ const App = (): JSX.Element => {
   const Reiwa = useMemo(() => Wareki(2019, 2031, '令和'), []);
   const monthItems = useMemo(() => Tsuki(), []);
 
-  const es = useMemo(
-    () => ['庚', '辛', '壬', '癸', '甲', '乙', '丙', '丁', '戊', '己'],
-    []
-  );
-  const tos = useMemo(
-    () => [
-      '申（さる）',
-      '酉（とり）',
-      '戌（いぬ）',
-      '亥（いのしし）',
-      '子（ねずみ）',
-      '丑（うし）',
-      '寅（とら）',
-      '卯（うさぎ）',
-      '辰（たつ）',
-      '巳（へび）',
-      '午（うま）',
-      '未（ひつじ）',
-    ],
-    []
-  );
-
   useEffect(() => {
     localforage
       .getItem('nenrei-20200101')
@@ -179,24 +156,34 @@ const App = (): JSX.Element => {
     localforage
       .setItem('nenrei-20200101', { year: year, month: month })
       .catch((err) => console.error(err));
-  }, [month, year]);
+  }, [year, month]);
 
   useEffect(() => {
     const birthday = moment(`${year}-${month}`, 'YYYY-MM');
     const today = moment();
+    setAge(today.diff(birthday, 'years'));
+  }, [year, month]);
 
-    if (ageRef && ageRef.current) {
-      ageRef.current.textContent = today.diff(birthday, 'years').toString();
-    }
+  useEffect(() => {
+    const es = ['庚', '辛', '壬', '癸', '甲', '乙', '丙', '丁', '戊', '己'];
+    const tos = [
+      '申（さる）',
+      '酉（とり）',
+      '戌（いぬ）',
+      '亥（いのしし）',
+      '子（ねずみ）',
+      '丑（うし）',
+      '寅（とら）',
+      '卯（うさぎ）',
+      '辰（たつ）',
+      '巳（へび）',
+      '午（うま）',
+      '未（ひつじ）',
+    ];
 
-    if (eRef && eRef.current) {
-      eRef.current.textContent = es[year % 10];
-    }
-
-    if (toRef && toRef.current) {
-      toRef.current.textContent = tos[year % 12];
-    }
-  }, [year, month, es, tos]);
+    setE(es[year % 10]);
+    setTo(tos[year % 12]);
+  }, [year]);
 
   return (
     <div className={classes.root}>
@@ -251,11 +238,11 @@ const App = (): JSX.Element => {
           <CardContent>
             <Typography className={classes.answer}>年齢</Typography>
             <Typography>
-              満<span ref={ageRef} className={classes.age} />歳
+              満<span className={classes.age}>{age}</span>歳
             </Typography>
             <Typography>
-              <span ref={eRef} />
-              <span ref={toRef} />
+              <span>{e}</span>
+              <span>{to}</span>
             </Typography>
           </CardContent>
         </Card>
