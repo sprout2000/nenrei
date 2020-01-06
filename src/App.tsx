@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
+import localforage from 'localforage';
 
 /** Styles */
 import createStyles from '@material-ui/core/styles/createStyles';
@@ -22,6 +23,21 @@ import MenuItem from '@material-ui/core/MenuItem';
 /** App Shell for PWA */
 import TitleBar from './TitleBar';
 import SideBar from './SideBar';
+
+interface Storage {
+  year: number;
+  month: number;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const typeguardStorage = (arg: any): arg is Storage => {
+  return (
+    arg !== null &&
+    typeof arg === 'object' &&
+    typeof arg.year === 'number' &&
+    typeof arg.month === 'number'
+  );
+};
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -143,6 +159,27 @@ const App = (): JSX.Element => {
     ],
     []
   );
+
+  useEffect(() => {
+    localforage
+      .getItem('nenrei-20200101')
+      .then((value) => {
+        if (!value || !typeguardStorage(value)) {
+          setYear(1955);
+          setMonth(4);
+        } else {
+          setYear(value.year);
+          setMonth(value.month);
+        }
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  useEffect(() => {
+    localforage
+      .setItem('nenrei-20200101', { year: year, month: month })
+      .catch((err) => console.error(err));
+  }, [month, year]);
 
   useEffect(() => {
     const birthday = moment(`${year}-${month}`, 'YYYY-MM');
