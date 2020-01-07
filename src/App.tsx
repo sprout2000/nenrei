@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import ReactDOM from 'react-dom';
-import moment from 'moment';
 import localforage from 'localforage';
 
 /** Styles */
@@ -131,6 +130,15 @@ const App = (): JSX.Element => {
     return items;
   };
 
+  const calc = (y: number, m: number): number => {
+    const birthday = y * 10000 + m * 100 + 1;
+    const today = new Date();
+    const target =
+      today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + 1;
+
+    return Math.floor((target - birthday) / 10000);
+  };
+
   const Taisyo = useMemo(() => Wareki(1912, 1926, '大正'), []);
   const Syowa = useMemo(() => Wareki(1926, 1989, '昭和'), []);
   const Heisei = useMemo(() => Wareki(1989, 2019, '平成'), []);
@@ -158,11 +166,7 @@ const App = (): JSX.Element => {
       .catch((err) => console.error(err));
   }, [year, month]);
 
-  useEffect(() => {
-    const birthday = moment(`${year}-${month}`, 'YYYY-MM');
-    const today = moment();
-    setAge(today.diff(birthday, 'years'));
-  }, [year, month]);
+  useEffect(() => setAge(calc(year, month)), [year, month]);
 
   useEffect(() => {
     const es = ['庚', '辛', '壬', '癸', '甲', '乙', '丙', '丁', '戊', '己'];
