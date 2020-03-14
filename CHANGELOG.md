@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.8](https://github.com/sprout2000/nenrei/compare/v0.5.7...v0.5.8) (2020-03-10)
+
+### [0.5.7](https://github.com/sprout2000/nenrei/compare/v0.5.6...v0.5.7) (2020-03-07)
+
+### [0.5.6](https://github.com/sprout2000/nenrei/compare/v0.5.5...v0.5.6) (2020-03-05)
+
+### [0.5.5](https://github.com/sprout2000/nenrei/compare/v0.5.4...v0.5.5) (2020-03-03)
+
+### [0.5.4](https://github.com/sprout2000/nenrei/compare/v0.5.3...v0.5.4) (2020-03-03)
+
+### [0.5.3](https://github.com/sprout2000/nenrei/compare/v0.5.2...v0.5.3) (2020-03-03)
+
+### [0.5.2](https://github.com/sprout2000/nenrei/compare/v0.5.1...v0.5.2) (2020-03-01)
+
+### [0.5.1](https://github.com/sprout2000/nenrei/compare/v0.5.0...v0.5.1) (2020-02-29)
+
+## [0.5.0](https://github.com/sprout2000/nenrei/compare/v0.4.2...v0.5.0) (2020-02-27)
+
+### [0.4.2](https://github.com/sprout2000/nenrei/compare/v0.4.1...v0.4.2) (2020-02-27)
+
+### [0.4.1](https://github.com/sprout2000/nenrei/compare/v0.4.0...v0.4.1) (2020-02-20)
+
+## [0.4.0](https://github.com/sprout2000/nenrei/compare/v0.3.22...v0.4.0) (2020-02-16)
+
+### [0.3.22](https://github.com/sprout2000/nenrei/compare/v0.3.21...v0.3.22) (2020-02-14)
+
 ### [0.3.21](https://github.com/sprout2000/nenrei/compare/v0.3.20...v0.3.21) (2020-02-11)
 
 ### [0.3.20](https://github.com/sprout2000/nenrei/compare/v0.3.19...v0.3.20) (2020-02-09)
