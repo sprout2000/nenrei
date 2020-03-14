@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.9](https://github.com/sprout2000/nenrei/compare/v0.5.8...v0.5.9) (2020-03-14)
+
 ### [0.5.8](https://github.com/sprout2000/nenrei/compare/v0.5.7...v0.5.8) (2020-03-10)
 
 ### [0.5.7](https://github.com/sprout2000/nenrei/compare/v0.5.6...v0.5.7) (2020-03-07)
