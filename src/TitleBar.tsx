@@ -37,14 +37,14 @@ const TitleBar = (props: Props): JSX.Element => {
   const classes = useStyles();
 
   return (
-    <AppBar position='sticky'>
+    <AppBar position="sticky">
       <Toolbar className={classes.toolbar}>
         <IconButton
           onClick={(): void => props.toggleDrawer()}
-          edge='start'
+          edge="start"
           className={classes.iconButton}
-          color='inherit'
-          aria-label='menu'>
+          color="inherit"
+          aria-label="menu">
           <MenuIcon />
         </IconButton>
         <Typography className={classes.title}>年齢計算</Typography>

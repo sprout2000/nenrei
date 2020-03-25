@@ -69,16 +69,16 @@ const SideBar = (props: Props): JSX.Element => {
   return (
     <Drawer
       className={classes.drawer}
-      variant='temporary'
+      variant="temporary"
       classes={{ paper: classes.drawerPaper }}
       open={props.drawerOpen}
       onClose={(): void => props.toggleDrawer()}>
       <div
         className={classes.drawerContent}
-        role='presentation'
+        role="presentation"
         onClick={(): void => props.toggleDrawer()}>
         <div className={classes.drawerHeader}>
-          <Avatar alt='Logo' src='icons/icon-192.png' />
+          <Avatar alt="Logo" src="icons/icon-192.png" />
           {/* <img src='icons/icon-192.png' alt='Icon' width={48} /> */}
           <Typography className={classes.version}>
             年齢計算 v{pjson.version}
@@ -87,15 +87,15 @@ const SideBar = (props: Props): JSX.Element => {
         <List>
           <ListItem button onClick={handleReload}>
             <ListItemIcon>
-              <RefreshIcon color='primary' />
+              <RefreshIcon color="primary" />
             </ListItemIcon>
-            <ListItemText secondary='アプリを再読込み' />
+            <ListItemText secondary="アプリを再読込み" />
           </ListItem>
           <ListItem button onClick={handleInfo}>
             <ListItemIcon>
-              <InfoIcon color='secondary' />
+              <InfoIcon color="secondary" />
             </ListItemIcon>
-            <ListItemText secondary='このアプリについて' />
+            <ListItemText secondary="このアプリについて" />
           </ListItem>
           <Divider />
         </List>

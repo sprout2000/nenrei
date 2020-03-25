@@ -196,13 +196,13 @@ const App = (): JSX.Element => {
       <SideBar toggleDrawer={toggleDrawer} drawerOpen={drawerOpen} />
       <div className={classes.content}>
         <div className={classes.icon}>
-          <img src='icons/icon-192.png' width={64} height={64} alt='年齢計算' />
+          <img src="icons/icon-192.png" width={64} height={64} alt="年齢計算" />
         </div>
         <Card className={classes.card}>
           <CardContent>
             <Typography className={classes.label}>生まれ年と月</Typography>
             <div>
-              <FormControl variant='outlined' className={classes.form}>
+              <FormControl variant="outlined" className={classes.form}>
                 <Select
                   className={classes.select}
                   value={year}
@@ -227,7 +227,7 @@ const App = (): JSX.Element => {
               </FormControl>
             </div>
             <div>
-              <FormControl variant='outlined' className={classes.form}>
+              <FormControl variant="outlined" className={classes.form}>
                 <Select
                   className={classes.select}
                   value={month}
