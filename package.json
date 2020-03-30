@@ -11,13 +11,21 @@
   "bugs": {
     "url": "https://github.com/sprout2000/nenrei/issues"
   },
+  "engines": {
+    "node": "12.x"
+  },
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
+    "upgrade-interactive": "npm-check --update",
     "start": "cross-env NODE_ENV=\"development\" webpack-dev-server",
     "build": "cross-env NODE_ENV=\"production\" webpack --progress",
     "release:patch": "standard-version --release-as patch",
     "release:minor": "standard-version --release-as minor",
     "release:major": "standard-version --release-as major",
     "release:push": "git push --follow-tags origin master"
+  },
+  "resolutions": {
+    "minimist": "^1.2.5"
   },
   "dependencies": {
     "@material-ui/core": "^4.9.8",
@@ -43,6 +51,7 @@
     "eslint-plugin-react-hooks": "^3.0.0",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.0.3",
+    "npm-check": "^5.9.2",
     "prettier": "^2.0.2",
     "standard-version": "^7.1.0",
     "ts-loader": "^6.2.2",
