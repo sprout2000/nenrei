@@ -15,17 +15,9 @@
     "node": "12.x"
   },
   "scripts": {
-    "preinstall": "npx npm-force-resolutions",
-    "upgrade-interactive": "npm-check --update",
     "start": "cross-env NODE_ENV=\"development\" webpack-dev-server",
     "build": "cross-env NODE_ENV=\"production\" webpack --progress",
-    "release:patch": "standard-version --release-as patch",
-    "release:minor": "standard-version --release-as minor",
-    "release:major": "standard-version --release-as major",
-    "release:push": "git push --follow-tags origin master"
-  },
-  "resolutions": {
-    "minimist": "^1.2.5"
+    "upgrade-interactive": "npm-check --update"
   },
   "dependencies": {
     "@material-ui/core": "^4.9.8",
