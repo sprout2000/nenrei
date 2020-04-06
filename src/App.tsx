@@ -17,24 +17,13 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
-/** Snackbar */
-import Button from '@material-ui/core/Button';
-import Snackbar from '@material-ui/core/Snackbar';
-import SnackbarContent from '@material-ui/core/SnackbarContent';
-import Slide, { SlideProps } from '@material-ui/core/Slide';
-
 /** App Shell for PWA */
-import TitleBar from './TitleBar';
+import Snack from './Snack';
 import SideBar from './SideBar';
+import TitleBar from './TitleBar';
 
 import 'typeface-roboto-mono';
 import './App.css';
-
-type TransitionProps = Omit<SlideProps, 'direction'>;
-
-const TransitionDown = (props: TransitionProps): JSX.Element => (
-  <Slide {...props} direction="down" />
-);
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const typeguardStorage = (arg: any): arg is Storage => {
@@ -206,20 +195,7 @@ const App = (): JSX.Element => {
         <div className={classes.icon}>
           <img src="icons/icon-192.png" width={64} height={64} alt="年齢計算" />
         </div>
-        <Snackbar
-          open={snackOpen}
-          TransitionComponent={TransitionDown}
-          autoHideDuration={3000}
-          onClose={onClose}>
-          <SnackbarContent
-            message="Copyright (C) 2020 Office Nishigami."
-            action={
-              <Button color="secondary" size="small" onClick={onClose}>
-                OK
-              </Button>
-            }
-          />
-        </Snackbar>
+        <Snack snackOpen={snackOpen} onClose={onClose} />
         <Card className={classes.card}>
           <CardContent>
             <Typography className={classes.label}>生まれ年</Typography>
