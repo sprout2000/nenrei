@@ -113,12 +113,6 @@ const App = (): JSX.Element => {
     setSnackOpen(false);
   };
 
-  const action = (
-    <Button color="secondary" size="small" onClick={onClose}>
-      OK
-    </Button>
-  );
-
   const Wareki = (start: number, end: number, gengo: string): JSX.Element[] => {
     const items = [];
     for (let i = start + 1; i < end; i++) {
@@ -219,7 +213,11 @@ const App = (): JSX.Element => {
           onClose={onClose}>
           <SnackbarContent
             message="Copyright (C) 2020 Office Nishigami."
-            action={action}
+            action={
+              <Button color="secondary" size="small" onClick={onClose}>
+                OK
+              </Button>
+            }
           />
         </Snackbar>
         <Card className={classes.card}>
