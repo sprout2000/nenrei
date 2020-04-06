@@ -26,7 +26,7 @@ import pjson from '../package.json';
 interface Props {
   drawerOpen: boolean;
   toggleDrawer: () => void;
-  dialogOpen: () => void;
+  onSnackOpen: () => void;
 }
 
 const drawerWidth = 250;
@@ -89,7 +89,7 @@ const SideBar = (props: Props): JSX.Element => {
             </ListItemIcon>
             <ListItemText secondary="アプリを再読込み" />
           </ListItem>
-          <ListItem button onClick={props.dialogOpen}>
+          <ListItem button onClick={props.onSnackOpen}>
             <ListItemIcon>
               <InfoIcon color="secondary" />
             </ListItemIcon>

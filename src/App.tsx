@@ -40,8 +40,11 @@ const App = (): JSX.Element => {
 
   const toggleDrawer = (): void => setDrawerOpen(!drawerOpen);
 
-  const onClickOpen = (): void => setSnackOpen(true);
-  const onClose = (_event?: React.SyntheticEvent, reason?: string): void => {
+  const onSnackOpen = (): void => setSnackOpen(true);
+  const onSnackClose = (
+    _event?: React.SyntheticEvent,
+    reason?: string
+  ): void => {
     if (reason === 'clickaway') {
       return;
     }
@@ -135,14 +138,14 @@ const App = (): JSX.Element => {
       <SideBar
         toggleDrawer={toggleDrawer}
         drawerOpen={drawerOpen}
-        dialogOpen={onClickOpen}
+        onSnackOpen={onSnackOpen}
       />
       <div className={classes.content}>
         <div className={classes.offset} />
         <div className={classes.icon}>
           <img src="icons/icon-192.png" width={64} height={64} alt="年齢計算" />
         </div>
-        <Snack snackOpen={snackOpen} onClose={onClose} />
+        <Snack snackOpen={snackOpen} onClose={onSnackClose} />
         <Card className={classes.card}>
           <CardContent>
             <Typography className={classes.label}>生まれ年</Typography>
