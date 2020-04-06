@@ -26,7 +26,10 @@ import TitleBar from './TitleBar';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const typeguardStorage = (arg: any): arg is Storage => {
   return (
-    arg !== null && typeof arg === 'object' && typeof arg.year === 'number'
+    arg !== null &&
+    typeof arg === 'object' &&
+    typeof arg.year === 'number' &&
+    typeof arg.month === 'number'
   );
 };
 
@@ -179,9 +182,9 @@ const App = (): JSX.Element => {
 
   useEffect(() => {
     localforage
-      .setItem('nenrei-20200401', { year: year })
+      .setItem('nenrei-20200401', { year: year, month: month })
       .catch((err) => console.error(err));
-  }, [year]);
+  }, [year, month]);
 
   return (
     <div className={classes.root}>
