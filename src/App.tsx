@@ -173,8 +173,10 @@ const App = (): JSX.Element => {
       .then((value) => {
         if (!value || !typeguardStorage(value)) {
           setYear(1971);
+          setMonth(1);
         } else {
           setYear(value.year);
+          setMonth(value.month);
         }
       })
       .catch((err) => console.error(err));
