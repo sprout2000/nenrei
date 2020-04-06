@@ -25,7 +25,8 @@ import pjson from '../package.json';
 
 interface Props {
   drawerOpen: boolean;
-  toggleDrawer: Function;
+  toggleDrawer: () => void;
+  dialogOpen: () => void;
 }
 
 const drawerWidth = 250;
@@ -62,9 +63,6 @@ const SideBar = (props: Props): JSX.Element => {
   const classes = useStyles();
 
   const handleReload = (): void => location.reload();
-  const handleInfo = (): void => {
-    window.open('https://github.com/sprout2000/nenrei', '_blank');
-  };
 
   return (
     <Drawer
@@ -91,7 +89,7 @@ const SideBar = (props: Props): JSX.Element => {
             </ListItemIcon>
             <ListItemText secondary="アプリを再読込み" />
           </ListItem>
-          <ListItem button onClick={handleInfo}>
+          <ListItem button onClick={props.dialogOpen}>
             <ListItemIcon>
               <InfoIcon color="secondary" />
             </ListItemIcon>

@@ -37,7 +37,7 @@ const TitleBar = (props: Props): JSX.Element => {
   const classes = useStyles();
 
   return (
-    <AppBar position="sticky">
+    <AppBar position="fixed">
       <Toolbar className={classes.toolbar}>
         <IconButton
           onClick={(): void => props.toggleDrawer()}

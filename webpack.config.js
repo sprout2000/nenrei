@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -26,6 +27,18 @@ module.exports = {
         loader: 'ts-loader',
       },
       {
+        test: /\.css$/,
+        use: [
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: isDev,
+            },
+          },
+        ],
+      },
+      {
         test: /\.(bmp|gif|png|jpe?g|svg|ttf|eot|woff?2?)$/,
         loader: 'file-loader',
         options: {
@@ -47,6 +60,7 @@ module.exports = {
     },
   },
   plugins: [
+    new MiniCssExtractPlugin({}),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       favicon: './src/favicon.ico',

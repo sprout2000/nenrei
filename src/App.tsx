@@ -1,49 +1,52 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import localforage from 'localforage';
 
 /** Styles */
+import CssBaseline from '@material-ui/core/CssBaseline';
 import createStyles from '@material-ui/core/styles/createStyles';
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import withStyles from '@material-ui/core/styles/withStyles';
+import pink from '@material-ui/core/colors/pink';
 
 /** Common components */
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-
-/** Card */
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import Slider from '@material-ui/core/Slider';
 
-/** Form (Select) */
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
+/** Dialog */
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 /** App Shell for PWA */
 import TitleBar from './TitleBar';
 import SideBar from './SideBar';
 
-interface Storage {
-  year: number;
-  month: number;
-}
+import pjson from '../package.json';
+import 'typeface-roboto-mono';
+import './App.css';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const typeguardStorage = (arg: any): arg is Storage => {
   return (
-    arg !== null &&
-    typeof arg === 'object' &&
-    typeof arg.year === 'number' &&
-    typeof arg.month === 'number'
+    arg !== null && typeof arg === 'object' && typeof arg.year === 'number'
   );
 };
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme) =>
   createStyles({
+    offset: theme.mixins.toolbar,
     root: {
       margin: 0,
       padding: 0,
-      fontFamily: '-apple-system, BlinkMacSystemFont, Roboto, sans-serif',
+      height: '100%',
+      backgroundColor: '#efeff4',
+      position: 'relative',
     },
     icon: {
       margin: '0 auto',
@@ -51,7 +54,10 @@ const useStyles = makeStyles(() =>
     },
     content: {
       textAlign: 'center',
-      padding: '1em 0',
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
     },
     card: {
       margin: '1em auto',
@@ -65,12 +71,13 @@ const useStyles = makeStyles(() =>
       letterSpacing: '0.25em',
       userSelect: 'none',
     },
-    form: {
-      minWidth: 250,
-      padding: 10,
-    },
-    select: {
-      minWidth: 200,
+    wareki: {
+      fontSize: '1.25em',
+      fontWeight: 'normal',
+      userSelect: 'none',
+      fontFamily: "'Roboto Mono', mono-space",
+      padding: '2em 0',
+      color: '#1f1f21',
     },
     answer: {
       fontWeight: 'bold',
@@ -81,94 +88,101 @@ const useStyles = makeStyles(() =>
       fontSize: '6em',
       color: '#1f1f21',
     },
-    month: {
-      fontSize: '3em',
-      color: '#1f1f21',
+    dialog: {
+      fontSize: '0.8em',
     },
   })
 );
 
+const iOSBoxShadow =
+  '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)';
+
+const IOSSlider = withStyles({
+  root: {
+    color: '#3880ff',
+    height: 10,
+    width: '80%',
+    maxWidth: '600px',
+  },
+  thumb: {
+    height: 28,
+    width: 28,
+    backgroundColor: '#fff',
+    boxShadow: iOSBoxShadow,
+    marginTop: -10,
+    marginLeft: -10,
+    '&:focus,&:hover,&$active': {
+      boxShadow:
+        '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
+      '@media (hover: none)': {
+        boxShadow: iOSBoxShadow,
+      },
+    },
+  },
+  active: {},
+  track: {
+    height: 10,
+    borderRadius: 4,
+    backgroundColor: pink[500],
+    opacity: 0.7,
+  },
+  rail: {
+    height: 10,
+    opacity: 0.5,
+    backgroundColor: '#bfbfbf',
+    borderRadius: 4,
+  },
+  mark: {
+    backgroundColor: '#bfbfbf',
+    height: 8,
+    width: 1,
+    marginTop: -3,
+  },
+  markActive: {
+    opacity: 1,
+    backgroundColor: 'currentColor',
+  },
+})(Slider);
+
 const App = (): JSX.Element => {
   const classes = useStyles();
 
-  const [year, setYear] = useState(1955);
-  const [month, setMonth] = useState(4);
+  const [year, setYear] = useState(1971);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [age, setAge] = useState(0);
-  const [e, setE] = useState('');
-  const [to, setTo] = useState('');
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const toggleDrawer = (): void => setDrawerOpen(!drawerOpen);
+  const onClickOpen = (): void => setDialogOpen(true);
+  const onClose = (): void => setDialogOpen(false);
 
-  const Wareki = (start: number, end: number, gengo: string): JSX.Element[] => {
-    const items = [];
-    for (let i = start + 1; i < end; i++) {
-      const key = gengo + i;
-      items.push(
-        <MenuItem key={key} value={i}>
-          <Typography>
-            {gengo}
-            {i - start + 1}年 ({i})
-          </Typography>
-        </MenuItem>
-      );
+  const wareki = (seireki: number): string => {
+    if (seireki === 1912) {
+      return `大正元年 (${seireki})`;
+    } else if (seireki <= 1925) {
+      return `大正${seireki - 1911}年 (${seireki})`;
+    } else if (seireki === 1926) {
+      return `大正15年,昭和元年 (${seireki})`;
+    } else if (seireki <= 1988) {
+      return `昭和${seireki - 1925}年 (${seireki})`;
+    } else if (seireki === 1989) {
+      return `昭和64年,平成元年 (${seireki})`;
+    } else if (seireki <= 2018) {
+      return `平成${seireki - 1988}年 (${seireki})`;
+    } else if (seireki === 2019) {
+      return `平成31年,令和元年 (${seireki})`;
+    } else {
+      return `令和${seireki - 2018}年 (${seireki})`;
     }
-
-    return items;
   };
 
-  const Tsuki = (): JSX.Element[] => {
-    const items = [];
-    for (let i = 1; i <= 12; i++) {
-      items.push(
-        <MenuItem key={i} value={i}>
-          <Typography>{i}月</Typography>
-        </MenuItem>
-      );
-    }
-
-    return items;
-  };
-
-  const calc = (y: number, m: number): number => {
-    const birthday = y * 10000 + m * 100 + 1;
+  const calc = (seireki: number): number => {
     const today = new Date();
-    const target =
-      today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + 1;
+    const answer = today.getFullYear() - seireki;
 
-    return Math.floor((target - birthday) / 10000);
+    return answer;
   };
 
-  const Taisyo = useMemo(() => Wareki(1912, 1926, '大正'), []);
-  const Syowa = useMemo(() => Wareki(1926, 1989, '昭和'), []);
-  const Heisei = useMemo(() => Wareki(1989, 2019, '平成'), []);
-  const Reiwa = useMemo(() => Wareki(2019, 2031, '令和'), []);
-  const monthItems = useMemo(() => Tsuki(), []);
-
-  useEffect(() => {
-    localforage
-      .getItem('nenrei-20200101')
-      .then((value) => {
-        if (!value || !typeguardStorage(value)) {
-          setYear(1955);
-          setMonth(4);
-        } else {
-          setYear(value.year);
-          setMonth(value.month);
-        }
-      })
-      .catch((err) => console.error(err));
-  }, []);
-
-  useEffect(() => {
-    localforage
-      .setItem('nenrei-20200101', { year: year, month: month })
-      .catch((err) => console.error(err));
-  }, [year, month]);
-
-  useEffect(() => setAge(calc(year, month)), [year, month]);
-
-  useEffect(() => {
+  const eto = (seireki: number): string => {
     const es = ['庚', '辛', '壬', '癸', '甲', '乙', '丙', '丁', '戊', '己'];
     const tos = [
       '申（さる）',
@@ -185,68 +199,85 @@ const App = (): JSX.Element => {
       '未（ひつじ）',
     ];
 
-    setE(es[year % 10]);
-    setTo(tos[year % 12]);
+    return `${es[seireki % 10]}${tos[seireki % 12]}`;
+  };
+
+  const handleOnChange = (
+    e: React.ChangeEvent<{}>,
+    val: number | number[]
+  ): void => {
+    if (e.target) {
+      setYear(Number(val));
+    }
+  };
+
+  useEffect(() => {
+    localforage
+      .getItem('nenrei-20200401')
+      .then((value) => {
+        if (!value || !typeguardStorage(value)) {
+          setYear(1971);
+        } else {
+          setYear(value.year);
+        }
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  useEffect(() => {
+    localforage
+      .setItem('nenrei-20200401', { year: year })
+      .catch((err) => console.error(err));
   }, [year]);
 
   return (
     <div className={classes.root}>
       <CssBaseline />
       <TitleBar toggleDrawer={toggleDrawer} />
-      <SideBar toggleDrawer={toggleDrawer} drawerOpen={drawerOpen} />
+      <SideBar
+        toggleDrawer={toggleDrawer}
+        drawerOpen={drawerOpen}
+        dialogOpen={onClickOpen}
+      />
       <div className={classes.content}>
+        <div className={classes.offset} />
         <div className={classes.icon}>
           <img src="icons/icon-192.png" width={64} height={64} alt="年齢計算" />
         </div>
+        <Dialog open={dialogOpen} onClose={onClose}>
+          <DialogTitle>{`年齢計算 ${pjson.version}`}</DialogTitle>
+          <DialogContent>
+            <DialogContentText className={classes.dialog}>
+              Copyright (C) 2020 Office Nishigami.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={onClose} color="primary" autoFocus>
+              OK
+            </Button>
+          </DialogActions>
+        </Dialog>
         <Card className={classes.card}>
           <CardContent>
-            <Typography className={classes.label}>生まれ年と月</Typography>
-            <div>
-              <FormControl variant="outlined" className={classes.form}>
-                <Select
-                  className={classes.select}
-                  value={year}
-                  onChange={(e): void => setYear(e.target.value as number)}>
-                  <MenuItem value={1912}>
-                    <Typography>大正元年 (1912)</Typography>
-                  </MenuItem>
-                  {Taisyo}
-                  <MenuItem value={1926}>
-                    <Typography>大正15年,昭和元年 (1926)</Typography>
-                  </MenuItem>
-                  {Syowa}
-                  <MenuItem value={1989}>
-                    <Typography>昭和64年,平成元年 (1989)</Typography>
-                  </MenuItem>
-                  {Heisei}
-                  <MenuItem value={2019}>
-                    <Typography>平成31年,令和元年 (2019)</Typography>
-                  </MenuItem>
-                  {Reiwa}
-                </Select>
-              </FormControl>
-            </div>
-            <div>
-              <FormControl variant="outlined" className={classes.form}>
-                <Select
-                  className={classes.select}
-                  value={month}
-                  onChange={(e): void => setMonth(e.target.value as number)}>
-                  {monthItems}
-                </Select>
-              </FormControl>
-            </div>
+            <Typography className={classes.label}>生まれ年</Typography>
+            <Typography className={classes.wareki}>{wareki(year)}</Typography>
+            <IOSSlider
+              max={2020}
+              min={1912}
+              step={1}
+              value={year}
+              onChange={(e, val): void => handleOnChange(e, val)}
+            />
           </CardContent>
         </Card>
         <Card className={classes.card}>
           <CardContent>
             <Typography className={classes.answer}>年齢</Typography>
             <Typography>
-              満<span className={classes.age}>{age}</span>歳
+              満<span className={classes.age}>{calc(year)}</span>歳
             </Typography>
             <Typography>
-              <span>{e}</span>
-              <span>{to}</span>
+              <span>{eto(year)}</span>
             </Typography>
           </CardContent>
         </Card>
