@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "cross-env NODE_ENV=\"development\" webpack-dev-server",
-    "build": "cross-env NODE_ENV=\"production\" webpack --progress",
+    "build": "cross-env webpack --progress --config webpack.config.prod.js",
     "upgrade-interactive": "npm-check --update"
   },
   "dependencies": {

@@ -1,10 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 /** @type import('webpack').Configuration */
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
   },
@@ -24,15 +26,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true,
-            },
-          },
-        ],
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.(bmp|gif|png|jpe?g|svg|ttf|eot|woff?2?)$/,
@@ -44,6 +38,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new MiniCssExtractPlugin({}),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       favicon: './src/favicon.ico',
@@ -55,16 +50,16 @@ module.exports = {
         from: 'assets',
         to: '.',
         toType: 'dir',
+        ignore: ['.DS_Store'],
       },
     ]),
+    new WorkboxWebpackPlugin.GenerateSW({
+      swDest: 'service-worker.js',
+      skipWaiting: true,
+      clientsClaim: true,
+    }),
   ],
   performance: {
     hints: false,
-  },
-  devtool: 'inline-source-map',
-  devServer: {
-    contentBase: path.resolve(__dirname, 'dist'),
-    port: 3000,
-    open: true,
   },
 };

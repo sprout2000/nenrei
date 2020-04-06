@@ -3,8 +3,11 @@ import ReactDOM from 'react-dom';
 import localforage from 'localforage';
 
 /** Styles */
-import useStyles from './Styles';
+import createStyles from '@material-ui/core/styles/createStyles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import 'typeface-roboto-mono';
+import './global.css';
 
 /** Common components */
 import Card from '@material-ui/core/Card';
@@ -21,15 +24,64 @@ import Snack from './Snack';
 import SideBar from './SideBar';
 import TitleBar from './TitleBar';
 
-import 'typeface-roboto-mono';
-import './App.css';
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const typeguardStorage = (arg: any): arg is Storage => {
   return (
     arg !== null && typeof arg === 'object' && typeof arg.year === 'number'
   );
 };
+
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    offset: theme.mixins.toolbar,
+    root: {
+      margin: 0,
+      padding: 0,
+      height: '100%',
+      backgroundColor: '#efeff4',
+      position: 'relative',
+    },
+    icon: {
+      margin: '0 auto',
+      padding: 0,
+    },
+    content: {
+      textAlign: 'center',
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+    },
+    card: {
+      margin: '1em auto',
+      width: '80vw',
+      maxWidth: 400,
+      color: '#666',
+    },
+    label: {
+      fontWeight: 'bold',
+      color: 'rgb(0, 122, 255)',
+      letterSpacing: '0.25em',
+      userSelect: 'none',
+    },
+    form: {
+      minWidth: 250,
+      padding: 10,
+    },
+    select: {
+      minWidth: 200,
+    },
+    answer: {
+      fontWeight: 'bold',
+      color: 'rgb(255, 45, 85)',
+      letterSpacing: '0.25em',
+    },
+    age: {
+      fontSize: '6em',
+      color: '#1f1f21',
+    },
+  })
+);
 
 const App = (): JSX.Element => {
   const classes = useStyles();
@@ -41,14 +93,8 @@ const App = (): JSX.Element => {
   const toggleDrawer = (): void => setDrawerOpen(!drawerOpen);
 
   const onSnackOpen = (): void => setSnackOpen(true);
-  const onSnackClose = (
-    _event?: React.SyntheticEvent,
-    reason?: string
-  ): void => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
+  const onSnackClose = (_e?: React.SyntheticEvent, reason?: string): void => {
+    if (reason === 'clickaway') return;
     setSnackOpen(false);
   };
 
@@ -194,7 +240,7 @@ const App = (): JSX.Element => {
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
-if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
+if (process.env.NODE_ENV !== 'development' && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker
       .register('./service-worker.js')
