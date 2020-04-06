@@ -6,7 +6,6 @@ import localforage from 'localforage';
 import createStyles from '@material-ui/core/styles/createStyles';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import 'typeface-roboto-mono';
 import './global.css';
 
 /** Common components */
@@ -37,6 +36,7 @@ const useStyles = makeStyles((theme) =>
     root: {
       margin: 0,
       padding: 0,
+      fontFamily: '-apple-system, BlinkMacSystemFont, Roboto, sans-serif',
       height: '100%',
       backgroundColor: '#efeff4',
       position: 'relative',
@@ -87,6 +87,7 @@ const App = (): JSX.Element => {
   const classes = useStyles();
 
   const [year, setYear] = useState(1971);
+  const [month, setMonth] = useState(1);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [snackOpen, setSnackOpen] = useState(false);
 
@@ -115,19 +116,35 @@ const App = (): JSX.Element => {
     return items;
   };
 
+  const Tsuki = (): JSX.Element[] => {
+    const items = [];
+    for (let i = 1; i <= 12; i++) {
+      items.push(
+        <MenuItem key={i} value={i}>
+          <Typography>{i}月</Typography>
+        </MenuItem>
+      );
+    }
+
+    return items;
+  };
+
   const Taisyo = Wareki(1912, 1926, '大正');
   const Syowa = Wareki(1926, 1989, '昭和');
   const Heisei = Wareki(1989, 2019, '平成');
   const Reiwa = Wareki(2019, 2031, '令和');
+  const Months = Tsuki();
 
-  const calc = (seireki: number): number => {
+  const calc = (y: number, m: number): number => {
+    const birthday = y * 10000 + m * 100 + 1;
     const today = new Date();
-    const answer = today.getFullYear() - seireki;
+    const target =
+      today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + 1;
 
-    return answer;
+    return Math.floor((target - birthday) / 10000);
   };
 
-  const eto = (seireki: number): string => {
+  const eto = (y: number): string => {
     const es = ['庚', '辛', '壬', '癸', '甲', '乙', '丙', '丁', '戊', '己'];
     const tos = [
       '申（さる）',
@@ -144,18 +161,7 @@ const App = (): JSX.Element => {
       '未（ひつじ）',
     ];
 
-    return `${es[seireki % 10]}${tos[seireki % 12]}`;
-  };
-
-  const handleOnChange = (
-    e: React.ChangeEvent<{
-      name?: string | undefined;
-      value: unknown;
-    }>
-  ): void => {
-    if (e.target) {
-      setYear(Number(e.target.value));
-    }
+    return `${es[y % 10]}${tos[y % 12]}`;
   };
 
   useEffect(() => {
@@ -194,13 +200,13 @@ const App = (): JSX.Element => {
         <Snack snackOpen={snackOpen} onClose={onSnackClose} />
         <Card className={classes.card}>
           <CardContent>
-            <Typography className={classes.label}>生まれ年</Typography>
+            <Typography className={classes.label}>生まれ年と月</Typography>
             <div>
               <FormControl variant="outlined" className={classes.form}>
                 <Select
                   className={classes.select}
                   value={year}
-                  onChange={handleOnChange}>
+                  onChange={(e): void => setYear(Number(e.target.value))}>
                   <MenuItem value={1912}>
                     <Typography>大正元年 (1912)</Typography>
                   </MenuItem>
@@ -220,13 +226,23 @@ const App = (): JSX.Element => {
                 </Select>
               </FormControl>
             </div>
+            <div>
+              <FormControl variant="outlined" className={classes.form}>
+                <Select
+                  className={classes.select}
+                  value={month}
+                  onChange={(e): void => setMonth(Number(e.target.value))}>
+                  {Months}
+                </Select>
+              </FormControl>
+            </div>
           </CardContent>
         </Card>
         <Card className={classes.card}>
           <CardContent>
             <Typography className={classes.answer}>年齢</Typography>
             <Typography>
-              満<span className={classes.age}>{calc(year)}</span>歳
+              満<span className={classes.age}>{calc(year, month)}</span>歳
             </Typography>
             <Typography>
               <span>{eto(year)}</span>
