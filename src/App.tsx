@@ -15,21 +15,24 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
-/** Dialog */
+/** Snackbar */
 import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import Snackbar from '@material-ui/core/Snackbar';
+import SnackbarContent from '@material-ui/core/SnackbarContent';
+import Slide, { SlideProps } from '@material-ui/core/Slide';
 
 /** App Shell for PWA */
 import TitleBar from './TitleBar';
 import SideBar from './SideBar';
 
-import pjson from '../package.json';
 import 'typeface-roboto-mono';
 import './App.css';
+
+type TransitionProps = Omit<SlideProps, 'direction'>;
+
+const TransitionDown = (props: TransitionProps): JSX.Element => (
+  <Slide {...props} direction="down" />
+);
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const typeguardStorage = (arg: any): arg is Storage => {
@@ -87,9 +90,6 @@ const useStyles = makeStyles((theme) =>
     age: {
       fontSize: '6em',
       color: '#1f1f21',
-    },
-    dialog: {
-      fontSize: '0.8em',
     },
   })
 );
@@ -149,11 +149,24 @@ const App = (): JSX.Element => {
 
   const [year, setYear] = useState(1971);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [dialogOpen, setDialogOpen] = useState(false);
+  const [snackOpen, setSnackOpen] = useState(false);
 
   const toggleDrawer = (): void => setDrawerOpen(!drawerOpen);
-  const onClickOpen = (): void => setDialogOpen(true);
-  const onClose = (): void => setDialogOpen(false);
+
+  const onClickOpen = (): void => setSnackOpen(true);
+  const onClose = (_event?: React.SyntheticEvent, reason?: string): void => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setSnackOpen(false);
+  };
+
+  const action = (
+    <Button color="secondary" size="small" onClick={onClose}>
+      OK
+    </Button>
+  );
 
   const wareki = (seireki: number): string => {
     if (seireki === 1912) {
@@ -244,19 +257,16 @@ const App = (): JSX.Element => {
         <div className={classes.icon}>
           <img src="icons/icon-192.png" width={64} height={64} alt="年齢計算" />
         </div>
-        <Dialog open={dialogOpen} onClose={onClose}>
-          <DialogTitle>{`年齢計算 ${pjson.version}`}</DialogTitle>
-          <DialogContent>
-            <DialogContentText className={classes.dialog}>
-              Copyright (C) 2020 Office Nishigami.
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={onClose} color="primary" autoFocus>
-              OK
-            </Button>
-          </DialogActions>
-        </Dialog>
+        <Snackbar
+          open={snackOpen}
+          TransitionComponent={TransitionDown}
+          autoHideDuration={3000}
+          onClose={onClose}>
+          <SnackbarContent
+            message="Copyright (C) 2020 Office Nishigami."
+            action={action}
+          />
+        </Snackbar>
         <Card className={classes.card}>
           <CardContent>
             <Typography className={classes.label}>生まれ年</Typography>
