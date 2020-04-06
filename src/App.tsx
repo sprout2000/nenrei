@@ -6,14 +6,16 @@ import localforage from 'localforage';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import createStyles from '@material-ui/core/styles/createStyles';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import withStyles from '@material-ui/core/styles/withStyles';
-import pink from '@material-ui/core/colors/pink';
 
 /** Common components */
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
+
+/** Form (Select) */
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
 /** Snackbar */
 import Button from '@material-ui/core/Button';
@@ -74,13 +76,12 @@ const useStyles = makeStyles((theme) =>
       letterSpacing: '0.25em',
       userSelect: 'none',
     },
-    wareki: {
-      fontSize: '1.25em',
-      fontWeight: 'normal',
-      userSelect: 'none',
-      fontFamily: "'Roboto Mono', mono-space",
-      padding: '2em 0',
-      color: '#1f1f21',
+    form: {
+      minWidth: 250,
+      padding: 10,
+    },
+    select: {
+      minWidth: 200,
     },
     answer: {
       fontWeight: 'bold',
@@ -93,56 +94,6 @@ const useStyles = makeStyles((theme) =>
     },
   })
 );
-
-const iOSBoxShadow =
-  '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)';
-
-const IOSSlider = withStyles({
-  root: {
-    color: '#3880ff',
-    height: 10,
-    width: '80%',
-    maxWidth: '600px',
-  },
-  thumb: {
-    height: 28,
-    width: 28,
-    backgroundColor: '#fff',
-    boxShadow: iOSBoxShadow,
-    marginTop: -10,
-    marginLeft: -10,
-    '&:focus,&:hover,&$active': {
-      boxShadow:
-        '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
-      '@media (hover: none)': {
-        boxShadow: iOSBoxShadow,
-      },
-    },
-  },
-  active: {},
-  track: {
-    height: 10,
-    borderRadius: 4,
-    backgroundColor: pink[500],
-    opacity: 0.7,
-  },
-  rail: {
-    height: 10,
-    opacity: 0.5,
-    backgroundColor: '#bfbfbf',
-    borderRadius: 4,
-  },
-  mark: {
-    backgroundColor: '#bfbfbf',
-    height: 8,
-    width: 1,
-    marginTop: -3,
-  },
-  markActive: {
-    opacity: 1,
-    backgroundColor: 'currentColor',
-  },
-})(Slider);
 
 const App = (): JSX.Element => {
   const classes = useStyles();
@@ -168,25 +119,27 @@ const App = (): JSX.Element => {
     </Button>
   );
 
-  const wareki = (seireki: number): string => {
-    if (seireki === 1912) {
-      return `大正元年 (${seireki})`;
-    } else if (seireki <= 1925) {
-      return `大正${seireki - 1911}年 (${seireki})`;
-    } else if (seireki === 1926) {
-      return `大正15年,昭和元年 (${seireki})`;
-    } else if (seireki <= 1988) {
-      return `昭和${seireki - 1925}年 (${seireki})`;
-    } else if (seireki === 1989) {
-      return `昭和64年,平成元年 (${seireki})`;
-    } else if (seireki <= 2018) {
-      return `平成${seireki - 1988}年 (${seireki})`;
-    } else if (seireki === 2019) {
-      return `平成31年,令和元年 (${seireki})`;
-    } else {
-      return `令和${seireki - 2018}年 (${seireki})`;
+  const Wareki = (start: number, end: number, gengo: string): JSX.Element[] => {
+    const items = [];
+    for (let i = start + 1; i < end; i++) {
+      const key = gengo + i;
+      items.push(
+        <MenuItem key={key} value={i}>
+          <Typography>
+            {gengo}
+            {i - start + 1}年 ({i})
+          </Typography>
+        </MenuItem>
+      );
     }
+
+    return items;
   };
+
+  const Taisyo = Wareki(1912, 1926, '大正');
+  const Syowa = Wareki(1926, 1989, '昭和');
+  const Heisei = Wareki(1989, 2019, '平成');
+  const Reiwa = Wareki(2019, 2031, '令和');
 
   const calc = (seireki: number): number => {
     const today = new Date();
@@ -216,11 +169,13 @@ const App = (): JSX.Element => {
   };
 
   const handleOnChange = (
-    e: React.ChangeEvent<{}>,
-    val: number | number[]
+    e: React.ChangeEvent<{
+      name?: string | undefined;
+      value: unknown;
+    }>
   ): void => {
     if (e.target) {
-      setYear(Number(val));
+      setYear(Number(e.target.value));
     }
   };
 
@@ -270,14 +225,31 @@ const App = (): JSX.Element => {
         <Card className={classes.card}>
           <CardContent>
             <Typography className={classes.label}>生まれ年</Typography>
-            <Typography className={classes.wareki}>{wareki(year)}</Typography>
-            <IOSSlider
-              max={2020}
-              min={1912}
-              step={1}
-              value={year}
-              onChange={(e, val): void => handleOnChange(e, val)}
-            />
+            <div>
+              <FormControl variant="outlined" className={classes.form}>
+                <Select
+                  className={classes.select}
+                  value={year}
+                  onChange={handleOnChange}>
+                  <MenuItem value={1912}>
+                    <Typography>大正元年 (1912)</Typography>
+                  </MenuItem>
+                  {Taisyo}
+                  <MenuItem value={1926}>
+                    <Typography>大正15年,昭和元年 (1926)</Typography>
+                  </MenuItem>
+                  {Syowa}
+                  <MenuItem value={1989}>
+                    <Typography>昭和64年,平成元年 (1989)</Typography>
+                  </MenuItem>
+                  {Heisei}
+                  <MenuItem value={2019}>
+                    <Typography>平成31年,令和元年 (2019)</Typography>
+                  </MenuItem>
+                  {Reiwa}
+                </Select>
+              </FormControl>
+            </div>
           </CardContent>
         </Card>
         <Card className={classes.card}>
