@@ -102,15 +102,32 @@ const App = (): JSX.Element => {
     setSnackOpen(false);
   };
 
-  const Wareki = (start: number, end: number, gengo: string): JSX.Element[] => {
+  const Wareki = (start: number, end: number): JSX.Element[] => {
     const items = [];
-    for (let i = start + 1; i < end; i++) {
-      const key = gengo + i;
+    for (let i = start; i <= end; i++) {
+      let gengo = '';
+      let offset = 0;
+
+      if (i < 1926) {
+        gengo = '大正';
+        offset = 1911;
+      } else if (i < 1989) {
+        gengo = '昭和';
+        offset = 1925;
+      } else if (i < 2019) {
+        gengo = '平成';
+        offset = 1988;
+      } else {
+        gengo = '令和';
+        offset = 2018;
+      }
+      const wareki = i - offset;
+
       items.push(
-        <MenuItem key={key} value={i}>
+        <MenuItem key={i} value={i}>
           <Typography>
             {gengo}
-            {i - start + 1}年 ({i})
+            {wareki === 1 ? '元' : wareki}年 ({i})
           </Typography>
         </MenuItem>
       );
@@ -132,10 +149,7 @@ const App = (): JSX.Element => {
     return items;
   };
 
-  const Taisyo = Wareki(1912, 1926, '大正');
-  const Syowa = Wareki(1926, 1989, '昭和');
-  const Heisei = Wareki(1989, 2019, '平成');
-  const Reiwa = Wareki(2019, 2031, '令和');
+  const Years = Wareki(1912, 2030);
   const Months = Tsuki();
 
   const calc = (y: number, m: number): number => {
@@ -212,22 +226,7 @@ const App = (): JSX.Element => {
                   className={classes.select}
                   value={year}
                   onChange={(e): void => setYear(Number(e.target.value))}>
-                  <MenuItem value={1912}>
-                    <Typography>大正元年 (1912)</Typography>
-                  </MenuItem>
-                  {Taisyo}
-                  <MenuItem value={1926}>
-                    <Typography>大正15年,昭和元年 (1926)</Typography>
-                  </MenuItem>
-                  {Syowa}
-                  <MenuItem value={1989}>
-                    <Typography>昭和64年,平成元年 (1989)</Typography>
-                  </MenuItem>
-                  {Heisei}
-                  <MenuItem value={2019}>
-                    <Typography>平成31年,令和元年 (2019)</Typography>
-                  </MenuItem>
-                  {Reiwa}
+                  {Years}
                 </Select>
               </FormControl>
             </div>
