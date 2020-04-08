@@ -18,7 +18,8 @@ import Avatar from '@material-ui/core/Avatar';
 
 /** Icons */
 import RefreshIcon from '@material-ui/icons/RefreshOutlined';
-import InfoIcon from '@material-ui/icons/InfoOutlined';
+import CopyrightOutlinedIcon from '@material-ui/icons/CopyrightOutlined';
+import OpenInBrowserOutlinedIcon from '@material-ui/icons/OpenInBrowserOutlined';
 
 /** Resources */
 import pjson from '../package.json';
@@ -63,6 +64,9 @@ const SideBar = (props: Props): JSX.Element => {
   const classes = useStyles();
 
   const handleReload = (): void => location.reload();
+  const handleURL = (): void => {
+    window.open('https://github.com/sprout2000/nenrei', '_blank');
+  };
 
   return (
     <Drawer
@@ -77,7 +81,6 @@ const SideBar = (props: Props): JSX.Element => {
         onClick={(): void => props.toggleDrawer()}>
         <div className={classes.drawerHeader}>
           <Avatar alt="Logo" src="icons/icon-192.png" />
-          {/* <img src='icons/icon-192.png' alt='Icon' width={48} /> */}
           <Typography className={classes.version}>
             年齢計算 v{pjson.version}
           </Typography>
@@ -89,13 +92,19 @@ const SideBar = (props: Props): JSX.Element => {
             </ListItemIcon>
             <ListItemText secondary="アプリを再読込み" />
           </ListItem>
-          <ListItem button onClick={props.onSnackOpen}>
+          <ListItem button onClick={handleURL}>
             <ListItemIcon>
-              <InfoIcon color="secondary" />
+              <OpenInBrowserOutlinedIcon color="secondary" />
             </ListItemIcon>
-            <ListItemText secondary="このアプリについて" />
+            <ListItemText secondary="ソースコードURL" />
           </ListItem>
           <Divider />
+          <ListItem button onClick={props.onSnackOpen}>
+            <ListItemIcon>
+              <CopyrightOutlinedIcon color="action" />
+            </ListItemIcon>
+            <ListItemText secondary="ライセンスの表示" />
+          </ListItem>
         </List>
       </div>
     </Drawer>
