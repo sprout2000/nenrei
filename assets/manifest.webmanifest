@@ -23,5 +23,6 @@
   "orientation": "portrait",
   "theme_color": "#ff375f",
   "background_color": "#efeff4",
-  "splash_pages": null
+  "splash_pages": null,
+  "gcm_sender_id": "103953800507"
 }
