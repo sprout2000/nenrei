@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.9.0](https://github.com/sprout2000/nenrei/compare/v0.8.11...v0.9.0) (2020-04-14)
+
+
+### Features
+
+* supports IE11 ([36847de](https://github.com/sprout2000/nenrei/commit/36847de8449672ce5345709bc488c06a225d54ed))
+
 ### [0.8.11](https://github.com/sprout2000/nenrei/compare/v0.8.10...v0.8.11) (2020-04-12)
 
 
