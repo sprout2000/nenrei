@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const BabelMinifyPlugin = require('babel-minify-webpack-plugin');
 
 /** @type import('webpack').Configuration */
 module.exports = {
@@ -22,7 +23,7 @@ module.exports = {
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        loader: 'ts-loader',
+        loaders: ['babel-loader', 'ts-loader'],
       },
       {
         test: /\.css$/,
@@ -38,6 +39,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new BabelMinifyPlugin(),
     new MiniCssExtractPlugin({}),
     new HtmlWebpackPlugin({
       template: './src/index.html',
