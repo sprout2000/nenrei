@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const BabelMinifyPlugin = require('babel-minify-webpack-plugin');
 
 /** @type import('webpack').Configuration */
 module.exports = {
@@ -45,7 +44,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new BabelMinifyPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       favicon: './src/favicon.ico',
@@ -60,9 +58,6 @@ module.exports = {
       },
     ]),
   ],
-  performance: {
-    hints: false,
-  },
   devtool: 'inline-source-map',
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
