@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) =>
       height: '100%',
       backgroundColor: '#efeff4',
       position: 'relative',
+      overflow: 'hidden',
     },
     icon: {
       margin: '0 auto',
