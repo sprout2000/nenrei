@@ -261,7 +261,7 @@ const App = (): JSX.Element => {
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
-if (process.env.NODE_ENV !== 'development' && 'serviceWorker' in navigator) {
+if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker
       .register('./service-worker.js')
