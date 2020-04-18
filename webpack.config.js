@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 /** @type import('webpack').Configuration */
 module.exports = {
@@ -44,11 +45,18 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.dev.html',
+      template: './src/index.html',
       favicon: './src/favicon.ico',
       chunks: ['app'],
       filename: 'index.html',
     }),
+    new CopyWebpackPlugin([
+      {
+        from: 'assets',
+        to: '.',
+        toType: 'dir',
+      },
+    ]),
   ],
   devtool: 'inline-source-map',
   devServer: {
