@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin').GenerateSW;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BabelMinifyPlugin = require('babel-minify-webpack-plugin');
 
@@ -55,7 +55,7 @@ module.exports = {
         ignore: ['.DS_Store'],
       },
     ]),
-    new WorkboxWebpackPlugin.GenerateSW({
+    new WorkboxWebpackPlugin({
       swDest: 'service-worker.js',
       skipWaiting: true,
       clientsClaim: true,
