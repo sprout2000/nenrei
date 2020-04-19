@@ -7,7 +7,6 @@
         "corejs": 3
       }
     ],
-    "@babel/preset-react",
-    ["minify", { "removeUndefined": false }]
+    "@babel/preset-react"
   ]
 }
