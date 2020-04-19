@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) =>
       padding: 0,
       fontFamily: '-apple-system, BlinkMacSystemFont, Roboto, sans-serif',
       height: '100%',
-      backgroundColor: '#efeff4',
+      backgroundColor: '#f4f6f8',
       position: 'relative',
       overflow: 'hidden',
     },
