@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin').GenerateSW;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const BabelMinifyPlugin = require('babel-minify-webpack-plugin');
 
 /** @type import('webpack').Configuration */
 module.exports = {
@@ -39,7 +38,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new BabelMinifyPlugin(),
     new MiniCssExtractPlugin({}),
     new HtmlWebpackPlugin({
       template: './src/index.html',
