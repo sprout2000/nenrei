@@ -10,9 +10,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
   },
-  entry: {
-    app: './src/App.tsx',
-  },
+  entry: './src/main.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
@@ -42,7 +40,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
       favicon: './src/favicon.ico',
-      chunks: ['app'],
       filename: 'index.html',
     }),
     new CopyWebpackPlugin([
