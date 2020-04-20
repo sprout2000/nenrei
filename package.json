@@ -12,8 +12,7 @@
     "url": "https://github.com/sprout2000/nenrei/issues"
   },
   "engines": {
-    "node": ">=12",
-    "npm": ">=6.13"
+    "node": ">=12"
   },
   "scripts": {
     "start": "webpack-dev-server",
