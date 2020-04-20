@@ -20,8 +20,7 @@
     "release:patch": "standard-version --release-as patch",
     "release:minor": "standard-version --release-as minor",
     "release:major": "standard-version --release-as major",
-    "release:push": "git push --follow-tags origin master",
-    "upgrade": "npm-check --update"
+    "release:push": "git push --follow-tags origin master"
   },
   "dependencies": {
     "@material-ui/core": "^4.9.11",
@@ -54,7 +53,6 @@
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.2.0",
     "mini-css-extract-plugin": "^0.9.0",
-    "npm-check": "^5.9.2",
     "prettier": "^2.0.4",
     "standard-version": "^7.1.0",
     "style-loader": "^1.1.4",
