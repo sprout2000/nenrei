@@ -23,7 +23,7 @@
     "release:push": "git push --follow-tags origin master"
   },
   "dependencies": {
-    "@material-ui/core": "^4.9.11",
+    "@material-ui/core": "^4.9.12",
     "@material-ui/icons": "^4.9.1",
     "localforage": "^1.7.3",
     "react": "^16.13.1",
