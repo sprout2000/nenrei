@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.9.12](https://github.com/sprout2000/nenrei/compare/v0.9.11...v0.9.12) (2020-05-17)
+
+
+### Bug Fixes
+
+* CopyWebpackPlugin 'globOptions' ([8c5b126](https://github.com/sprout2000/nenrei/commit/8c5b126eb79341bed9cb13db8bc2fdcd60271c2a))
+* CopyWebpackPlugin initialization ([53e9e78](https://github.com/sprout2000/nenrei/commit/53e9e78893b6f63fe596e04816c9a360506d5dc2))
+
 ### [0.9.11](https://github.com/sprout2000/nenrei/compare/v0.9.10...v0.9.11) (2020-05-17)
 
 ### [0.9.10](https://github.com/sprout2000/nenrei/compare/v0.9.9...v0.9.10) (2020-05-06)
