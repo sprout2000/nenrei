@@ -47,7 +47,6 @@ module.exports = {
         from: 'assets',
         to: '.',
         toType: 'dir',
-        ignore: ['.DS_Store'],
       },
     ]),
     new WorkboxWebpackPlugin({
