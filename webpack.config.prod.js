@@ -42,13 +42,18 @@ module.exports = {
       favicon: './src/favicon.ico',
       filename: 'index.html',
     }),
-    new CopyWebpackPlugin([
-      {
-        from: 'assets',
-        to: '.',
-        toType: 'dir',
-      },
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'assets',
+          to: '.',
+          toType: 'dir',
+          globOptions: {
+            dot: false,
+          },
+        },
+      ],
+    }),
     new WorkboxWebpackPlugin({
       swDest: 'service-worker.js',
       skipWaiting: true,
