@@ -22,9 +22,6 @@ import Snack from './Snack';
 import SideBar from './SideBar';
 import TitleBar from './TitleBar';
 
-/** App Icon */
-import appIcon from './assets/icon-192.png';
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const typeguardStorage = (arg: any): arg is Storage => {
   return (
@@ -217,7 +214,12 @@ const App = (): JSX.Element => {
       <div className={classes.content}>
         <div className={classes.offset} />
         <div className={classes.icon}>
-          <img src={appIcon} width={64} height={64} alt="年齢計算" />
+          <img
+            src="./icons/apple-icon-120.png"
+            width={64}
+            height={64}
+            alt="年齢計算"
+          />
         </div>
         <Snack snackOpen={snackOpen} onClose={onSnackClose} />
         <Card className={classes.card}>
