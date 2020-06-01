@@ -5,7 +5,7 @@ import App from './App';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
-if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
+if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker
       .register('./service-worker.js')

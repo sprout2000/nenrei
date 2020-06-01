@@ -1,10 +1,14 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const isDev = process.env.NODE_ENV === 'development';
 
 /** @type import('webpack').Configuration */
 module.exports = {
-  mode: 'development',
+  mode: isDev ? 'development' : 'production',
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
   },
@@ -22,11 +26,11 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'style-loader',
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
-              sourceMap: true,
+              sourceMap: isDev,
             },
           },
         ],
@@ -41,6 +45,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new MiniCssExtractPlugin({}),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       favicon: './src/favicon.ico',
@@ -49,8 +54,16 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [{ from: 'assets', to: '.' }],
     }),
+    new WorkboxWebpackPlugin.GenerateSW({
+      swDest: 'service-worker.js',
+      skipWaiting: true,
+      clientsClaim: true,
+    }),
   ],
-  devtool: 'inline-source-map',
+  performance: {
+    hints: false,
+  },
+  devtool: isDev ? 'inline-source-map' : false,
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
     port: 3000,
