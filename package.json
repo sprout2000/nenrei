@@ -24,10 +24,10 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.10.1",
-    "@babel/preset-env": "^7.10.1",
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
     "@babel/preset-react": "^7.10.1",
-    "@material-ui/core": "^4.10.0",
+    "@material-ui/core": "^4.10.1",
     "@material-ui/icons": "^4.9.1",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
@@ -52,10 +52,10 @@
     "workbox-webpack-plugin": "^5.1.3"
   },
   "optionalDependencies": {
-    "@types/webpack": "^4.41.13",
+    "@types/webpack": "^4.41.16",
     "@types/webpack-dev-server": "^3.11.0",
-    "@typescript-eslint/eslint-plugin": "^3.0.2",
-    "@typescript-eslint/parser": "^3.0.2",
+    "@typescript-eslint/eslint-plugin": "^3.1.0",
+    "@typescript-eslint/parser": "^3.1.0",
     "eslint": "^7.1.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.3",
