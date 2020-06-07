@@ -68,5 +68,8 @@
     "prettier": "^2.0.5",
     "standard-version": "^8.0.0"
   },
-  "resolutions": {}
+  "resolutions": {
+    "http-proxy": "^1.18.1",
+    "yargs-parser": "^18.1.2"
+  }
 }
