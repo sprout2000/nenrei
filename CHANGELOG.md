@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.11.3](https://github.com/sprout2000/nenrei/compare/v0.11.2...v0.11.3) (2020-06-07)
+
+
+### Bug Fixes
+
+* npm scripts ([cabd0ee](https://github.com/sprout2000/nenrei/commit/cabd0ee997dd4bd7b2c0a7e07e3c76dff5358768))
+
 ### [0.11.2](https://github.com/sprout2000/nenrei/compare/v0.11.1...v0.11.2) (2020-06-02)
 
 ### [0.11.1](https://github.com/sprout2000/nenrei/compare/v0.11.0...v0.11.1) (2020-06-02)
