@@ -1,8 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin').GenerateSW;
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -54,12 +56,15 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [{ from: 'assets', to: '.' }],
     }),
-    new WorkboxWebpackPlugin.GenerateSW({
+    new WorkboxWebpackPlugin({
       swDest: 'service-worker.js',
       skipWaiting: true,
       clientsClaim: true,
     }),
   ],
+  optimization: {
+    minimizer: [new TerserWebpackPlugin(), new OptimizeCSSAssetsPlugin()],
+  },
   performance: {
     hints: false,
   },
