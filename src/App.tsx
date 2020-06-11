@@ -90,7 +90,7 @@ const App = (): JSX.Element => {
   const classes = useStyles();
 
   const [year, setYear] = useState(1971);
-  const [month, setMonth] = useState(1);
+  const [month, setMonth] = useState(3);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [snackOpen, setSnackOpen] = useState(false);
 
