@@ -2,10 +2,14 @@
   "name": "nenrei",
   "productName": "年齢計算",
   "version": "0.11.8",
-  "description": "元号と西暦の両方を使って年齢を計算することが出来ます",
   "main": "index.js",
-  "license": "MIT",
+  "description": "元号と西暦の両方を使って年齢を計算することが出来ます",
+  "author": {
+    "name": "sprout2000",
+    "url": "https://github.com/sprout2000/"
+  },
   "homepage": "https://sprout2000.github.io/nenrei",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git@github.com:sprout2000/nenrei.git"
