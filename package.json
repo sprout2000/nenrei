@@ -3,8 +3,13 @@
   "productName": "年齢計算",
   "version": "0.11.8",
   "main": "index.js",
-  "license": "MIT",
+  "description": "元号と西暦の両方を使って年齢を計算することが出来ます",
+  "author": {
+    "name": "sprout2000",
+    "url": "https://github.com/sprout2000/"
+  },
   "homepage": "https://sprout2000.github.io/nenrei",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git@github.com:sprout2000/nenrei.git"
@@ -12,12 +17,20 @@
   "bugs": {
     "url": "https://github.com/sprout2000/nenrei/issues"
   },
+  "keywords": [
+    "pwa",
+    "年齢計算"
+  ],
   "scripts": {
     "start": "cross-env NODE_ENV=\"development\" webpack-dev-server",
     "build": "cross-env NODE_ENV=\"production\" webpack --progress",
     "clean": "rimraf dist",
     "predeploy": "run-s clean build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "release:patch": "standard-version --release-as patch",
+    "release:minor": "standard-version --release-as minor",
+    "release:major": "standard-version --release-as major",
+    "release:push": "git push --follow-tags origin master"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
@@ -47,9 +60,9 @@
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "rimraf": "^3.0.2",
     "style-loader": "^1.2.1",
-    "terser-webpack-plugin": "^3.0.6",
+    "terser-webpack-plugin": "^3.0.7",
     "ts-loader": "^8.0.0",
-    "typescript": "^3.9.6",
+    "typescript": "^3.9.7",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
     "workbox-webpack-plugin": "^5.1.3"
@@ -63,6 +76,7 @@
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-react-hooks": "^4.0.8",
     "prettier": "^2.0.5",
+    "standard-version": "^8.0.2",
     "webpack-dev-server": "^3.11.0"
   },
   "resolutions": {}

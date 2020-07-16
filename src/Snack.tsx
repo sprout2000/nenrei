@@ -21,7 +21,7 @@ const Snack = (props: Props): JSX.Element => {
       autoHideDuration={2500}
       onClose={props.onClose}>
       <SnackbarContent
-        message="Copyright (C) 2020 Office Nishigami."
+        message="Copyright (C) 2020 sprout2000."
         action={
           <Button color="secondary" size="small" onClick={props.onClose}>
             OK
