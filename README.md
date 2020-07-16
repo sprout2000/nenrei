@@ -1,4 +1,4 @@
-# ![icon-32](https://user-images.githubusercontent.com/52094761/66297641-064bb080-e92b-11e9-883f-12a6d10ac128.png) ウェブ年齢計算機
+# ![icon-32](https://user-images.githubusercontent.com/52094761/66297641-064bb080-e92b-11e9-883f-12a6d10ac128.png) 年齢計算
 
 [![GitHub CI](https://github.com/sprout2000/nenrei/workflows/GitHub%20CI/badge.svg)](https://github.com/sprout2000/nenrei/actions?query=workflow%3A%22GitHub+CI%22)
 [![GitHub license](https://img.shields.io/github/license/sprout2000/nenrei)](https://github.com/sprout2000/nenrei/blob/master/LICENSE.txt)

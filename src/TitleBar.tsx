@@ -16,7 +16,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import MenuIcon from '@material-ui/icons/Menu';
 
 interface Props {
-  toggleDrawer: Function;
+  toggleDrawer: () => void;
 }
 
 const useStyles = makeStyles((theme) =>
