@@ -1,5 +1,6 @@
 {
   "name": "nenrei",
+  "productName": "年齢計算",
   "version": "0.11.8",
   "main": "index.js",
   "license": "MIT",
