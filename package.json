@@ -17,7 +17,11 @@
     "build": "cross-env NODE_ENV=\"production\" webpack --progress",
     "clean": "rimraf dist",
     "predeploy": "run-s clean build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "release:patch": "standard-version --release-as patch",
+    "release:minor": "standard-version --release-as minor",
+    "release:major": "standard-version --release-as major",
+    "release:push": "git push --follow-tags origin master"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
@@ -63,6 +67,7 @@
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-react-hooks": "^4.0.8",
     "prettier": "^2.0.5",
+    "standard-version": "^8.0.2",
     "webpack-dev-server": "^3.11.0"
   },
   "resolutions": {}
