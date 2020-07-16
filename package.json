@@ -14,7 +14,9 @@
   "scripts": {
     "start": "cross-env NODE_ENV=\"development\" webpack-dev-server",
     "build": "cross-env NODE_ENV=\"production\" webpack --progress",
-    "prebuild": "rimraf dist"
+    "clean": "rimraf dist",
+    "predeploy": "run-s dist build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
