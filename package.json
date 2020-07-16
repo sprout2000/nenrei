@@ -13,7 +13,8 @@
   },
   "scripts": {
     "start": "cross-env NODE_ENV=\"development\" webpack-dev-server",
-    "build": "cross-env NODE_ENV=\"production\" webpack --progress"
+    "build": "cross-env NODE_ENV=\"production\" webpack --progress",
+    "prebuild": "rimraf dist"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
