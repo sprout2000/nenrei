@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.12.0](https://github.com/sprout2000/nenrei/compare/v0.11.8...v0.12.0) (2020-07-16)
+
+
+### Features
+
+* use standard-version for releases ([bca3399](https://github.com/sprout2000/nenrei/commit/bca33993fb41c868ce95a1a0d3bcb1fabf0fda5c))
+
+
+### Bug Fixes
+
+* app name ([94165e7](https://github.com/sprout2000/nenrei/commit/94165e7ea87daf294fc6a95f0e6f2257d1d061e0))
+* copyright on snack bar ([50905de](https://github.com/sprout2000/nenrei/commit/50905dee436a83184679d60890d90d7f1c8e7f42))
+* interface of props ([a2bda0c](https://github.com/sprout2000/nenrei/commit/a2bda0c57eac0738c51db0ec8eceef86ae4cea7c))
+* predeploy npm script ([db49b1c](https://github.com/sprout2000/nenrei/commit/db49b1cb41ab91ea182bf534630793dd5e9ce9d5))
+
 ### [0.11.8](https://github.com/sprout2000/nenrei/compare/v0.11.7...v0.11.8) (2020-07-15)
 
 ### [0.11.7](https://github.com/sprout2000/nenrei/compare/v0.11.6...v0.11.7) (2020-07-15)
