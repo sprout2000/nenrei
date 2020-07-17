@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.12.1](https://github.com/sprout2000/nenrei/compare/v0.12.0...v0.12.1) (2020-07-17)
+
+
+### Bug Fixes
+
+* GitHub CI config.yml ([baa9f52](https://github.com/sprout2000/nenrei/commit/baa9f52dab4dfd6474785cb03a53c97d2654e3e2))
+
 ## [0.12.0](https://github.com/sprout2000/nenrei/compare/v0.11.8...v0.12.0) (2020-07-16)
 
 
