@@ -21,6 +21,11 @@
     "pwa",
     "年齢計算"
   ],
+  "engines": {
+    "node": "12.x",
+    "yarn": ">=1.22.0",
+    "npm": "please_use_yarn_instead"
+  },
   "scripts": {
     "start": "cross-env NODE_ENV=\"development\" webpack-dev-server",
     "build": "cross-env NODE_ENV=\"production\" webpack --progress",
@@ -78,6 +83,5 @@
     "prettier": "^2.0.5",
     "standard-version": "^8.0.2",
     "webpack-dev-server": "^3.11.0"
-  },
-  "resolutions": {}
+  }
 }

@@ -13,7 +13,7 @@ interface Props {
   ) => void;
 }
 
-const Snack = (props: Props): JSX.Element => {
+const Snack: React.FC<Props> = (props) => {
   return (
     <Snackbar
       open={props.snackOpen}

@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const TitleBar = (props: Props): JSX.Element => {
+const TitleBar: React.FC<Props> = (props) => {
   const classes = useStyles();
 
   return (

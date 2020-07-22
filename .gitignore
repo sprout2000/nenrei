@@ -1,7 +1,7 @@
 node_modules/
 dist/
 build/
-secrets/
+public/
 yarn-*.log
 gh-pages
 .DS_Store

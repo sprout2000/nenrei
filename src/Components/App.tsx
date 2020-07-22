@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const App = (): JSX.Element => {
+const App: React.FC = () => {
   const classes = useStyles();
 
   const [year, setYear] = useState(1971);
@@ -103,6 +103,7 @@ const App = (): JSX.Element => {
 
   const Wareki = (start: number, end: number): JSX.Element[] => {
     const items = [];
+
     for (let i = start; i <= end; i++) {
       let gengo = '';
       let offset = 0;
@@ -137,6 +138,7 @@ const App = (): JSX.Element => {
 
   const Tsuki = (): JSX.Element[] => {
     const items = [];
+
     for (let i = 1; i <= 12; i++) {
       items.push(
         <MenuItem key={i} value={i}>
