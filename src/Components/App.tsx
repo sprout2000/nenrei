@@ -5,7 +5,6 @@ import localforage from 'localforage';
 import createStyles from '@material-ui/core/styles/createStyles';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import './global.css';
 
 /** Common components */
 import Card from '@material-ui/core/Card';
@@ -149,7 +148,7 @@ const App = (): JSX.Element => {
     return items;
   };
 
-  const Years = Wareki(1912, 2030);
+  const Years = Wareki(1912, new Date().getFullYear());
   const Months = Tsuki();
 
   const calc = (y: number, m: number): number => {
@@ -183,7 +182,7 @@ const App = (): JSX.Element => {
 
   useEffect(() => {
     localforage
-      .getItem('nenrei-20200407')
+      .getItem('nenrei-20200801')
       .then((value) => {
         if (!value || !typeguardStorage(value)) {
           setYear(1971);
@@ -198,7 +197,7 @@ const App = (): JSX.Element => {
 
   useEffect(() => {
     localforage
-      .setItem('nenrei-20200407', { year: year, month: month })
+      .setItem('nenrei-20200801', { year: year, month: month })
       .catch((err) => console.error(err));
   }, [year, month]);
 

@@ -22,7 +22,7 @@ import CopyrightOutlinedIcon from '@material-ui/icons/CopyrightOutlined';
 import OpenInBrowserOutlinedIcon from '@material-ui/icons/OpenInBrowserOutlined';
 
 /** Resources */
-import pjson from '../package.json';
+import pjson from '../../package.json';
 
 interface Props {
   drawerOpen: boolean;
