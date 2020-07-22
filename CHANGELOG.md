@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/sprout2000/nenrei/compare/v1.0.0...v1.0.1) (2020-07-22)
+
+
+### Bug Fixes
+
+* setMonth(3) for fail-safe ([5ccd25d](https://github.com/sprout2000/nenrei/commit/5ccd25dfaf6941b27e196bd6cf6af7e1a8c0c482))
+
 ## [1.0.0](https://github.com/sprout2000/nenrei/compare/v0.12.4...v1.0.0) (2020-07-22)
 
 
