@@ -103,6 +103,7 @@ const App: React.FC = () => {
 
   const Wareki = (start: number, end: number): JSX.Element[] => {
     const items = [];
+
     for (let i = start; i <= end; i++) {
       let gengo = '';
       let offset = 0;
