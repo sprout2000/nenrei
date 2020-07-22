@@ -149,7 +149,8 @@ const App = (): JSX.Element => {
     return items;
   };
 
-  const Years = Wareki(1912, 2030);
+  const thisYear = new Date().getFullYear();
+  const Years = Wareki(1912, thisYear);
   const Months = Tsuki();
 
   const calc = (y: number, m: number): number => {
