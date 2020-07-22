@@ -183,7 +183,7 @@ const App = (): JSX.Element => {
 
   useEffect(() => {
     localforage
-      .getItem('nenrei-20200407')
+      .getItem('nenrei-20200801')
       .then((value) => {
         if (!value || !typeguardStorage(value)) {
           setYear(1971);
@@ -198,7 +198,7 @@ const App = (): JSX.Element => {
 
   useEffect(() => {
     localforage
-      .setItem('nenrei-20200407', { year: year, month: month })
+      .setItem('nenrei-20200801', { year: year, month: month })
       .catch((err) => console.error(err));
   }, [year, month]);
 
