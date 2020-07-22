@@ -186,7 +186,7 @@ const App = (): JSX.Element => {
       .then((value) => {
         if (!value || !typeguardStorage(value)) {
           setYear(1971);
-          setMonth(1);
+          setMonth(3);
         } else {
           setYear(value.year);
           setMonth(value.month);
