@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const App = (): JSX.Element => {
+const App: React.FC = () => {
   const classes = useStyles();
 
   const [year, setYear] = useState(1971);
