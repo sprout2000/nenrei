@@ -138,6 +138,7 @@ const App: React.FC = () => {
 
   const Tsuki = (): JSX.Element[] => {
     const items = [];
+
     for (let i = 1; i <= 12; i++) {
       items.push(
         <MenuItem key={i} value={i}>
