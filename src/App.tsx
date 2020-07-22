@@ -215,7 +215,7 @@ const App = (): JSX.Element => {
         <div className={classes.offset} />
         <div className={classes.icon}>
           <img
-            src="./icons/apple-icon-120.png"
+            src="./icons/apple-icon-64.png"
             width={64}
             height={64}
             alt="年齢計算"

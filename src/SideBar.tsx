@@ -80,7 +80,7 @@ const SideBar = (props: Props): JSX.Element => {
         role="presentation"
         onClick={(): void => props.toggleDrawer()}>
         <div className={classes.drawerHeader}>
-          <Avatar alt="Logo" src="./icons/apple-icon-120.png" />
+          <Avatar alt="Logo" src="./icons/apple-icon-64.png" />
           <Typography className={classes.version}>
             年齢計算 v{pjson.version}
           </Typography>
