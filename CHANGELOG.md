@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/sprout2000/nenrei/compare/v0.12.4...v1.0.0) (2020-07-22)
+
+
+### Features
+
+* create year select automatically ([0f63b40](https://github.com/sprout2000/nenrei/commit/0f63b40b4f6fe8cbad8e4ac47ff6927d96912d42))
+
 ### [0.12.4](https://github.com/sprout2000/nenrei/compare/v0.12.3...v0.12.4) (2020-07-22)
 
 ### [0.12.3](https://github.com/sprout2000/nenrei/compare/v0.12.2...v0.12.3) (2020-07-22)
