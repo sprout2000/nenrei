@@ -14,7 +14,9 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
   },
-  entry: './src/main.tsx',
+  entry: {
+    app: './src/main.tsx',
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
   },
@@ -46,24 +48,47 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new MiniCssExtractPlugin({}),
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      favicon: './src/favicon.ico',
-      filename: 'index.html',
-    }),
-    new CopyWebpackPlugin({
-      patterns: [{ from: 'assets', to: '.' }],
-    }),
-    new WorkboxWebpackPlugin({
-      swDest: 'service-worker.js',
-      skipWaiting: true,
-      clientsClaim: true,
-    }),
-  ],
+  plugins: isDev
+    ? [
+        new HtmlWebpackPlugin({
+          template: './src/index.html',
+          favicon: './src/favicon.ico',
+          filename: 'index.html',
+          chunks: ['app', 'vendor'],
+        }),
+        new CopyWebpackPlugin({
+          patterns: [{ from: 'assets', to: '.' }],
+        }),
+      ]
+    : [
+        new HtmlWebpackPlugin({
+          template: './src/index.html',
+          favicon: './src/favicon.ico',
+          filename: 'index.html',
+          chunks: ['app', 'vendor'],
+        }),
+        new CopyWebpackPlugin({
+          patterns: [{ from: 'assets', to: '.' }],
+        }),
+        new MiniCssExtractPlugin({}),
+        new WorkboxWebpackPlugin({
+          swDest: 'service-worker.js',
+          skipWaiting: true,
+          clientsClaim: true,
+        }),
+      ],
   optimization: {
     minimizer: [new TerserWebpackPlugin(), new OptimizeCSSAssetsPlugin()],
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
+        },
+      },
+    },
   },
   performance: {
     hints: false,
@@ -72,6 +97,5 @@ module.exports = {
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
     port: 3000,
-    open: true,
   },
 };
