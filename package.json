@@ -22,8 +22,8 @@
     "年齢計算"
   ],
   "engines": {
-    "node": "12.x",
-    "yarn": ">=1.22.0",
+    "node": ">=12.16",
+    "yarn": ">=1.22",
     "npm": "please_use_yarn_instead"
   },
   "scripts": {
