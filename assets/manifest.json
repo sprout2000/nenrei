@@ -20,9 +20,9 @@
       "purpose": "any maskable"
     }
   ],
-  "start_url": "https://sprout2000.github.io/nenrei/",
+  "start_url": ".",
   "display": "standalone",
-  "orientation": "any",
+  "orientation": "portrait",
   "theme_color": "#ff375f",
   "background_color": "#efeff4"
 }
