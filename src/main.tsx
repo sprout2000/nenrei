@@ -8,6 +8,10 @@ import './global.css';
 ReactDOM.render(<App />, document.getElementById('root'));
 
 if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
+  window.addEventListener('resize', () => {
+    forceScreenSize(380, 680);
+  });
+
   window.addEventListener('load', () => {
     forceScreenSize(380, 680);
     navigator.serviceWorker
