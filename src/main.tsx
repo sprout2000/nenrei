@@ -2,15 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './Components/App';
+import { forceScreenSize } from './forceScreenSize';
 import './global.css';
-
-import { forceScreeSize } from './forceScreenSize';
-forceScreeSize(380, 680);
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
 if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
+  window.addEventListener('resize', () => {
+    forceScreenSize(380, 680);
+  });
+
   window.addEventListener('load', () => {
+    forceScreenSize(380, 680);
     navigator.serviceWorker
       .register('./service-worker.js')
       .then((registration) => {
