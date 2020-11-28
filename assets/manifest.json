@@ -20,7 +20,7 @@
       "purpose": "any maskable"
     }
   ],
-  "start_url": ".",
+  "start_url": "./?utm_source=homescreen",
   "display": "standalone",
   "orientation": "portrait",
   "theme_color": "#ff0033",
