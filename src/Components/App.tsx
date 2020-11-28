@@ -217,8 +217,8 @@ const App: React.FC = () => {
         <div className={classes.icon}>
           <img
             src="./manifest-icon-192.png"
-            width={64}
-            height={64}
+            width={96}
+            height={96}
             alt="年齢計算"
           />
         </div>
