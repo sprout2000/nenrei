@@ -216,7 +216,7 @@ const App: React.FC = () => {
         <div className={classes.offset} />
         <div className={classes.icon}>
           <img
-            src="./icons/manifest-icon-192.png"
+            src="./manifest-icon-192.png"
             width={64}
             height={64}
             alt="年齢計算"
