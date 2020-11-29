@@ -80,7 +80,7 @@ const SideBar: React.FC<Props> = (props) => {
         role="presentation"
         onClick={(): void => props.toggleDrawer()}>
         <div className={classes.drawerHeader}>
-          <Avatar alt="Logo" src="./manifest-icon-192.png" />
+          <Avatar alt="Logo" src="./icons/manifest-icon-192.png" />
           <Typography className={classes.version}>
             年齢計算 v{pjson.version}
           </Typography>
