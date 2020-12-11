@@ -4,6 +4,7 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 import TerserWebpackPlugin from 'terser-webpack-plugin';
 import WorkboxWebpackPlugin from 'workbox-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import CssMinimizerWebpackPlugin from 'css-minimizer-webpack-plugin';
 
 import path from 'path';
 
@@ -83,7 +84,7 @@ const config: Configuration = {
         }),
       ],
   optimization: {
-    minimizer: [new TerserWebpackPlugin()],
+    minimizer: [new TerserWebpackPlugin(), new CssMinimizerWebpackPlugin()],
   },
   performance: {
     hints: false,
