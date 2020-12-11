@@ -4,6 +4,7 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 import TerserWebpackPlugin from 'terser-webpack-plugin';
 import WorkboxWebpackPlugin from 'workbox-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import CssMinimizerWebpackPlugin from 'css-minimizer-webpack-plugin';
 
 import path from 'path';
 
@@ -62,6 +63,7 @@ const config: Configuration = {
           favicon: path.join(__dirname, 'src', 'favicon.ico'),
           inject: 'body',
           scriptLoading: 'blocking',
+          minify: false,
         }),
         new CopyWebpackPlugin({ patterns: [{ from: 'assets', to: '.' }] }),
       ]
@@ -71,6 +73,7 @@ const config: Configuration = {
           favicon: path.join(__dirname, 'src', 'favicon.ico'),
           inject: 'body',
           scriptLoading: 'blocking',
+          minify: true,
         }),
         new CopyWebpackPlugin({ patterns: [{ from: 'assets', to: '.' }] }),
         new MiniCssExtractPlugin(),
@@ -81,7 +84,7 @@ const config: Configuration = {
         }),
       ],
   optimization: {
-    minimizer: [new TerserWebpackPlugin()],
+    minimizer: [new TerserWebpackPlugin(), new CssMinimizerWebpackPlugin()],
   },
   performance: {
     hints: false,
