@@ -62,6 +62,7 @@ const config: Configuration = {
           favicon: path.join(__dirname, 'src', 'favicon.ico'),
           inject: 'body',
           scriptLoading: 'blocking',
+          minify: false,
         }),
         new CopyWebpackPlugin({ patterns: [{ from: 'assets', to: '.' }] }),
       ]
@@ -71,6 +72,7 @@ const config: Configuration = {
           favicon: path.join(__dirname, 'src', 'favicon.ico'),
           inject: 'body',
           scriptLoading: 'blocking',
+          minify: true,
         }),
         new CopyWebpackPlugin({ patterns: [{ from: 'assets', to: '.' }] }),
         new MiniCssExtractPlugin(),
