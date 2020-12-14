@@ -86,15 +86,11 @@ const config: Configuration = {
   optimization: {
     minimizer: [new TerserWebpackPlugin(), new CssMinimizerWebpackPlugin()],
   },
-  performance: {
-    hints: false,
-  },
-  stats: 'none',
-  devtool: isDev ? 'inline-source-map' : false,
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
-    port: 3333,
+    port: 3030,
   },
+  devtool: isDev ? 'source-map' : false,
 };
 
 export default config;
