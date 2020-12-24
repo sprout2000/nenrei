@@ -19,7 +19,7 @@ const config: Configuration = {
     app: path.join(__dirname, 'src', 'main.tsx'),
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'public'),
     publicPath: 'auto',
     filename: '[name].js',
     assetModuleFilename: 'images/[name][ext]',
@@ -87,7 +87,7 @@ const config: Configuration = {
     minimizer: [new TerserWebpackPlugin(), new CssMinimizerWebpackPlugin()],
   },
   devServer: {
-    contentBase: path.resolve(__dirname, 'dist'),
+    contentBase: path.resolve(__dirname, 'public'),
     port: 3030,
   },
   devtool: isDev ? 'source-map' : false,
