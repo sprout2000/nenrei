@@ -8,11 +8,7 @@
     "sourceMap": true,
     "strict": true,
     "jsx": "react",
-    "resolveJsonModule": true,
-    "baseUrl": ".",
-    "paths": {
-      "*": ["@types/*"]
-    }
+    "resolveJsonModule": true
   },
   "ts-node": {
     "compilerOptions": {
