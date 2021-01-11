@@ -89,6 +89,7 @@ const config: Configuration = {
   devServer: {
     contentBase: path.resolve(__dirname, 'public'),
     port: 3030,
+    open: true,
   },
   devtool: isDev ? 'source-map' : false,
 };
