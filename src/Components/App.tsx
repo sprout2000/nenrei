@@ -17,6 +17,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
 /** App Shell for PWA */
+import QR from './QR';
 import Snack from './Snack';
 import SideBar from './SideBar';
 import TitleBar from './TitleBar';
@@ -88,10 +89,11 @@ const useStyles = makeStyles((theme) =>
 const App: React.FC = () => {
   const classes = useStyles();
 
-  const [year, setYear] = useState(1971);
-  const [month, setMonth] = useState(3);
+  const [year, setYear] = useState(1989);
+  const [month, setMonth] = useState(4);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [snackOpen, setSnackOpen] = useState(false);
+  const [qrOpen, setQrOpen] = useState(false);
 
   const toggleDrawer = (): void => setDrawerOpen(!drawerOpen);
 
@@ -100,6 +102,9 @@ const App: React.FC = () => {
     if (reason === 'clickaway') return;
     setSnackOpen(false);
   };
+
+  const onQROpen = (): void => setQrOpen(true);
+  const onQRClose = (): void => setQrOpen(false);
 
   const Wareki = (start: number, end: number): JSX.Element[] => {
     const items = [];
@@ -206,11 +211,13 @@ const App: React.FC = () => {
   return (
     <div className={classes.root}>
       <CssBaseline />
+      <QR open={qrOpen} onClose={onQRClose} />
       <TitleBar toggleDrawer={toggleDrawer} />
       <SideBar
         toggleDrawer={toggleDrawer}
         drawerOpen={drawerOpen}
         onSnackOpen={onSnackOpen}
+        onQROpen={onQROpen}
       />
       <div className={classes.content}>
         <div className={classes.offset} />
