@@ -1,11 +1,8 @@
 node_modules/
 dist/
 build/
-public/main.css
-public/main.js
-public/service-worker.js
-public/workbox-*.js
-public/*.map
+public/
 yarn-*.log
 gh-pages
+.env
 .DS_Store
