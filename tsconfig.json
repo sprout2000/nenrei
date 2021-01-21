@@ -7,8 +7,7 @@
     "lib": ["dom", "es2015"],
     "sourceMap": true,
     "strict": true,
-    "jsx": "react",
-    "resolveJsonModule": true
+    "jsx": "react"
   },
   "ts-node": {
     "compilerOptions": {
