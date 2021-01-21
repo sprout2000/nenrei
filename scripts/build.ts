@@ -6,6 +6,7 @@ build({
   outdir: 'public',
   bundle: true,
   minify: true,
+  sourcemap: false,
   target: 'es2015',
   platform: 'browser',
 }).catch(() => process.exit(1));
