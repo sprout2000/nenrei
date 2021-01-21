@@ -1,7 +1,11 @@
 node_modules/
 dist/
 build/
-public/
+public/main.css
+public/main.js
+public/service-worker.js
+public/workbox-*.js
+public/*.map
 yarn-*.log
 gh-pages
 .DS_Store
