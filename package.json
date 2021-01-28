@@ -29,9 +29,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=\"development\" webpack serve",
     "build": "cross-env NODE_ENV=\"production\" webpack --progress",
-    "clean": "rimraf public",
-    "serve": "ts-node ./serve.ts",
-    "https": "run-s clean build serve"
+    "build:serve": "cross-env NODE_ENV=\"production\" webpack serve"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.3",
