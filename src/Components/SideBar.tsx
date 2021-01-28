@@ -93,7 +93,7 @@ const SideBar: React.FC<Props> = (props) => {
             <ListItemIcon>
               <ShareIcon style={{ color: blue[500] }} />
             </ListItemIcon>
-            <ListItemText secondary="共有" />
+            <ListItemText secondary="このアプリを共有" />
           </ListItem>
           <ListItem button onClick={handleURL}>
             <ListItemIcon>
