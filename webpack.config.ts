@@ -6,9 +6,13 @@ import WorkboxWebpackPlugin from 'workbox-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CssMinimizerWebpackPlugin from 'css-minimizer-webpack-plugin';
 
+import os from 'os';
+import fs from 'fs';
 import path from 'path';
 
 const isDev = process.env.NODE_ENV === 'development';
+const keyPath = path.resolve(os.homedir(), '.pem/localhost-key.pem');
+const certPath = path.resolve(os.homedir(), '.pem/localhost.pem');
 
 const config: Configuration = {
   mode: isDev ? 'development' : 'production',
@@ -90,6 +94,13 @@ const config: Configuration = {
     contentBase: path.resolve(__dirname, 'public'),
     port: 3030,
     open: true,
+    http2: !isDev,
+    https: isDev
+      ? false
+      : {
+          key: fs.readFileSync(keyPath),
+          cert: fs.readFileSync(certPath),
+        },
   },
   devtool: isDev ? 'source-map' : false,
   stats: 'minimal',
