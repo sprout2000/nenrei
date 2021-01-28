@@ -64,6 +64,7 @@ const config: Configuration = {
   optimization: {
     minimizer: [new TerserWebpackPlugin(), new CssMinimizerWebpackPlugin()],
   },
+  stats: 'minimal',
   performance: {
     hints: false,
   },
