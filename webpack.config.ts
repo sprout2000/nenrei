@@ -92,6 +92,10 @@ const config: Configuration = {
     open: true,
   },
   devtool: isDev ? 'source-map' : false,
+  stats: 'minimal',
+  performance: {
+    hints: false,
+  },
 };
 
 export default config;
