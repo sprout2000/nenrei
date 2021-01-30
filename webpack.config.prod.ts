@@ -26,14 +26,7 @@ const config: Configuration = {
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
-          },
-          {
-            loader: 'ts-loader',
-          },
-        ],
+        use: ['babel-loader', 'ts-loader'],
       },
       {
         test: /\.css$/,
@@ -50,7 +43,7 @@ const config: Configuration = {
       template: path.join(__dirname, 'src', 'index.html'),
       favicon: path.join(__dirname, 'src', 'favicon.ico'),
       inject: 'body',
-      scriptLoading: 'blocking',
+      scriptLoading: 'defer',
       minify: true,
     }),
     new CopyWebpackPlugin({ patterns: [{ from: 'assets', to: '.' }] }),
