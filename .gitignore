@@ -1,7 +1,10 @@
 node_modules/
 dist/
 build/
-public/
+public/*.js
+public/*.map
+public/*.css
+public/*.txt
 yarn-*.log
 gh-pages
 .env
