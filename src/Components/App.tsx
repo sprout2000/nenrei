@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react';
 import localforage from 'localforage';
 
 /** Styles */
-import createStyles from '@material-ui/core/styles/createStyles';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import {
+  createStyles,
+  makeStyles,
+  ThemeProvider,
+  createMuiTheme,
+} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 /** Common components */
@@ -31,6 +35,30 @@ const typeguardStorage = (arg: any): arg is Storage => {
     typeof arg.month === 'number'
   );
 };
+
+const theme = createMuiTheme({
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        html: {
+          margin: 0,
+          padding: 0,
+          userSelect: 'none',
+          WebkitUserSelect: 'none',
+          WebkitTouchCallout: 'none',
+          WebkitTapHighlightColor: 'transparent !important',
+          height: '100%',
+        },
+        body: {
+          height: '100%',
+        },
+        '#root': {
+          height: '100%',
+        },
+      },
+    },
+  },
+});
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -209,65 +237,68 @@ const App: React.FC = () => {
   }, [year, month]);
 
   return (
-    <div className={classes.root}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
-      <QR open={qrOpen} onClose={onQRClose} />
-      <TitleBar toggleDrawer={toggleDrawer} />
-      <SideBar
-        toggleDrawer={toggleDrawer}
-        drawerOpen={drawerOpen}
-        onSnackOpen={onSnackOpen}
-        onQROpen={onQROpen}
-      />
-      <div className={classes.content}>
-        <div className={classes.offset} />
-        <div className={classes.icon}>
-          <img
-            src="./icons/icon-192.png"
-            width={96}
-            height={96}
-            alt="年齢計算"
-          />
+      <div className={classes.root}>
+        <CssBaseline />
+        <QR open={qrOpen} onClose={onQRClose} />
+        <TitleBar toggleDrawer={toggleDrawer} />
+        <SideBar
+          toggleDrawer={toggleDrawer}
+          drawerOpen={drawerOpen}
+          onSnackOpen={onSnackOpen}
+          onQROpen={onQROpen}
+        />
+        <div className={classes.content}>
+          <div className={classes.offset} />
+          <div className={classes.icon}>
+            <img
+              src="./icons/icon-192.png"
+              width={96}
+              height={96}
+              alt="年齢計算"
+            />
+          </div>
+          <Snack snackOpen={snackOpen} onClose={onSnackClose} />
+          <Card className={classes.card}>
+            <CardContent>
+              <Typography className={classes.label}>生まれ年と月</Typography>
+              <div>
+                <FormControl variant="outlined" className={classes.form}>
+                  <Select
+                    className={classes.select}
+                    value={year}
+                    onChange={(e): void => setYear(Number(e.target.value))}>
+                    {Years}
+                  </Select>
+                </FormControl>
+              </div>
+              <div>
+                <FormControl variant="outlined" className={classes.form}>
+                  <Select
+                    className={classes.select}
+                    value={month}
+                    onChange={(e): void => setMonth(Number(e.target.value))}>
+                    {Months}
+                  </Select>
+                </FormControl>
+              </div>
+            </CardContent>
+          </Card>
+          <Card className={classes.card}>
+            <CardContent>
+              <Typography className={classes.answer}>年齢</Typography>
+              <Typography>
+                満<span className={classes.age}>{calc(year, month)}</span>歳
+              </Typography>
+              <Typography>
+                <span>{eto(year)}</span>
+              </Typography>
+            </CardContent>
+          </Card>
         </div>
-        <Snack snackOpen={snackOpen} onClose={onSnackClose} />
-        <Card className={classes.card}>
-          <CardContent>
-            <Typography className={classes.label}>生まれ年と月</Typography>
-            <div>
-              <FormControl variant="outlined" className={classes.form}>
-                <Select
-                  className={classes.select}
-                  value={year}
-                  onChange={(e): void => setYear(Number(e.target.value))}>
-                  {Years}
-                </Select>
-              </FormControl>
-            </div>
-            <div>
-              <FormControl variant="outlined" className={classes.form}>
-                <Select
-                  className={classes.select}
-                  value={month}
-                  onChange={(e): void => setMonth(Number(e.target.value))}>
-                  {Months}
-                </Select>
-              </FormControl>
-            </div>
-          </CardContent>
-        </Card>
-        <Card className={classes.card}>
-          <CardContent>
-            <Typography className={classes.answer}>年齢</Typography>
-            <Typography>
-              満<span className={classes.age}>{calc(year, month)}</span>歳
-            </Typography>
-            <Typography>
-              <span>{eto(year)}</span>
-            </Typography>
-          </CardContent>
-        </Card>
       </div>
-    </div>
+    </ThemeProvider>
   );
 };
 
