@@ -26,6 +26,8 @@ import Snack from './Snack';
 import SideBar from './SideBar';
 import TitleBar from './TitleBar';
 
+import Icon from './icon-288.png';
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const typeguardStorage = (arg: any): arg is Storage => {
   return (
@@ -252,12 +254,7 @@ const App: React.FC = () => {
         <div className={classes.content}>
           <div className={classes.offset} />
           <div className={classes.icon}>
-            <img
-              src="./icons/icon-192.png"
-              width={96}
-              height={96}
-              alt="年齢計算"
-            />
+            <img src={Icon} width={96} height={96} alt="年齢計算" />
           </div>
           <Snack snackOpen={snackOpen} onClose={onSnackClose} />
           <Card className={classes.card}>
