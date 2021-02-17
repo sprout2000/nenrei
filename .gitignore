@@ -1,11 +1,6 @@
 node_modules/
-dist/
-build/
-public/*.js
-public/*.map
-public/*.css
-public/*.txt
+public/
 yarn-*.log
-gh-pages
 .env
+.cache
 .DS_Store
