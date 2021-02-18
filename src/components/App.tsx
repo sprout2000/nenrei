@@ -26,8 +26,6 @@ import Snack from './Snack';
 import SideBar from './SideBar';
 import TitleBar from './TitleBar';
 
-import Icon from './icon-288.png';
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const typeguardStorage = (arg: any): arg is Storage => {
   return (
@@ -219,11 +217,11 @@ const App: React.FC = () => {
 
   useEffect(() => {
     localforage
-      .getItem('nenrei-20200801')
+      .getItem('nenrei-20210401')
       .then((value) => {
         if (!value || !typeguardStorage(value)) {
-          setYear(1971);
-          setMonth(3);
+          setYear(1989);
+          setMonth(4);
         } else {
           setYear(value.year);
           setMonth(value.month);
@@ -234,7 +232,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     localforage
-      .setItem('nenrei-20200801', { year: year, month: month })
+      .setItem('nenrei-20210401', { year: year, month: month })
       .catch((err) => console.error(err));
   }, [year, month]);
 
@@ -254,7 +252,12 @@ const App: React.FC = () => {
         <div className={classes.content}>
           <div className={classes.offset} />
           <div className={classes.icon}>
-            <img src={Icon} width={96} height={96} alt="年齢計算" />
+            <img
+              src="./icons/icon-288.png"
+              width={96}
+              height={96}
+              alt="年齢計算"
+            />
           </div>
           <Snack snackOpen={snackOpen} onClose={onSnackClose} />
           <Card className={classes.card}>

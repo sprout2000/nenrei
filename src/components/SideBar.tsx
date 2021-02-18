@@ -25,7 +25,6 @@ import CopyrightOutlinedIcon from '@material-ui/icons/CopyrightOutlined';
 import { blue, common } from '@material-ui/core/colors';
 
 /** Resources */
-import Icon from './icon-288.png';
 import pjson from '../../package.json';
 
 interface Props {
@@ -84,7 +83,7 @@ const SideBar: React.FC<Props> = (props) => {
         role="presentation"
         onClick={(): void => props.toggleDrawer()}>
         <div className={classes.drawerHeader}>
-          <Avatar alt="Logo" src={Icon} />
+          <Avatar alt="Logo" src="./icons/icon-288.png" />
           <Typography className={classes.version}>
             年齢計算 v{pjson.version}
           </Typography>
