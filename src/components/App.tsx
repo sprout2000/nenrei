@@ -217,11 +217,11 @@ const App: React.FC = () => {
 
   useEffect(() => {
     localforage
-      .getItem('nenrei-20200801')
+      .getItem('nenrei-20210401')
       .then((value) => {
         if (!value || !typeguardStorage(value)) {
-          setYear(1971);
-          setMonth(3);
+          setYear(1989);
+          setMonth(4);
         } else {
           setYear(value.year);
           setMonth(value.month);
@@ -232,7 +232,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     localforage
-      .setItem('nenrei-20200801', { year: year, month: month })
+      .setItem('nenrei-20210401', { year: year, month: month })
       .catch((err) => console.error(err));
   }, [year, month]);
 
