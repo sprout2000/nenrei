@@ -22,7 +22,8 @@
   ],
   "scripts": {
     "start": "cross-env NODE_ENV=\"development\" webpack serve",
-    "build": "cross-env NODE_ENV=\"production\" webpack --progress"
+    "build": "cross-env NODE_ENV=\"production\" webpack --progress",
+    "fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix && prettier --write ."
   },
   "dependencies": {
     "@material-ui/core": "^4.11.3",
