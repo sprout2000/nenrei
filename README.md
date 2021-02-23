@@ -8,4 +8,3 @@
 https://sprout2000.github.io/nenrei/
 
 <img width="1024" alt="2020-07-22 13 51 02" src="https://user-images.githubusercontent.com/52094761/88135607-75786400-cc22-11ea-9afc-443aa16f4d81.png">
-
