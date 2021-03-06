@@ -45,22 +45,18 @@ const config: Configuration = {
       clientsClaim: true,
     }),
   ],
-  cache: {
-    type: 'filesystem',
-    cacheDirectory: path.resolve(__dirname, '.cache'),
-  },
   optimization: {
-    minimize: true,
+    minimize: !isDev,
     minimizer: [new TerserWebpackPlugin()],
   },
+  stats: 'errors-only',
+  devtool: isDev ? 'inline-source-map' : undefined,
+  performance: { hints: false },
   devServer: {
     contentBase: path.resolve(__dirname, 'public'),
     port: 7890,
     open: true,
   },
-  devtool: isDev ? 'inline-source-map' : false,
-  stats: 'errors-only',
-  performance: { hints: false },
 };
 
 export default config;
