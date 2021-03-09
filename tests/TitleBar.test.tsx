@@ -6,15 +6,16 @@ import userEvent from '@testing-library/user-event';
 import TitleBar from '../src/components/TitleBar';
 
 describe('TitleBar component', () => {
-  test('render TitleBar component', async () => {
-    render(
-      <TitleBar toggleDrawer={() => console.log('toggleDrawer(): void')} />
-    );
+  const onToggle = jest.fn();
+
+  test('render TitleBar component', () => {
+    render(<TitleBar toggleDrawer={onToggle} />);
 
     expect(screen.getByRole('banner')).toBeInTheDocument();
     expect(screen.getByText(/年齢計算/)).toBeInTheDocument();
     expect(screen.getByRole('button')).toBeInTheDocument();
 
     userEvent.click(screen.getByRole('button'));
+    expect(onToggle).toBeCalledTimes(1);
   });
 });
