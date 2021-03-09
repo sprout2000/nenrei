@@ -7,9 +7,9 @@ import Snack from '../src/components/Snack';
 
 describe('Snack component', () => {
   test('render Snack component', () => {
-    render(
-      <Snack snackOpen={true} onClose={() => console.log('onClose(): void')} />
-    );
+    const onClose = jest.fn();
+
+    render(<Snack snackOpen={true} onClose={onClose} />);
 
     expect(
       screen.getByText('Copyright © 2019-2021 sprout2000.')
@@ -19,5 +19,6 @@ describe('Snack component', () => {
     expect(text).toHaveTextContent(/OK/);
 
     userEvent.click(screen.getByRole('button'));
+    expect(onClose).toBeCalledTimes(1);
   });
 });
