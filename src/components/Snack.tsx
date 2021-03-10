@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 
-import TransitionDown from './TransitionDown';
+import { TransitionDown } from './TransitionDown';
 
 interface Props {
   snackOpen: boolean;
@@ -13,7 +13,7 @@ interface Props {
   ) => void;
 }
 
-const Snack: React.FC<Props> = (props) => {
+export const Snack: React.FC<Props> = (props) => {
   return (
     <Snackbar
       open={props.snackOpen}
@@ -31,5 +31,3 @@ const Snack: React.FC<Props> = (props) => {
     </Snackbar>
   );
 };
-
-export default Snack;

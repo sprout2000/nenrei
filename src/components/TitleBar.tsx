@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const TitleBar: React.FC<Props> = (props) => {
+export const TitleBar: React.FC<Props> = (props) => {
   const classes = useStyles();
 
   return (
@@ -52,5 +52,3 @@ const TitleBar: React.FC<Props> = (props) => {
     </AppBar>
   );
 };
-
-export default TitleBar;

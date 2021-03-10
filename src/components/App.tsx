@@ -21,10 +21,10 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
 /** App Shell for PWA */
-import QR from './QR';
-import Snack from './Snack';
-import SideBar from './SideBar';
-import TitleBar from './TitleBar';
+import { QR } from './QR';
+import { Snack } from './Snack';
+import { SideBar } from './SideBar';
+import { TitleBar } from './TitleBar';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const typeguardStorage = (arg: any): arg is Storage => {
@@ -114,7 +114,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const App: React.FC = () => {
+export const App: React.FC = () => {
   const classes = useStyles();
 
   const [year, setYear] = useState(1989);
@@ -301,5 +301,3 @@ const App: React.FC = () => {
     </ThemeProvider>
   );
 };
-
-export default App;

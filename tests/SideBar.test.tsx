@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import SideBar from '../src/components/SideBar';
+import { SideBar } from '../src/components/SideBar';
 
 describe('SideBar component', () => {
   test('render SideBar component', () => {

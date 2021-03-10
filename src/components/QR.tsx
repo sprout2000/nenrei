@@ -21,7 +21,7 @@ interface Props {
   onClose: () => void;
 }
 
-const QR: React.FC<Props> = (props) => {
+export const QR: React.FC<Props> = (props) => {
   const classes = useStyles();
 
   return (
@@ -35,5 +35,3 @@ const QR: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default QR;

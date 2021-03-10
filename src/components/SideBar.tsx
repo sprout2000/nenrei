@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const SideBar: React.FC<Props> = (props) => {
+export const SideBar: React.FC<Props> = (props) => {
   const classes = useStyles();
 
   const handleURL = (): void => {
@@ -113,5 +113,3 @@ const SideBar: React.FC<Props> = (props) => {
     </Drawer>
   );
 };
-
-export default SideBar;

@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import Snack from '../src/components/Snack';
+import { Snack } from '../src/components/Snack';
 
 describe('Snack component', () => {
   test('render Snack component', () => {

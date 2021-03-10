@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import TitleBar from '../src/components/TitleBar';
+import { TitleBar } from '../src/components/TitleBar';
 
 describe('TitleBar component', () => {
   const onToggle = jest.fn();
