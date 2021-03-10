@@ -28,6 +28,7 @@ export const QR: React.FC<Props> = (props) => {
     <div>
       <Backdrop
         className={classes.backdrop}
+        data-testid="backdrop"
         open={props.open}
         onClick={props.onClose}>
         <QRCode value="https://sprout2000.github.io/nenrei" />
