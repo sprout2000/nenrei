@@ -43,6 +43,14 @@ const config: Configuration = {
       swDest: 'service-worker.js',
       skipWaiting: true,
       clientsClaim: true,
+      runtimeCaching: [
+        {
+          urlPattern: new RegExp(
+            '^' + 'https://spourt2000.github.io/nenrei/' + '.*'
+          ),
+          handler: 'NetworkFirst',
+        },
+      ],
     }),
   ],
   optimization: {
