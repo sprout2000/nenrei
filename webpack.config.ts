@@ -48,7 +48,7 @@ const config: Configuration = {
           urlPattern: new RegExp(
             '^' + 'https://spourt2000.github.io/nenrei/' + '.*'
           ),
-          handler: 'NetworkFirst',
+          handler: 'CacheFirst',
         },
       ],
     }),
