@@ -46,7 +46,7 @@ const config: Configuration = {
       inlineWorkboxRuntime: true,
       runtimeCaching: [
         {
-          urlPattern: /\.(png|ico|js|html)$/,
+          urlPattern: /\.(ico|js|html)$|^icon-*\.png$/,
           handler: 'NetworkFirst',
         },
       ],
