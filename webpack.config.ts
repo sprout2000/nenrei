@@ -2,8 +2,8 @@ import path from 'path';
 import { Configuration } from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
+import { GenerateSW } from 'workbox-webpack-plugin';
 import TerserWebpackPlugin from 'terser-webpack-plugin';
-import WorkboxWebpackPlugin from 'workbox-webpack-plugin';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -39,16 +39,14 @@ const config: Configuration = {
       scriptLoading: 'defer',
       minify: !isDev,
     }),
-    new WorkboxWebpackPlugin.GenerateSW({
+    new GenerateSW({
       swDest: 'service-worker.js',
       skipWaiting: true,
       clientsClaim: true,
       runtimeCaching: [
         {
-          urlPattern: new RegExp(
-            '^' + 'https://spourt2000.github.io/nenrei/' + '.*'
-          ),
-          handler: 'CacheFirst',
+          urlPattern: /\.(png|ico|js|html)$/,
+          handler: 'NetworkFirst',
         },
       ],
     }),
