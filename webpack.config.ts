@@ -43,6 +43,7 @@ const config: Configuration = {
       swDest: 'service-worker.js',
       skipWaiting: true,
       clientsClaim: true,
+      inlineWorkboxRuntime: true,
       runtimeCaching: [
         {
           urlPattern: /\.(png|ico|js|html)$/,
