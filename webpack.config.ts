@@ -25,7 +25,7 @@ const config: Configuration = {
     rules: [
       {
         test: /\.tsx?$/,
-        exclude: /node_modules/,
+        exclude: /(node_modules|tests|mocks)/,
         loader: 'ts-loader',
       },
     ],
@@ -62,7 +62,7 @@ const config: Configuration = {
   devServer: {
     contentBase: path.resolve(__dirname, 'public'),
     port: 7890,
-    open: true,
+    open: false,
   },
 };
 
