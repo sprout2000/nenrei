@@ -3,7 +3,6 @@ import { Configuration } from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import { GenerateSW } from 'workbox-webpack-plugin';
-import TerserWebpackPlugin from 'terser-webpack-plugin';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -52,13 +51,10 @@ const config: Configuration = {
       ],
     }),
   ],
-  optimization: {
-    minimize: !isDev,
-    minimizer: [new TerserWebpackPlugin()],
-  },
   stats: 'errors-only',
-  devtool: isDev ? 'inline-source-map' : undefined,
   performance: { hints: false },
+  optimization: { minimize: !isDev },
+  devtool: isDev ? 'inline-source-map' : undefined,
   devServer: {
     contentBase: path.resolve(__dirname, 'public'),
     port: 7890,
