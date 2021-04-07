@@ -183,7 +183,10 @@ export const App: React.FC = () => {
     return items;
   };
 
-  const Years = Wareki(1912, new Date().getFullYear());
+  const Years = Wareki(
+    new Date().getFullYear() - 100,
+    new Date().getFullYear()
+  );
   const Months = Tsuki();
 
   const calc = (y: number, m: number): number => {
