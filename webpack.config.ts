@@ -28,27 +28,37 @@ const config: Configuration = {
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      favicon: './src/favicon.ico',
-      inject: 'body',
-      scriptLoading: 'defer',
-      minify: !isDev,
-    }),
-    new GenerateSW({
-      swDest: 'service-worker.js',
-      skipWaiting: true,
-      clientsClaim: true,
-      inlineWorkboxRuntime: true,
-      runtimeCaching: [
-        {
-          urlPattern: /\.(ico|js|html)$|^icon-*\.png$/,
-          handler: 'NetworkFirst',
-        },
+  plugins: isDev
+    ? [
+        new HtmlWebpackPlugin({
+          template: './src/index.html',
+          favicon: './src/favicon.ico',
+          inject: 'body',
+          scriptLoading: 'defer',
+          minify: !isDev,
+        }),
+      ]
+    : [
+        new HtmlWebpackPlugin({
+          template: './src/index.html',
+          favicon: './src/favicon.ico',
+          inject: 'body',
+          scriptLoading: 'defer',
+          minify: !isDev,
+        }),
+        new GenerateSW({
+          swDest: 'service-worker.js',
+          skipWaiting: true,
+          clientsClaim: true,
+          inlineWorkboxRuntime: true,
+          runtimeCaching: [
+            {
+              urlPattern: /\.(ico|js|html)$|^icon-*\.png$/,
+              handler: 'NetworkFirst',
+            },
+          ],
+        }),
       ],
-    }),
-  ],
   stats: 'errors-only',
   performance: { hints: false },
   optimization: { minimize: !isDev },
