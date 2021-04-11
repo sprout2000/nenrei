@@ -25,7 +25,7 @@ import CopyrightOutlinedIcon from '@material-ui/icons/CopyrightOutlined';
 import { blue, common } from '@material-ui/core/colors';
 
 /** Resources */
-import pjson from '../../package.json';
+import { version } from '../../package.json';
 
 /** Context */
 import { AppContext } from './App';
@@ -82,7 +82,7 @@ export const SideBar: React.FC = () => {
         <div className={classes.drawerHeader}>
           <Avatar alt="Logo" src="./icons/icon-288.png" />
           <Typography className={classes.version}>
-            年齢計算 v{pjson.version}
+            年齢計算 v{version}
           </Typography>
         </div>
         <List>
