@@ -1,7 +1,3 @@
 node_modules/
-coverage/
-public/
 yarn-*.log
-.env
-.cache
 .DS_Store

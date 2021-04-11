@@ -1,7 +1,6 @@
 import path from 'path';
 import { Configuration } from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
 import { GenerateSW } from 'workbox-webpack-plugin';
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -30,7 +29,6 @@ const config: Configuration = {
     ],
   },
   plugins: [
-    new CopyWebpackPlugin({ patterns: [{ from: 'assets', to: '.' }] }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       favicon: './src/favicon.ico',
