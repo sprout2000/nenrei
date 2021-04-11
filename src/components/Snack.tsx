@@ -1,29 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from '@material-ui/core/Button';
-import Snackbar from '@material-ui/core/Snackbar';
+import Snackbar, { SnackbarCloseReason } from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 
 import { TransitionDown } from './TransitionDown';
+import { AppContext } from './App';
 
-interface Props {
-  snackOpen: boolean;
-  onClose: (
-    _event?: React.SyntheticEvent<Element, Event> | undefined,
-    reason?: string | undefined
-  ) => void;
-}
+export const Snack: React.FC = () => {
+  const { state, dispatch } = useContext(AppContext);
 
-export const Snack: React.FC<Props> = (props) => {
+  const handleClose = (
+    _e?: React.SyntheticEvent,
+    reason?: SnackbarCloseReason
+  ) => {
+    if (reason === 'clickaway') return;
+    dispatch({ type: 'snack', value: false });
+  };
   return (
     <Snackbar
-      open={props.snackOpen}
+      open={state.snackOpen}
       TransitionComponent={TransitionDown}
       autoHideDuration={2500}
-      onClose={props.onClose}>
+      onClose={handleClose}>
       <SnackbarContent
         message="Copyright © 2019-2021 sprout2000."
         action={
-          <Button color="secondary" size="small" onClick={props.onClose}>
+          <Button color="secondary" size="small" onClick={handleClose}>
             OK
           </Button>
         }

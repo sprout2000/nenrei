@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 /** Styles */
 import createStyles from '@material-ui/core/styles/createStyles';
@@ -27,12 +27,8 @@ import { blue, common } from '@material-ui/core/colors';
 /** Resources */
 import pjson from '../../package.json';
 
-interface Props {
-  drawerOpen: boolean;
-  toggleDrawer: () => void;
-  onSnackOpen: () => void;
-  onQROpen: () => void;
-}
+/** Context */
+import { AppContext } from './App';
 
 const drawerWidth = 250;
 const useStyles = makeStyles((theme) =>
@@ -64,10 +60,11 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export const SideBar: React.FC<Props> = (props) => {
+export const SideBar: React.FC = () => {
+  const { state, dispatch } = useContext(AppContext);
   const classes = useStyles();
 
-  const handleURL = (): void => {
+  const handleURL = () => {
     window.open('https://github.com/sprout2000/nenrei', '_blank');
   };
 
@@ -76,12 +73,12 @@ export const SideBar: React.FC<Props> = (props) => {
       className={classes.drawer}
       variant="temporary"
       classes={{ paper: classes.drawerPaper }}
-      open={props.drawerOpen}
-      onClose={(): void => props.toggleDrawer()}>
+      open={state.drawerOpen}
+      onClose={() => dispatch({ type: 'drawer', value: !state.drawerOpen })}>
       <div
         className={classes.drawerContent}
         role="presentation"
-        onClick={(): void => props.toggleDrawer()}>
+        onClick={() => dispatch({ type: 'drawer', value: !state.drawerOpen })}>
         <div className={classes.drawerHeader}>
           <Avatar alt="Logo" src="./icons/icon-288.png" />
           <Typography className={classes.version}>
@@ -89,7 +86,9 @@ export const SideBar: React.FC<Props> = (props) => {
           </Typography>
         </div>
         <List>
-          <ListItem button onClick={props.onQROpen}>
+          <ListItem
+            button
+            onClick={() => dispatch({ type: 'qr', value: true })}>
             <ListItemIcon>
               <ShareIcon style={{ color: blue[500] }} />
             </ListItemIcon>
@@ -102,7 +101,9 @@ export const SideBar: React.FC<Props> = (props) => {
             <ListItemText secondary="レポジトリ" />
           </ListItem>
           <Divider />
-          <ListItem button onClick={props.onSnackOpen}>
+          <ListItem
+            button
+            onClick={() => dispatch({ type: 'snack', value: true })}>
             <ListItemIcon>
               <CopyrightOutlinedIcon color="secondary" />
             </ListItemIcon>

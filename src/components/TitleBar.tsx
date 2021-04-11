@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 /** Styles */
 import createStyles from '@material-ui/core/styles/createStyles';
@@ -15,9 +15,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 /** Icons */
 import MenuIcon from '@material-ui/icons/Menu';
 
-interface Props {
-  toggleDrawer: () => void;
-}
+/** Context */
+import { AppContext } from './App';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -33,14 +32,15 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export const TitleBar: React.FC<Props> = (props) => {
+export const TitleBar: React.FC = () => {
+  const { state, dispatch } = useContext(AppContext);
   const classes = useStyles();
 
   return (
     <AppBar position="fixed">
       <Toolbar className={classes.toolbar}>
         <IconButton
-          onClick={(): void => props.toggleDrawer()}
+          onClick={() => dispatch({ type: 'drawer', value: !state.drawerOpen })}
           edge="start"
           className={classes.iconButton}
           color="inherit"

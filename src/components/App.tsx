@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useReducer, createContext } from 'react';
 import localforage from 'localforage';
 
 /** Styles */
@@ -25,6 +25,12 @@ import { QR } from './QR';
 import { Snack } from './Snack';
 import { SideBar } from './SideBar';
 import { TitleBar } from './TitleBar';
+
+/** libraries for reducer & context */
+import { State } from '../lib/State';
+import { Action } from '../lib/Action';
+import { reducer } from '../lib/reducer';
+import { initialState } from '../lib/initialState';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const typeguardStorage = (arg: any): arg is Storage => {
@@ -114,25 +120,16 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
+export const AppContext = createContext(
+  {} as {
+    state: State;
+    dispatch: React.Dispatch<Action>;
+  }
+);
+
 export const App: React.FC = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
   const classes = useStyles();
-
-  const [year, setYear] = useState(1989);
-  const [month, setMonth] = useState(4);
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [snackOpen, setSnackOpen] = useState(false);
-  const [qrOpen, setQrOpen] = useState(false);
-
-  const toggleDrawer = (): void => setDrawerOpen(!drawerOpen);
-
-  const onSnackOpen = (): void => setSnackOpen(true);
-  const onSnackClose = (_e?: React.SyntheticEvent, reason?: string): void => {
-    if (reason === 'clickaway') return;
-    setSnackOpen(false);
-  };
-
-  const onQROpen = (): void => setQrOpen(true);
-  const onQRClose = (): void => setQrOpen(false);
 
   const Wareki = (start: number, end: number): JSX.Element[] => {
     const items = [];
@@ -223,11 +220,11 @@ export const App: React.FC = () => {
       .getItem('nenrei-20210401')
       .then((value) => {
         if (!value || !typeguardStorage(value)) {
-          setYear(1989);
-          setMonth(4);
+          dispatch({ type: 'year', value: 1989 });
+          dispatch({ type: 'month', value: 4 });
         } else {
-          setYear(value.year);
-          setMonth(value.month);
+          dispatch({ type: 'year', value: value.year });
+          dispatch({ type: 'month', value: value.month });
         }
       })
       .catch((err) => console.error(err));
@@ -235,72 +232,83 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     localforage
-      .setItem('nenrei-20210401', { year: year, month: month })
+      .setItem('nenrei-20210401', { year: state.year, month: state.month })
       .catch((err) => console.error(err));
-  }, [year, month]);
+  }, [state.month, state.year]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <div className={classes.root}>
+    <AppContext.Provider value={{ state, dispatch }}>
+      <ThemeProvider theme={theme}>
         <CssBaseline />
-        <QR open={qrOpen} onClose={onQRClose} />
-        <TitleBar toggleDrawer={toggleDrawer} />
-        <SideBar
-          toggleDrawer={toggleDrawer}
-          drawerOpen={drawerOpen}
-          onSnackOpen={onSnackOpen}
-          onQROpen={onQROpen}
-        />
-        <div className={classes.content}>
-          <div className={classes.offset} />
-          <div className={classes.icon}>
-            <img
-              src="./icons/icon-288.png"
-              width={96}
-              height={96}
-              alt="年齢計算"
-            />
+        <div className={classes.root}>
+          <CssBaseline />
+          <QR />
+          <TitleBar />
+          <SideBar />
+          <div className={classes.content}>
+            <div className={classes.offset} />
+            <div className={classes.icon}>
+              <img
+                src="./icons/icon-288.png"
+                width={96}
+                height={96}
+                alt="年齢計算"
+              />
+            </div>
+            <Snack />
+            <Card className={classes.card}>
+              <CardContent>
+                <Typography className={classes.label}>生まれ年と月</Typography>
+                <div>
+                  <FormControl variant="outlined" className={classes.form}>
+                    <Select
+                      className={classes.select}
+                      value={state.year}
+                      onChange={(e) => {
+                        dispatch({
+                          type: 'year',
+                          value: Number(e.target.value),
+                        });
+                      }}>
+                      {Years}
+                    </Select>
+                  </FormControl>
+                </div>
+                <div>
+                  <FormControl variant="outlined" className={classes.form}>
+                    <Select
+                      className={classes.select}
+                      value={state.month}
+                      onChange={(e) => {
+                        dispatch({
+                          type: 'month',
+                          value: Number(e.target.value),
+                        });
+                      }}>
+                      {Months}
+                    </Select>
+                  </FormControl>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className={classes.card}>
+              <CardContent>
+                <Typography className={classes.answer}>年齢</Typography>
+                <Typography>
+                  満
+                  <span className={classes.age}>
+                    {calc(state.year, state.month)}
+                  </span>
+                  歳
+                </Typography>
+                <Typography>
+                  <span>{eto(state.year)}</span>
+                </Typography>
+              </CardContent>
+            </Card>
           </div>
-          <Snack snackOpen={snackOpen} onClose={onSnackClose} />
-          <Card className={classes.card}>
-            <CardContent>
-              <Typography className={classes.label}>生まれ年と月</Typography>
-              <div>
-                <FormControl variant="outlined" className={classes.form}>
-                  <Select
-                    className={classes.select}
-                    value={year}
-                    onChange={(e): void => setYear(Number(e.target.value))}>
-                    {Years}
-                  </Select>
-                </FormControl>
-              </div>
-              <div>
-                <FormControl variant="outlined" className={classes.form}>
-                  <Select
-                    className={classes.select}
-                    value={month}
-                    onChange={(e): void => setMonth(Number(e.target.value))}>
-                    {Months}
-                  </Select>
-                </FormControl>
-              </div>
-            </CardContent>
-          </Card>
-          <Card className={classes.card}>
-            <CardContent>
-              <Typography className={classes.answer}>年齢</Typography>
-              <Typography>
-                満<span className={classes.age}>{calc(year, month)}</span>歳
-              </Typography>
-              <Typography>
-                <span>{eto(year)}</span>
-              </Typography>
-            </CardContent>
-          </Card>
         </div>
-      </div>
-    </ThemeProvider>
+      </ThemeProvider>
+    </AppContext.Provider>
   );
 };
