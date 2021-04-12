@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export const SideBar: React.FC = () => {
+const SideBar: React.FC = () => {
   const { state, dispatch } = useContext(AppContext);
   const classes = useStyles();
 
@@ -114,3 +114,5 @@ export const SideBar: React.FC = () => {
     </Drawer>
   );
 };
+
+export default SideBar;

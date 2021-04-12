@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export const QR: React.FC = () => {
+const QR: React.FC = () => {
   const classes = useStyles();
   const { state, dispatch } = useContext(AppContext);
 
@@ -34,3 +34,5 @@ export const QR: React.FC = () => {
     </div>
   );
 };
+
+export default QR;

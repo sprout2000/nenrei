@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
+import loadable from '@loadable/component';
+
 import Button from '@material-ui/core/Button';
 import Snackbar, { SnackbarCloseReason } from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 
-import { TransitionDown } from './TransitionDown';
+const TransitionDown = loadable(() => import('./TransitionDown'));
 import { AppContext } from './App';
 
-export const Snack: React.FC = () => {
+const Snack: React.FC = () => {
   const { state, dispatch } = useContext(AppContext);
 
   const handleClose = (
@@ -33,3 +35,5 @@ export const Snack: React.FC = () => {
     </Snackbar>
   );
 };
+
+export default Snack;

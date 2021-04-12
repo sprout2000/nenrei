@@ -8,6 +8,8 @@ import Slide, { SlideProps } from '@material-ui/core/Slide';
  */
 type TransitionProps = Omit<SlideProps, 'direction'>;
 
-export const TransitionDown: React.FC<TransitionProps> = (props) => (
+const TransitionDown: React.FC<TransitionProps> = (props) => (
   <Slide {...props} direction="down" />
 );
+
+export default TransitionDown;
