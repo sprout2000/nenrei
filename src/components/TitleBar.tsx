@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const TitleBar: React.FC = () => {
+export const TitleBar: React.FC = () => {
   const { state, dispatch } = useContext(AppContext);
   const classes = useStyles();
 
@@ -52,5 +52,3 @@ const TitleBar: React.FC = () => {
     </AppBar>
   );
 };
-
-export default TitleBar;

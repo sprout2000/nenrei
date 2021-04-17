@@ -1,8 +1,6 @@
 import React, { useEffect, useReducer, createContext } from 'react';
-import loadable from '@loadable/component';
 import localforage from 'localforage';
 
-/** Styles */
 import {
   createStyles,
   makeStyles,
@@ -11,23 +9,19 @@ import {
 } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-/** Common components */
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
-/** Form (Select) */
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
-/** App Shell for PWA */
-const QR = loadable(() => import('./QR'));
-const Snack = loadable(() => import('./Snack'));
-const SideBar = loadable(() => import('./SideBar'));
-const TitleBar = loadable(() => import('./TitleBar'));
+import { QR } from './QR';
+import { Snack } from './Snack';
+import { SideBar } from './SideBar';
+import { TitleBar } from './TitleBar';
 
-/** libraries for reducer & context */
 import { State } from '../lib/State';
 import { Action } from '../lib/Action';
 import { reducer } from '../lib/reducer';
