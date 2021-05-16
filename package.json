@@ -1,7 +1,7 @@
 {
   "name": "nenrei",
   "productName": "年齢計算",
-  "version": "1.6.4",
+  "version": "1.6.5",
   "description": "元号と西暦の両方を使って年齢を計算することが出来ます",
   "author": {
     "name": "sprout2000",
