@@ -16,7 +16,7 @@ const config: Configuration = {
     app: './src/main.tsx',
   },
   output: {
-    path: path.resolve(__dirname, 'docs'),
+    path: path.resolve(__dirname, 'public'),
     publicPath: '',
     filename: '[name].js',
   },
@@ -86,7 +86,7 @@ const config: Configuration = {
   optimization: { minimize: !isDev },
   devtool: isDev ? 'inline-source-map' : undefined,
   devServer: {
-    contentBase: path.resolve(__dirname, 'docs'),
+    contentBase: path.resolve(__dirname, 'public'),
     port: 7890,
     open: false,
   },
