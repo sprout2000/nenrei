@@ -1,9 +1,8 @@
-name: GitHub CI
+name: GitHub Pages
 
 on:
-  push:
-    tags:
-      - 'v*'
+  schedule:
+    - cron: 0 10 * * MON
 
 jobs:
   build:
