@@ -26,7 +26,7 @@ export const QR: React.FC = () => {
     <div>
       <Backdrop
         className={classes.backdrop}
-        data-testid="backdrop"
+        data-e2e="backdrop"
         open={state.qrOpen}
         onClick={() => dispatch({ type: 'qr', value: false })}>
         <QRCode value="https://sprout2000.github.io/nenrei" />

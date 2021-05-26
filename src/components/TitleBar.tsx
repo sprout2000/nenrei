@@ -42,6 +42,7 @@ export const TitleBar: React.FC = () => {
         <IconButton
           onClick={() => dispatch({ type: 'drawer', value: !state.drawerOpen })}
           edge="start"
+          data-e2e="menu"
           className={classes.iconButton}
           color="inherit"
           aria-label="menu">

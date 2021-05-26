@@ -7,10 +7,13 @@
     "lib": ["DOM", "ES2020"],
     "jsx": "react",
     "strict": true,
+    "allowJs": true,
     "sourceMap": true,
+    "skipLibCheck": true,
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true
   },
+  "include": ["node_modules/cypress/types/*.ts", "cypress/*/*.ts"],
   "ts-node": {
     "compilerOptions": {
       "target": "ES2015",

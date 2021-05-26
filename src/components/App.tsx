@@ -148,8 +148,10 @@ export const App: React.FC = () => {
       }
       const wareki = i - offset;
 
+      const dataE2E = i === 1971 ? 'year' : '';
+
       items.push(
-        <MenuItem key={i} value={i}>
+        <MenuItem key={i} value={i} data-e2e={dataE2E}>
           <Typography>
             {gengo}
             {wareki === 1 ? '元' : wareki}年 ({i})
@@ -165,8 +167,9 @@ export const App: React.FC = () => {
     const items = [];
 
     for (let i = 1; i <= 12; i++) {
+      const dataE2E = i === 1 ? 'month' : '';
       items.push(
-        <MenuItem key={i} value={i}>
+        <MenuItem key={i} value={i} data-e2e={dataE2E}>
           <Typography>{i}月</Typography>
         </MenuItem>
       );
@@ -257,6 +260,7 @@ export const App: React.FC = () => {
                 <div>
                   <FormControl variant="outlined" className={classes.form}>
                     <Select
+                      data-e2e="year-selector"
                       className={classes.select}
                       value={state.year}
                       onChange={(e) => {
@@ -272,6 +276,7 @@ export const App: React.FC = () => {
                 <div>
                   <FormControl variant="outlined" className={classes.form}>
                     <Select
+                      data-e2e="month-selector"
                       className={classes.select}
                       value={state.month}
                       onChange={(e) => {
@@ -292,12 +297,14 @@ export const App: React.FC = () => {
                 <Typography>
                   満
                   <span className={classes.age}>
-                    {calc(state.year, state.month)}
+                    <span data-e2e="age">{calc(state.year, state.month)}</span>
                   </span>
                   歳
                 </Typography>
                 <Typography>
-                  <span>{eto(state.year)}</span>
+                  <span>
+                    <span data-e2e="eto">{eto(state.year)}</span>
+                  </span>
                 </Typography>
               </CardContent>
             </Card>

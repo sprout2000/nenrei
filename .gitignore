@@ -1,4 +1,6 @@
 node_modules/
 public
+cypress/**/*.png
+cypress/**/*.mp4
 yarn-*.log
 .DS_Store

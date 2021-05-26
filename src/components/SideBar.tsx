@@ -82,11 +82,12 @@ export const SideBar: React.FC = () => {
         <div className={classes.drawerHeader}>
           <Avatar alt="Logo" src="./icons/icon-288.png" />
           <Typography className={classes.version}>
-            年齢計算 v{pjson.version}
+            年齢計算 v<span data-e2e="version">{pjson.version}</span>
           </Typography>
         </div>
         <List>
           <ListItem
+            data-e2e="share"
             button
             onClick={() => dispatch({ type: 'qr', value: true })}>
             <ListItemIcon>
