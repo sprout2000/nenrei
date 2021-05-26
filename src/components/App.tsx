@@ -112,6 +112,9 @@ const useStyles = makeStyles((theme) =>
       fontSize: '6em',
       color: '#1f1f21',
     },
+    eto: {
+      userSelect: 'text',
+    },
   })
 );
 
@@ -302,7 +305,7 @@ export const App: React.FC = () => {
                   歳
                 </Typography>
                 <Typography>
-                  <span>
+                  <span className={classes.eto}>
                     <span data-e2e="eto">{eto(state.year)}</span>
                   </span>
                 </Typography>
