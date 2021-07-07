@@ -3,6 +3,13 @@
   "short_name": "年齢計算",
   "description": "西暦と和暦の両方で年齢計算ができます。",
   "categories": ["business", "health", "utilities"],
+  "screenshots": [
+    {
+      "src": "shortcut01.png",
+      "sizes": "960x1360",
+      "type": "image/png"
+    }
+  ],
   "shortcuts": [
     {
       "name": "年齢計算",
