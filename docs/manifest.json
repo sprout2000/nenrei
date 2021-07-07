@@ -1,8 +1,16 @@
 {
-  "short_name": "年齢計算",
   "name": "年齢計算",
+  "short_name": "年齢計算",
   "description": "西暦と和暦の両方で年齢計算ができます。",
   "categories": ["business", "health", "utilities"],
+  "shortcuts": [
+    {
+      "name": "年齢計算",
+      "url": ".",
+      "description": "西暦と和暦の両方で年齢計算ができます。",
+      "icon": "icon-96.png"
+    }
+  ],
   "icons": [
     {
       "src": "favicon.ico",
