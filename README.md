@@ -20,4 +20,4 @@ https://sprout2000.github.io/nenrei/
 
 ## ライセンス
 
-Copyright © 2019-2021 sprout2000. All Rights Reserved.
+© 2019 sprout2000. All Rights Reserved.
