@@ -5,7 +5,7 @@ import {
   createStyles,
   makeStyles,
   ThemeProvider,
-  createMuiTheme,
+  createTheme,
 } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
@@ -37,7 +37,7 @@ const typeguardStorage = (arg: any): arg is Storage => {
   );
 };
 
-const theme = createMuiTheme({
+const theme = createTheme({
   overrides: {
     MuiCssBaseline: {
       '@global': {
