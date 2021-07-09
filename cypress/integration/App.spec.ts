@@ -1,32 +1,5 @@
 import pjson from '../../package.json';
-
-const calc = (y: number, m: number): number => {
-  const birthday = y * 10000 + m * 100 + 1;
-  const today = new Date();
-  const target = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + 1;
-
-  return Math.floor((target - birthday) / 10000);
-};
-
-const eto = (y: number): string => {
-  const es = ['庚', '辛', '壬', '癸', '甲', '乙', '丙', '丁', '戊', '己'];
-  const tos = [
-    '申（さる）',
-    '酉（とり）',
-    '戌（いぬ）',
-    '亥（いのしし）',
-    '子（ねずみ）',
-    '丑（うし）',
-    '寅（とら）',
-    '卯（うさぎ）',
-    '辰（たつ）',
-    '巳（へび）',
-    '午（うま）',
-    '未（ひつじ）',
-  ];
-
-  return `${es[y % 10]}${tos[y % 12]}`;
-};
+import { calc, eto } from '../../src/components/App';
 
 describe('年齢計算', () => {
   beforeEach(() => {
