@@ -95,7 +95,7 @@ export const SideBar: React.FC = () => {
             </ListItemIcon>
             <ListItemText secondary="このアプリを共有" />
           </ListItem>
-          <ListItem button onClick={handleURL}>
+          <ListItem data-e2e="repo" button onClick={handleURL}>
             <ListItemIcon>
               <GitHubIcon style={{ color: common.black }} />
             </ListItemIcon>
@@ -104,6 +104,7 @@ export const SideBar: React.FC = () => {
           <Divider />
           <ListItem
             button
+            data-e2e="license"
             onClick={() => dispatch({ type: 'snack', value: true })}>
             <ListItemIcon>
               <CopyrightOutlinedIcon color="secondary" />

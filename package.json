@@ -5,7 +5,9 @@
   "homepage": "https://sprout2000.github.io/nenrei",
   "scripts": {
     "start": "cross-env NODE_ENV=\"development\" webpack serve",
-    "build": "cross-env NODE_ENV=\"production\" webpack --progress"
+    "build": "cross-env NODE_ENV=\"production\" webpack --progress",
+    "test": "cypress run --browser chrome --spec=./cypress/integration/App.spec.ts",
+    "cypress": "cypress open"
   },
   "dependencies": {
     "@material-ui/core": "^4.12.1",
@@ -16,6 +18,7 @@
     "react-qrcode-logo": "^2.4.0"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.24",
     "@types/mini-css-extract-plugin": "^2.0.0",
     "@types/node": "^16.3.0",
     "@types/react": "^17.0.14",
@@ -24,6 +27,7 @@
     "@types/workbox-webpack-plugin": "^5.1.8",
     "cross-env": "^7.0.3",
     "css-loader": "^5.2.6",
+    "cypress": "^7.7.0",
     "mini-css-extract-plugin": "^2.0.0",
     "style-loader": "^3.0.0",
     "ts-loader": "^9.2.3",

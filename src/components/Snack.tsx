@@ -24,6 +24,7 @@ export const Snack: React.FC = () => {
       autoHideDuration={2500}
       onClose={handleClose}>
       <SnackbarContent
+        data-e2e="snack"
         message="© 2019-2021 sprout2000."
         action={
           <Button color="secondary" size="small" onClick={handleClose}>
