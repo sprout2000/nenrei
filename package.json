@@ -6,7 +6,8 @@
   "scripts": {
     "start": "cross-env NODE_ENV=\"development\" webpack serve",
     "build": "cross-env NODE_ENV=\"production\" webpack --progress",
-    "test": "cypress run --browser chrome --spec=./cypress/integration/App.spec.ts",
+    "test": "run-p start e2etest",
+    "e2etest": "wait-on http://localhost:8943 && cypress run --browser chrome --spec=./cypress/integration/App.spec.ts",
     "cypress": "cypress open"
   },
   "dependencies": {
