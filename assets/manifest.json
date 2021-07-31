@@ -1,0 +1,52 @@
+{
+  "name": "年齢計算",
+  "short_name": "年齢計算",
+  "description": "西暦と和暦の両方で年齢計算ができます。",
+  "categories": ["business", "health", "utilities"],
+  "screenshots": [
+    {
+      "src": "screenshot.png",
+      "sizes": "960x1360",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "年齢計算",
+      "url": ".",
+      "description": "西暦と和暦の両方で年齢計算ができます。",
+      "icons": [
+        {
+          "src": "icon-96.png",
+          "sizes": "96x96",
+          "type": "image/png",
+          "purpose": "any"
+        }
+      ]
+    }
+  ],
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#ff0033",
+  "orientation": "portrait",
+  "background_color": "#efeff4"
+}
