@@ -265,7 +265,8 @@ export const App: React.FC = () => {
                           type: 'year',
                           value: Number(e.target.value),
                         });
-                      }}>
+                      }}
+                    >
                       {Years}
                     </Select>
                   </FormControl>
@@ -281,7 +282,8 @@ export const App: React.FC = () => {
                           type: 'month',
                           value: Number(e.target.value),
                         });
-                      }}>
+                      }}
+                    >
                       {Months}
                     </Select>
                   </FormControl>

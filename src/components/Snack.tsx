@@ -22,7 +22,8 @@ export const Snack: React.FC = () => {
       open={state.snackOpen}
       TransitionComponent={TransitionDown}
       autoHideDuration={2500}
-      onClose={handleClose}>
+      onClose={handleClose}
+    >
       <SnackbarContent
         data-e2e="snack"
         message="© 2019-2021 sprout2000."

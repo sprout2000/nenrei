@@ -45,7 +45,8 @@ export const TitleBar: React.FC = () => {
           data-e2e="menu"
           className={classes.iconButton}
           color="inherit"
-          aria-label="menu">
+          aria-label="menu"
+        >
           <MenuIcon />
         </IconButton>
         <Typography className={classes.title}>年齢計算</Typography>

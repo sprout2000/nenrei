@@ -74,11 +74,13 @@ export const SideBar: React.FC = () => {
       variant="temporary"
       classes={{ paper: classes.drawerPaper }}
       open={state.drawerOpen}
-      onClose={() => dispatch({ type: 'drawer', value: !state.drawerOpen })}>
+      onClose={() => dispatch({ type: 'drawer', value: !state.drawerOpen })}
+    >
       <div
         className={classes.drawerContent}
         role="presentation"
-        onClick={() => dispatch({ type: 'drawer', value: !state.drawerOpen })}>
+        onClick={() => dispatch({ type: 'drawer', value: !state.drawerOpen })}
+      >
         <div className={classes.drawerHeader}>
           <Avatar alt="Logo" src="./icon-288.png" />
           <Typography className={classes.version}>
@@ -89,7 +91,8 @@ export const SideBar: React.FC = () => {
           <ListItem
             data-e2e="share"
             button
-            onClick={() => dispatch({ type: 'qr', value: true })}>
+            onClick={() => dispatch({ type: 'qr', value: true })}
+          >
             <ListItemIcon>
               <ShareIcon style={{ color: blue[500] }} />
             </ListItemIcon>
@@ -105,7 +108,8 @@ export const SideBar: React.FC = () => {
           <ListItem
             button
             data-e2e="license"
-            onClick={() => dispatch({ type: 'snack', value: true })}>
+            onClick={() => dispatch({ type: 'snack', value: true })}
+          >
             <ListItemIcon>
               <CopyrightOutlinedIcon color="secondary" />
             </ListItemIcon>
