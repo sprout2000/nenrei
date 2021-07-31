@@ -5,7 +5,7 @@
   "categories": ["business", "health", "utilities"],
   "screenshots": [
     {
-      "src": "shortcut01.png",
+      "src": "screenshot.png",
       "sizes": "960x1360",
       "type": "image/png"
     }
@@ -15,7 +15,14 @@
       "name": "年齢計算",
       "url": ".",
       "description": "西暦と和暦の両方で年齢計算ができます。",
-      "icon": "icon-96.png"
+      "icons": [
+        {
+          "src": "icon-96.png",
+          "sizes": "96x96",
+          "type": "image/png",
+          "purpose": "any"
+        }
+      ]
     }
   ],
   "icons": [

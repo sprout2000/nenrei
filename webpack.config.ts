@@ -1,6 +1,8 @@
 import path from 'path';
 import { Configuration } from 'webpack';
-import WorkboxWebpackPlugin from 'workbox-webpack-plugin';
+import HtmlPlugin from 'html-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
+import WorkboxPlugin from 'workbox-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -43,18 +45,26 @@ const config: Configuration = {
       },
     ],
   },
-  plugins: isDev
-    ? []
-    : [
-        new MiniCssExtractPlugin(),
-        new WorkboxWebpackPlugin.GenerateSW({
-          swDest: 'service-worker.js',
-          sourcemap: false,
-          skipWaiting: true,
-          clientsClaim: true,
-          inlineWorkboxRuntime: true,
-        }),
-      ],
+  plugins: [
+    new MiniCssExtractPlugin(),
+    new CopyPlugin({
+      patterns: [{ from: 'assets', to: '.' }],
+    }),
+    new HtmlPlugin({
+      template: './src/index.html',
+      favicon: './src/favicon.ico',
+      minify: !isDev,
+      inject: 'body',
+      scriptLoading: 'defer',
+    }),
+    new WorkboxPlugin.GenerateSW({
+      swDest: 'service-worker.js',
+      sourcemap: false,
+      skipWaiting: true,
+      clientsClaim: true,
+      inlineWorkboxRuntime: true,
+    }),
+  ],
   stats: 'errors-only',
   performance: { hints: false },
   devServer: {

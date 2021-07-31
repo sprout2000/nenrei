@@ -6,6 +6,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=\"development\" webpack serve",
     "build": "cross-env NODE_ENV=\"production\" webpack --progress",
+    "prebuild": "rimraf docs",
     "test": "run-p start e2etest",
     "test:cy": "run-p start cypress:open",
     "e2etest": "wait-on http://localhost:8943 && cypress run --browser chrome --spec=./cypress/integration/App.spec.ts",
@@ -20,6 +21,7 @@
     "react-qrcode-logo": "^2.4.0"
   },
   "devDependencies": {
+    "@types/copy-webpack-plugin": "^8.0.1",
     "@types/jest": "^26.0.24",
     "@types/mini-css-extract-plugin": "^2.0.0",
     "@types/node": "^16.4.8",
@@ -27,11 +29,14 @@
     "@types/react-dom": "^17.0.9",
     "@types/webpack-dev-server": "^3.11.4",
     "@types/workbox-webpack-plugin": "^5.1.8",
+    "copy-webpack-plugin": "^9.0.1",
     "cross-env": "^7.0.3",
     "css-loader": "^6.2.0",
     "cypress": "^8.1.0",
+    "html-webpack-plugin": "^5.3.2",
     "mini-css-extract-plugin": "^2.0.0",
     "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
     "style-loader": "^3.2.1",
     "ts-loader": "^9.2.4",
     "ts-node": "^10.1.0",
