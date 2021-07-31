@@ -7,8 +7,9 @@
     "start": "cross-env NODE_ENV=\"development\" webpack serve",
     "build": "cross-env NODE_ENV=\"production\" webpack --progress",
     "test": "run-p start e2etest",
+    "test:cy": "run-p start cypress:open",
     "e2etest": "wait-on http://localhost:8943 && cypress run --browser chrome --spec=./cypress/integration/App.spec.ts",
-    "cypress": "cypress open"
+    "cypress:open": "wait-on http://localhost:8943 && cypress open"
   },
   "dependencies": {
     "@material-ui/core": "^4.12.3",
