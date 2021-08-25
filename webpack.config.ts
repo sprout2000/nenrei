@@ -68,7 +68,6 @@ const config: Configuration = {
   stats: 'errors-only',
   performance: { hints: false },
   devServer: {
-    contentBase: path.resolve(__dirname, 'docs'),
     port: 8943,
   },
   devtool: isDev ? 'inline-source-map' : undefined,
