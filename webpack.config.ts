@@ -68,7 +68,11 @@ const config: Configuration = {
   stats: 'errors-only',
   performance: { hints: false },
   devServer: {
+    host: 'local-ipv4',
     port: 8943,
+    static: {
+      directory: path.resolve(__dirname, 'docs'),
+    },
   },
   devtool: isDev ? 'inline-source-map' : undefined,
 };
