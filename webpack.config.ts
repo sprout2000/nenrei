@@ -63,6 +63,7 @@ const config: Configuration = {
       skipWaiting: true,
       clientsClaim: true,
       inlineWorkboxRuntime: true,
+      maximumFileSizeToCacheInBytes: isDev ? 6501171 : 2097152,
     }),
   ],
   stats: 'errors-only',
