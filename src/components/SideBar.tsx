@@ -82,7 +82,7 @@ export const SideBar: React.FC = () => {
         onClick={() => dispatch({ type: 'drawer', value: !state.drawerOpen })}
       >
         <div className={classes.drawerHeader}>
-          <Avatar alt="Logo" src="./icon-288.png" />
+          <Avatar alt="Logo" src="./icon-48.png" />
           <Typography className={classes.version}>
             年齢計算 v<span data-e2e="version">{pjson.version}</span>
           </Typography>

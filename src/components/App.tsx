@@ -248,7 +248,7 @@ export const App: React.FC = () => {
           <div className={classes.content}>
             <div className={classes.offset} />
             <div className={classes.icon}>
-              <img src="./icon-288.png" width={96} height={96} alt="年齢計算" />
+              <img src="./icon-96.png" width={64} height={64} alt="年齢計算" />
             </div>
             <Snack />
             <Card className={classes.card}>
