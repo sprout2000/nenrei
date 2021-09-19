@@ -1,22 +1,19 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
-/** Styles */
 import createStyles from '@material-ui/core/styles/createStyles';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
-/** Common */
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 
-/** AppBar */
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
-/** Icons */
 import MenuIcon from '@material-ui/icons/Menu';
 
-/** Context */
-import { AppContext } from './App';
+type Props = {
+  toggleDrawer: () => void;
+};
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -32,17 +29,15 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export const TitleBar: React.FC = () => {
-  const { state, dispatch } = useContext(AppContext);
+export const TitleBar: React.FC<Props> = (props) => {
   const classes = useStyles();
 
   return (
     <AppBar position="fixed">
       <Toolbar className={classes.toolbar}>
         <IconButton
-          onClick={() => dispatch({ type: 'drawer', value: !state.drawerOpen })}
+          onClick={props.toggleDrawer}
           edge="start"
-          data-e2e="menu"
           className={classes.iconButton}
           color="inherit"
           aria-label="menu"

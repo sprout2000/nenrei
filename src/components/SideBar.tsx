@@ -1,13 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
-/** Styles */
 import createStyles from '@material-ui/core/styles/createStyles';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
-/** Common components */
 import Typography from '@material-ui/core/Typography';
+import { blue, common } from '@material-ui/core/colors';
 
-/** Drawer and List */
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -16,19 +14,18 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import Avatar from '@material-ui/core/Avatar';
 
-/** Icons */
 import ShareIcon from '@material-ui/icons/Share';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import CopyrightOutlinedIcon from '@material-ui/icons/CopyrightOutlined';
 
-/** Colors */
-import { blue, common } from '@material-ui/core/colors';
-
-/** Resources */
 import pjson from '../../package.json';
 
-/** Context */
-import { AppContext } from './App';
+type Props = {
+  drawerOpen: boolean;
+  toggleQR: () => void;
+  toggleSnack: () => void;
+  toggleDrawer: () => void;
+};
 
 const drawerWidth = 250;
 const useStyles = makeStyles((theme) =>
@@ -60,8 +57,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export const SideBar: React.FC = () => {
-  const { state, dispatch } = useContext(AppContext);
+export const SideBar: React.FC<Props> = (props) => {
   const classes = useStyles();
 
   const handleURL = () => {
@@ -73,43 +69,35 @@ export const SideBar: React.FC = () => {
       className={classes.drawer}
       variant="temporary"
       classes={{ paper: classes.drawerPaper }}
-      open={state.drawerOpen}
-      onClose={() => dispatch({ type: 'drawer', value: !state.drawerOpen })}
+      open={props.drawerOpen}
+      onClose={props.toggleDrawer}
     >
       <div
         className={classes.drawerContent}
         role="presentation"
-        onClick={() => dispatch({ type: 'drawer', value: !state.drawerOpen })}
+        onClick={props.toggleDrawer}
       >
         <div className={classes.drawerHeader}>
           <Avatar alt="Logo" src="./icon-48.png" />
           <Typography className={classes.version}>
-            年齢計算 v<span data-e2e="version">{pjson.version}</span>
+            年齢計算 v{pjson.version}
           </Typography>
         </div>
         <List>
-          <ListItem
-            data-e2e="share"
-            button
-            onClick={() => dispatch({ type: 'qr', value: true })}
-          >
+          <ListItem button onClick={props.toggleQR}>
             <ListItemIcon>
               <ShareIcon style={{ color: blue[500] }} />
             </ListItemIcon>
             <ListItemText secondary="このアプリを共有" />
           </ListItem>
-          <ListItem data-e2e="repo" button onClick={handleURL}>
+          <ListItem button onClick={handleURL}>
             <ListItemIcon>
               <GitHubIcon style={{ color: common.black }} />
             </ListItemIcon>
             <ListItemText secondary="レポジトリ" />
           </ListItem>
           <Divider />
-          <ListItem
-            button
-            data-e2e="license"
-            onClick={() => dispatch({ type: 'snack', value: true })}
-          >
+          <ListItem button onClick={props.toggleSnack}>
             <ListItemIcon>
               <CopyrightOutlinedIcon color="secondary" />
             </ListItemIcon>
