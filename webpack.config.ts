@@ -3,7 +3,6 @@ import { Configuration } from 'webpack';
 import HtmlPlugin from 'html-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import WorkboxPlugin from 'workbox-webpack-plugin';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -30,23 +29,12 @@ const config: Configuration = {
         loader: 'ts-loader',
       },
       {
-        test: /\.s?css$/,
-        use: [
-          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: { sourceMap: isDev },
-          },
-        ],
-      },
-      {
         test: /\.(ico|gif|jpe?g|png|svg|ttf|otf|eot|woff?2?|mp3)$/,
         type: isDev ? 'asset/inline' : 'asset/resource',
       },
     ],
   },
   plugins: [
-    new MiniCssExtractPlugin(),
     new CopyPlugin({
       patterns: [{ from: 'assets', to: '.' }],
     }),
