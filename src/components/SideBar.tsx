@@ -16,7 +16,6 @@ import Avatar from '@material-ui/core/Avatar';
 
 import ShareIcon from '@material-ui/icons/Share';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import CopyrightOutlinedIcon from '@material-ui/icons/CopyrightOutlined';
 
 import pjson from '../../package.json';
 
@@ -97,12 +96,6 @@ export const SideBar: React.FC<Props> = (props) => {
             <ListItemText secondary="レポジトリ" />
           </ListItem>
           <Divider />
-          <ListItem button onClick={props.toggleSnack}>
-            <ListItemIcon>
-              <CopyrightOutlinedIcon color="secondary" />
-            </ListItemIcon>
-            <ListItemText secondary="ライセンスの表示" />
-          </ListItem>
         </List>
       </div>
     </Drawer>

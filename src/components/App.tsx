@@ -18,7 +18,6 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import { QR } from './QR';
-import { Snack } from './Snack';
 import { SideBar } from './SideBar';
 import { TitleBar } from './TitleBar';
 
@@ -247,7 +246,6 @@ export const App: React.FC = () => {
           <div className={classes.icon}>
             <img src="./icon-96.png" width={64} height={64} alt="年齢計算" />
           </div>
-          <Snack snackOpen={snackOpen} toggleSnack={toggleSnack} />
           <Card className={classes.card}>
             <CardContent>
               <Typography className={classes.label}>生まれ年と月</Typography>
