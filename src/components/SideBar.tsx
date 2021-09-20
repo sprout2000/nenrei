@@ -22,7 +22,6 @@ import pjson from '../../package.json';
 type Props = {
   drawerOpen: boolean;
   toggleQR: () => void;
-  toggleSnack: () => void;
   toggleDrawer: () => void;
 };
 

@@ -112,7 +112,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export const calc = (y: number, m: number): number => {
+const calc = (y: number, m: number): number => {
   const birthday = y * 10000 + m * 100 + 1;
   const today = new Date();
   const target = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + 1;
@@ -120,7 +120,7 @@ export const calc = (y: number, m: number): number => {
   return Math.floor((target - birthday) / 10000);
 };
 
-export const eto = (y: number): string => {
+const eto = (y: number): string => {
   const es = ['庚', '辛', '壬', '癸', '甲', '乙', '丙', '丁', '戊', '己'];
   const tos = [
     '申（さる）',
@@ -144,12 +144,10 @@ export const App: React.FC = () => {
   const [year, setYear] = useState(1989);
   const [month, setMonth] = useState(4);
   const [qrOpen, setQrOpen] = useState(false);
-  const [snackOpen, setSnackOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const classes = useStyles();
 
   const toggleQR = () => setQrOpen(!qrOpen);
-  const toggleSnack = () => setSnackOpen(!snackOpen);
   const toggleDrawer = () => setDrawerOpen(!drawerOpen);
 
   const Wareki = (start: number, end: number): JSX.Element[] => {
@@ -239,7 +237,6 @@ export const App: React.FC = () => {
           drawerOpen={drawerOpen}
           toggleDrawer={toggleDrawer}
           toggleQR={toggleQR}
-          toggleSnack={toggleSnack}
         />
         <div className={classes.content}>
           <div className={classes.offset} />
