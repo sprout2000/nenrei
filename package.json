@@ -1,7 +1,7 @@
 {
   "name": "nenrei",
   "productName": "年齢計算",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "homepage": "https://sprout2000.github.io/nenrei",
   "scripts": {
     "start": "cross-env NODE_ENV=\"development\" webpack serve",
