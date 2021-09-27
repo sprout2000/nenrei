@@ -3,6 +3,7 @@
   "productName": "年齢計算",
   "description": "西暦と年号の両方で年齢を計算します",
   "version": "2.3.6",
+  "license": "MIT",
   "homepage": "https://sprout2000.github.io/nenrei",
   "engines": {
     "node": ">=12.13",
