@@ -45,31 +45,44 @@ const config: Configuration = {
       },
     ],
   },
-  plugins: [
-    new MiniCssExtractPlugin(),
-    new CopyPlugin({
-      patterns: [{ from: 'assets', to: '.' }],
-    }),
-    new HtmlPlugin({
-      template: './src/index.html',
-      favicon: './src/favicon.ico',
-      minify: !isDev,
-      inject: 'body',
-      scriptLoading: 'defer',
-    }),
-    new WorkboxPlugin.GenerateSW({
-      swDest: 'service-worker.js',
-      sourcemap: false,
-      skipWaiting: true,
-      clientsClaim: true,
-      inlineWorkboxRuntime: true,
-      maximumFileSizeToCacheInBytes: isDev ? 6501171 : 2097152,
-    }),
-  ],
+  plugins: isDev
+    ? [
+        new CopyPlugin({
+          patterns: [{ from: 'assets', to: '.' }],
+        }),
+        new HtmlPlugin({
+          template: './src/index.html',
+          favicon: './src/favicon.ico',
+          minify: !isDev,
+          inject: 'body',
+          scriptLoading: 'defer',
+        }),
+      ]
+    : [
+        new MiniCssExtractPlugin(),
+        new CopyPlugin({
+          patterns: [{ from: 'assets', to: '.' }],
+        }),
+        new HtmlPlugin({
+          template: './src/index.html',
+          favicon: './src/favicon.ico',
+          minify: !isDev,
+          inject: 'body',
+          scriptLoading: 'defer',
+        }),
+        new WorkboxPlugin.GenerateSW({
+          swDest: 'service-worker.js',
+          sourcemap: false,
+          skipWaiting: true,
+          clientsClaim: true,
+          inlineWorkboxRuntime: true,
+        }),
+      ],
   stats: 'errors-only',
   performance: { hints: false },
   devServer: {
     port: 8943,
+    open: true,
     static: {
       directory: path.resolve(__dirname, 'docs'),
     },
