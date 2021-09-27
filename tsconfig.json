@@ -11,7 +11,6 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["node_modules/cypress/types/*.ts", "cypress/*/*.ts"],
   "ts-node": {
     "compilerOptions": {
       "target": "ES2015",
