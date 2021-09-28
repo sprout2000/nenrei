@@ -1,5 +1,12 @@
-import React, { useEffect, useReducer, createContext } from 'react';
 import localforage from 'localforage';
+import { useState, useEffect } from 'react';
+
+import Card from '@material-ui/core/Card';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import Typography from '@material-ui/core/Typography';
+import CardContent from '@material-ui/core/CardContent';
+import FormControl from '@material-ui/core/FormControl';
 
 import {
   createStyles,
@@ -9,23 +16,9 @@ import {
 } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-
 import { QR } from './QR';
-import { Snack } from './Snack';
 import { SideBar } from './SideBar';
 import { TitleBar } from './TitleBar';
-
-import { State } from '../lib/State';
-import { Action } from '../lib/Action';
-import { reducer } from '../lib/reducer';
-import { initialState } from '../lib/initialState';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const typeguardStorage = (arg: any): arg is Storage => {
@@ -118,44 +111,42 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export const calc = (y: number, m: number): number => {
-  const birthday = y * 10000 + m * 100 + 1;
-  const today = new Date();
-  const target = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + 1;
-
-  return Math.floor((target - birthday) / 10000);
-};
-
-export const eto = (y: number): string => {
-  const es = ['庚', '辛', '壬', '癸', '甲', '乙', '丙', '丁', '戊', '己'];
-  const tos = [
-    '申（さる）',
-    '酉（とり）',
-    '戌（いぬ）',
-    '亥（いのしし）',
-    '子（ねずみ）',
-    '丑（うし）',
-    '寅（とら）',
-    '卯（うさぎ）',
-    '辰（たつ）',
-    '巳（へび）',
-    '午（うま）',
-    '未（ひつじ）',
-  ];
-
-  return `${es[y % 10]}${tos[y % 12]}`;
-};
-
-export const AppContext = createContext(
-  {} as {
-    state: State;
-    dispatch: React.Dispatch<Action>;
-  }
-);
-
 export const App: React.FC = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [year, setYear] = useState(1989);
+  const [month, setMonth] = useState(4);
+  const [qrOpen, setQrOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
   const classes = useStyles();
+
+  const calc = (y: number, m: number): number => {
+    const birthday = y * 10000 + m * 100 + 1;
+    const today = new Date();
+    const target =
+      today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + 1;
+
+    return Math.floor((target - birthday) / 10000);
+  };
+
+  const eto = (y: number): string => {
+    const es = ['庚', '辛', '壬', '癸', '甲', '乙', '丙', '丁', '戊', '己'];
+    const tos = [
+      '申（さる）',
+      '酉（とり）',
+      '戌（いぬ）',
+      '亥（いのしし）',
+      '子（ねずみ）',
+      '丑（うし）',
+      '寅（とら）',
+      '卯（うさぎ）',
+      '辰（たつ）',
+      '巳（へび）',
+      '午（うま）',
+      '未（ひつじ）',
+    ];
+
+    return `${es[y % 10]}${tos[y % 12]}`;
+  };
 
   const Wareki = (start: number, end: number): JSX.Element[] => {
     const items = [];
@@ -179,10 +170,8 @@ export const App: React.FC = () => {
       }
       const wareki = i - offset;
 
-      const dataE2E = i === 1971 ? 'year' : '';
-
       items.push(
-        <MenuItem key={i} value={i} data-e2e={dataE2E}>
+        <MenuItem key={i} value={i}>
           <Typography>
             {gengo}
             {wareki === 1 ? '元' : wareki}年 ({i})
@@ -198,9 +187,8 @@ export const App: React.FC = () => {
     const items = [];
 
     for (let i = 1; i <= 12; i++) {
-      const dataE2E = i === 1 ? 'month' : '';
       items.push(
-        <MenuItem key={i} value={i} data-e2e={dataE2E}>
+        <MenuItem key={i} value={i}>
           <Typography>{i}月</Typography>
         </MenuItem>
       );
@@ -215,16 +203,21 @@ export const App: React.FC = () => {
   );
   const Months = Tsuki();
 
+  const toggleDrawer = () => setDrawerOpen(!drawerOpen);
+
+  const openQR = () => setQrOpen(true);
+  const closeQR = () => setQrOpen(false);
+
   useEffect(() => {
     localforage
-      .getItem('nenrei-20210401')
+      .getItem('nenrei-20211001')
       .then((value) => {
         if (!value || !typeguardStorage(value)) {
-          dispatch({ type: 'year', value: 1989 });
-          dispatch({ type: 'month', value: 4 });
+          setYear(1989);
+          setMonth(4);
         } else {
-          dispatch({ type: 'year', value: value.year });
-          dispatch({ type: 'month', value: value.month });
+          setYear(value.year);
+          setMonth(value.month);
         }
       })
       .catch((err) => console.error(err));
@@ -232,40 +225,37 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     localforage
-      .setItem('nenrei-20210401', { year: state.year, month: state.month })
+      .setItem('nenrei-20211001', { year, month })
       .catch((err) => console.error(err));
-  }, [state.month, state.year]);
+  }, [year, month]);
 
   return (
-    <AppContext.Provider value={{ state, dispatch }}>
+    <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div className={classes.root}>
           <CssBaseline />
-          <QR />
-          <TitleBar />
-          <SideBar />
+          <QR qrOpen={qrOpen} onClose={closeQR} />
+          <TitleBar toggleDrawer={toggleDrawer} />
+          <SideBar
+            drawerOpen={drawerOpen}
+            onQROpen={openQR}
+            toggleDrawer={toggleDrawer}
+          />
           <div className={classes.content}>
             <div className={classes.offset} />
             <div className={classes.icon}>
               <img src="./icon-96.png" width={64} height={64} alt="年齢計算" />
             </div>
-            <Snack />
             <Card className={classes.card}>
               <CardContent>
                 <Typography className={classes.label}>生まれ年と月</Typography>
                 <div>
                   <FormControl variant="outlined" className={classes.form}>
                     <Select
-                      data-e2e="year-selector"
                       className={classes.select}
-                      value={state.year}
-                      onChange={(e) => {
-                        dispatch({
-                          type: 'year',
-                          value: Number(e.target.value),
-                        });
-                      }}
+                      value={year}
+                      onChange={(e) => setYear(Number(e.target.value))}
                     >
                       {Years}
                     </Select>
@@ -274,15 +264,9 @@ export const App: React.FC = () => {
                 <div>
                   <FormControl variant="outlined" className={classes.form}>
                     <Select
-                      data-e2e="month-selector"
                       className={classes.select}
-                      value={state.month}
-                      onChange={(e) => {
-                        dispatch({
-                          type: 'month',
-                          value: Number(e.target.value),
-                        });
-                      }}
+                      value={month}
+                      onChange={(e) => setMonth(Number(e.target.value))}
                     >
                       {Months}
                     </Select>
@@ -294,22 +278,16 @@ export const App: React.FC = () => {
               <CardContent>
                 <Typography className={classes.answer}>年齢</Typography>
                 <Typography>
-                  満
-                  <span className={classes.age}>
-                    <span data-e2e="age">{calc(state.year, state.month)}</span>
-                  </span>
-                  歳
+                  満<span className={classes.age}>{calc(year, month)}</span>歳
                 </Typography>
                 <Typography>
-                  <span className={classes.eto}>
-                    <span data-e2e="eto">{eto(state.year)}</span>
-                  </span>
+                  <span className={classes.eto}>{eto(year)}</span>
                 </Typography>
               </CardContent>
             </Card>
           </div>
         </div>
       </ThemeProvider>
-    </AppContext.Provider>
+    </>
   );
 };
