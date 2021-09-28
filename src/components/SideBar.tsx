@@ -57,7 +57,7 @@ export const SideBar = (props: Props): JSX.Element => {
           <DrawerAvatar>
             <img src="icon-48.png" />
           </DrawerAvatar>
-          <p>v{pjson.version}</p>
+          <p>年齢計算 v{pjson.version}</p>
         </DrawerHeader>
         <List>
           <ListItem button onClick={props.onQROpen} aria-label="share">
