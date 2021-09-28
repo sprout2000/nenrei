@@ -2,7 +2,7 @@
   "name": "nenrei",
   "productName": "年齢計算",
   "description": "西暦と年号の両方で年齢を計算します",
-  "version": "2.4.1",
+  "version": "3.0.0-beta.1",
   "license": "MIT",
   "homepage": "https://sprout2000.github.io/nenrei",
   "engines": {
@@ -18,8 +18,11 @@
     "prepare": "git config --local core.hooksPath .githooks"
   },
   "dependencies": {
-    "@material-ui/core": "^4.12.3",
-    "@material-ui/icons": "^4.11.2",
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
+    "@fontsource/roboto": "^4.5.1",
+    "@mui/icons-material": "^5.0.1",
+    "@mui/material": "^5.0.1",
     "localforage": "^1.10.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

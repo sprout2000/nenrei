@@ -1,20 +1,15 @@
 import localforage from 'localforage';
 import { useState, useEffect } from 'react';
 
-import Card from '@material-ui/core/Card';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import Typography from '@material-ui/core/Typography';
-import CardContent from '@material-ui/core/CardContent';
-import FormControl from '@material-ui/core/FormControl';
+import Card from '@mui/material/Card';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import Typography from '@mui/material/Typography';
+import CardContent from '@mui/material/CardContent';
+import FormControl from '@mui/material/FormControl';
+import GlobalStyles from '@mui/material/GlobalStyles';
 
-import {
-  createStyles,
-  makeStyles,
-  ThemeProvider,
-  createTheme,
-} from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { QR } from './QR';
 import { SideBar } from './SideBar';
@@ -30,94 +25,72 @@ const typeguardStorage = (arg: any): arg is Storage => {
   );
 };
 
+const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
+
+const Container = styled('div')({
+  textAlign: 'center',
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+});
+
+const Icon = styled('div')({
+  margin: '0 auto',
+  padding: 0,
+});
+
+const CardDiv = styled(Card)({
+  margin: '1em auto',
+  width: '80vw',
+  maxWidth: 400,
+  color: '#666',
+});
+
+const Label = styled(Typography)({
+  fontWeight: 'bold',
+  color: 'rgb(0, 122, 255)',
+  letterSpacing: '0.25em',
+  userSelect: 'none',
+});
+
+const FormContainer = styled(FormControl)({
+  minWidth: 250,
+  padding: 10,
+});
+
+const Selector = styled(Select)({
+  minWidth: 200,
+});
+
+const Answer = styled(Typography)({
+  fontWeight: 'bold',
+  color: 'rgb(255, 45, 85)',
+  letterSpacing: '0.25em',
+});
+
+const Age = styled('span')({
+  fontSize: '6em',
+  color: '#1f1f21',
+});
+
+const Eto = styled('span')({
+  userSelect: 'text',
+});
+
 const theme = createTheme({
-  overrides: {
-    MuiCssBaseline: {
-      '@global': {
-        html: {
-          margin: 0,
-          padding: 0,
-          userSelect: 'none',
-          WebkitUserSelect: 'none',
-          WebkitTouchCallout: 'none',
-          WebkitTapHighlightColor: 'transparent !important',
-          height: '100%',
-        },
-        body: {
-          height: '100%',
-        },
-        '#root': {
-          height: '100%',
-        },
-      },
+  palette: {
+    primary: {
+      main: '#ff375f',
     },
   },
 });
-
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    offset: theme.mixins.toolbar,
-    root: {
-      margin: 0,
-      padding: 0,
-      fontFamily: '-apple-system, BlinkMacSystemFont, Roboto, sans-serif',
-      height: '100%',
-      backgroundColor: '#efeff4',
-      position: 'relative',
-      overflow: 'hidden',
-    },
-    icon: {
-      margin: '0 auto',
-      padding: 0,
-    },
-    content: {
-      textAlign: 'center',
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-    },
-    card: {
-      margin: '1em auto',
-      width: '80vw',
-      maxWidth: 400,
-      color: '#666',
-    },
-    label: {
-      fontWeight: 'bold',
-      color: 'rgb(0, 122, 255)',
-      letterSpacing: '0.25em',
-      userSelect: 'none',
-    },
-    form: {
-      minWidth: 250,
-      padding: 10,
-    },
-    select: {
-      minWidth: 200,
-    },
-    answer: {
-      fontWeight: 'bold',
-      color: 'rgb(255, 45, 85)',
-      letterSpacing: '0.25em',
-    },
-    age: {
-      fontSize: '6em',
-      color: '#1f1f21',
-    },
-    eto: {
-      userSelect: 'text',
-    },
-  })
-);
 
 export const App: React.FC = () => {
   const [year, setYear] = useState(1989);
   const [month, setMonth] = useState(4);
   const [qrOpen, setQrOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
-
-  const classes = useStyles();
 
   const calc = (y: number, m: number): number => {
     const birthday = y * 10000 + m * 100 + 1;
@@ -230,64 +203,78 @@ export const App: React.FC = () => {
   }, [year, month]);
 
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <div className={classes.root}>
-          <CssBaseline />
-          <QR qrOpen={qrOpen} onClose={closeQR} />
-          <TitleBar toggleDrawer={toggleDrawer} />
-          <SideBar
-            drawerOpen={drawerOpen}
-            onQROpen={openQR}
-            toggleDrawer={toggleDrawer}
-          />
-          <div className={classes.content}>
-            <div className={classes.offset} />
-            <div className={classes.icon}>
-              <img src="./icon-64.png" width={64} height={64} alt="年齢計算" />
+    <ThemeProvider theme={theme}>
+      <GlobalStyles
+        styles={{
+          html: {
+            height: '100%',
+          },
+          body: {
+            margin: 0,
+            padding: 0,
+            fontFamily: '-apple-system, BlinkMacSystemFont, Roboto, sans-serif',
+            height: '100%',
+          },
+          '#root': {
+            margin: 0,
+            padding: 0,
+            fontFamily: '-apple-system, BlinkMacSystemFont, Roboto, sans-serif',
+            height: '100%',
+            backgroundColor: '#efeff4',
+            position: 'relative',
+            overflow: 'hidden',
+          },
+        }}
+      />
+      <QR qrOpen={qrOpen} onClose={closeQR} />
+      <SideBar
+        drawerOpen={drawerOpen}
+        onQROpen={openQR}
+        toggleDrawer={toggleDrawer}
+      />
+      <TitleBar toggleDrawer={toggleDrawer} />
+      <Container>
+        <Offset />
+        <Icon>
+          <img src="./icon-64.png" width={64} height={64} alt="年齢計算" />
+        </Icon>
+        <CardDiv>
+          <CardContent>
+            <Label>生まれ年と月</Label>
+            <div>
+              <FormContainer variant="outlined">
+                <Selector
+                  value={year}
+                  onChange={(e) => setYear(Number(e.target.value))}
+                >
+                  {Years}
+                </Selector>
+              </FormContainer>
             </div>
-            <Card className={classes.card}>
-              <CardContent>
-                <Typography className={classes.label}>生まれ年と月</Typography>
-                <div>
-                  <FormControl variant="outlined" className={classes.form}>
-                    <Select
-                      className={classes.select}
-                      value={year}
-                      onChange={(e) => setYear(Number(e.target.value))}
-                    >
-                      {Years}
-                    </Select>
-                  </FormControl>
-                </div>
-                <div>
-                  <FormControl variant="outlined" className={classes.form}>
-                    <Select
-                      className={classes.select}
-                      value={month}
-                      onChange={(e) => setMonth(Number(e.target.value))}
-                    >
-                      {Months}
-                    </Select>
-                  </FormControl>
-                </div>
-              </CardContent>
-            </Card>
-            <Card className={classes.card}>
-              <CardContent>
-                <Typography className={classes.answer}>年齢</Typography>
-                <Typography>
-                  満<span className={classes.age}>{calc(year, month)}</span>歳
-                </Typography>
-                <Typography>
-                  <span className={classes.eto}>{eto(year)}</span>
-                </Typography>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </ThemeProvider>
-    </>
+            <div>
+              <FormContainer variant="outlined">
+                <Selector
+                  value={month}
+                  onChange={(e) => setMonth(Number(e.target.value))}
+                >
+                  {Months}
+                </Selector>
+              </FormContainer>
+            </div>
+          </CardContent>
+        </CardDiv>
+        <CardDiv>
+          <CardContent>
+            <Answer>年齢</Answer>
+            <Typography>
+              満<Age>{calc(year, month)}</Age>歳
+            </Typography>
+            <Typography>
+              <Eto>{eto(year)}</Eto>
+            </Typography>
+          </CardContent>
+        </CardDiv>
+      </Container>
+    </ThemeProvider>
   );
 };
