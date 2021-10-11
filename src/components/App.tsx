@@ -15,6 +15,8 @@ import { QR } from './QR';
 import { SideBar } from './SideBar';
 import { TitleBar } from './TitleBar';
 
+import icon64 from '../icons/icon-64.png';
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const typeguardStorage = (arg: any): arg is Storage => {
   return (
@@ -236,7 +238,7 @@ export const App: React.FC = () => {
       <Container>
         <Offset />
         <Icon>
-          <img src="./icon-64.png" width={64} height={64} alt="年齢計算" />
+          <img src={icon64} width={64} height={64} alt="年齢計算" />
         </Icon>
         <CardDiv>
           <CardContent>

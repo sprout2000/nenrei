@@ -13,6 +13,7 @@ import { styled } from '@mui/material/styles';
 import { blue, common } from '@mui/material/colors';
 
 import pjson from '../../package.json';
+import icon48 from '../icons/icon-48.png';
 
 type Props = {
   drawerOpen: boolean;
@@ -55,7 +56,7 @@ export const SideBar = (props: Props): JSX.Element => {
       <DrawerList role="presentation" onClick={props.toggleDrawer}>
         <DrawerHeader>
           <DrawerAvatar>
-            <img src="icon-48.png" />
+            <img src={icon48} />
           </DrawerAvatar>
           <p>年齢計算 v{pjson.version}</p>
         </DrawerHeader>
