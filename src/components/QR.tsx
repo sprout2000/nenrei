@@ -18,7 +18,7 @@ export const QR = (props: Props): JSX.Element => {
   return (
     <div>
       <QRBackdrop open={props.qrOpen} onClick={props.onClose}>
-        <QRCode value="https://sprout2000.github.io/nenrei" />
+        <QRCode value="https://nishigami.jp/nenrei" />
       </QRBackdrop>
     </div>
   );
