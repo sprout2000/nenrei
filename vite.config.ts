@@ -10,7 +10,8 @@ export default defineConfig({
     open: true,
   },
   build: {
-    outDir: '../docs',
+    outDir: '../public',
+    emptyOutDir: true,
   },
   plugins: [
     react(),
