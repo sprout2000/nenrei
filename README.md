@@ -2,7 +2,7 @@
 
 [![GitHub CI](https://github.com/sprout2000/nenrei/actions/workflows/config.yml/badge.svg)](https://github.com/sprout2000/nenrei/actions/workflows/config.yml)
 [![GitHub license](https://img.shields.io/github/license/sprout2000/nenrei)](https://github.com/sprout2000/nenrei/blob/master/LICENSE.md)
-[![Twitter](https://img.shields.io/twitter/url?style=flat-square&url=https%3A%2F%2Fgithub.com%2Fsprout2000%2Felephicon%2F)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fsprout2000%2Felephicon%2F)
+[![Twitter](https://img.shields.io/twitter/url?style=flat-square&url=https%3A%2F%2Fgithub.com%2Fsprout2000%2Fnenrei%2F)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fsprout2000%2Fnenrei%2F)
 
 ## Plivacy Policy
 
