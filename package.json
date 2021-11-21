@@ -16,7 +16,7 @@
     "lint": "run-s lint:*",
     "lint:eslint": "eslint --fix .",
     "lint:prettier": "prettier --write .",
-    "prepare": "git config --local core.hooksPath .githooks"
+    "prepare": "git config --local core.hooksPath hooks"
   },
   "dependencies": {
     "@emotion/react": "^11.6.0",
