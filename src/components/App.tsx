@@ -11,21 +11,13 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 
+import { isForage } from '../lib/isForage';
+
 import { QR } from './QR';
 import { SideBar } from './SideBar';
 import { TitleBar } from './TitleBar';
 
 import icon64 from '../icons/icon-64.png';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const typeguardStorage = (arg: any): arg is Storage => {
-  return (
-    arg !== null &&
-    typeof arg === 'object' &&
-    typeof arg.year === 'number' &&
-    typeof arg.month === 'number'
-  );
-};
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
@@ -187,10 +179,7 @@ export const App: React.FC = () => {
     localforage
       .getItem('nenrei-20211001')
       .then((value) => {
-        if (!value || !typeguardStorage(value)) {
-          setYear(1989);
-          setMonth(4);
-        } else {
+        if (isForage(value)) {
           setYear(value.year);
           setMonth(value.month);
         }
