@@ -1,3 +1,4 @@
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { registerSW } from 'virtual:pwa-register';
 
@@ -8,6 +9,11 @@ import '@fontsource/roboto/700.css';
 
 import { App } from './components/App';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
 registerSW();
