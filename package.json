@@ -2,7 +2,7 @@
   "name": "nenrei",
   "productName": "年齢計算",
   "description": "西暦と年号の両方で年齢を計算します",
-  "version": "5.0.9",
+  "version": "5.1.0",
   "license": "MIT",
   "homepage": "https://sprout2000.github.io/nenrei",
   "engines": {
