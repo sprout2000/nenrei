@@ -17,6 +17,7 @@ export default defineConfig({
     react(),
     VitePWA({
       manifest: {
+        id: '/nenrei/',
         name: '年齢計算',
         short_name: '年齢計算',
         categories: ['business', 'health', 'utilities'],
@@ -58,12 +59,6 @@ export default defineConfig({
             description: '西暦と和暦の両方で年齢計算ができます。',
             url: '.',
             icons: ['images/icon-96x96.png'],
-          },
-        ],
-        protocol_handlers: [
-          {
-            protocol: 'web+nenrei',
-            url: '/%s',
           },
         ],
       },
