@@ -5,9 +5,6 @@
   "version": "5.1.3",
   "license": "MIT",
   "homepage": "https://sprout2000.github.io/nenrei",
-  "engines": {
-    "node": ">=12.13"
-  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
