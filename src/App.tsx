@@ -1,5 +1,4 @@
-import localforage from 'localforage';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import Card from '@mui/material/Card';
 import Select from '@mui/material/Select';
@@ -11,13 +10,11 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 
-import { isForage } from '../lib/isForage';
-
 import { QR } from './QR';
 import { SideBar } from './SideBar';
 import { TitleBar } from './TitleBar';
 
-import icon64 from '../icons/icon-64.png';
+import icon from './icon.png';
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
@@ -138,7 +135,7 @@ export const App: React.FC = () => {
       const wareki = i - offset;
 
       items.push(
-        <MenuItem key={i} value={i}>
+        <MenuItem key={i} value={i} data-testid={i}>
           <Typography>
             {gengo}
             {wareki === 1 ? '元' : wareki}年 ({i})
@@ -170,28 +167,8 @@ export const App: React.FC = () => {
   );
   const Months = Tsuki();
 
+  const toggleQR = () => setQrOpen(!qrOpen);
   const toggleDrawer = () => setDrawerOpen(!drawerOpen);
-
-  const openQR = () => setQrOpen(true);
-  const closeQR = () => setQrOpen(false);
-
-  useEffect(() => {
-    localforage
-      .getItem('nenrei-20211001')
-      .then((value) => {
-        if (isForage(value)) {
-          setYear(value.year);
-          setMonth(value.month);
-        }
-      })
-      .catch((err) => console.error(err));
-  }, []);
-
-  useEffect(() => {
-    localforage
-      .setItem('nenrei-20211001', { year, month })
-      .catch((err) => console.error(err));
-  }, [year, month]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -217,17 +194,17 @@ export const App: React.FC = () => {
           },
         }}
       />
-      <QR qrOpen={qrOpen} onClose={closeQR} />
+      <QR qrOpen={qrOpen} onClose={toggleQR} />
       <SideBar
         drawerOpen={drawerOpen}
-        onQROpen={openQR}
+        onQROpen={toggleQR}
         toggleDrawer={toggleDrawer}
       />
       <TitleBar toggleDrawer={toggleDrawer} />
       <Container>
         <Offset />
         <Icon>
-          <img src={icon64} width={64} height={64} alt="年齢計算" />
+          <img src={icon} width={64} height={64} alt="年齢計算" />
         </Icon>
         <CardDiv>
           <CardContent>

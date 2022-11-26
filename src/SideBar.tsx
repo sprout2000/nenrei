@@ -1,3 +1,4 @@
+import Icon from '@mui/material/Icon';
 import List from '@mui/material/List';
 import Avatar from '@mui/material/Avatar';
 import Drawer from '@mui/material/Drawer';
@@ -6,14 +7,11 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
-import ShareIcon from '@mui/icons-material/Share';
-import GitHubIcon from '@mui/icons-material/GitHub';
-
 import { styled } from '@mui/material/styles';
-import { blue, common } from '@mui/material/colors';
+import { blue, grey } from '@mui/material/colors';
 
-import pjson from '../../package.json';
-import icon48 from '../icons/icon-48.png';
+import pjson from '../package.json';
+import icon from './icon.png';
 
 type Props = {
   drawerOpen: boolean;
@@ -43,10 +41,6 @@ const DrawerAvatar = styled(Avatar)(({ theme }) => ({
 }));
 
 export const SideBar = (props: Props): JSX.Element => {
-  const handleURL = () => {
-    window.open('https://github.com/sprout2000/nenrei#readme', '_blank');
-  };
-
   return (
     <Drawer
       variant="temporary"
@@ -56,23 +50,23 @@ export const SideBar = (props: Props): JSX.Element => {
       <DrawerList role="presentation" onClick={props.toggleDrawer}>
         <DrawerHeader>
           <DrawerAvatar>
-            <img src={icon48} />
+            <img src={icon} />
           </DrawerAvatar>
           <p>年齢計算 v{pjson.version}</p>
         </DrawerHeader>
         <List>
           <ListItem button onClick={props.onQROpen} aria-label="share">
             <ListItemIcon>
-              <ShareIcon style={{ color: blue[500] }} />
+              <Icon sx={{ color: blue[500] }}>share</Icon>
             </ListItemIcon>
             <ListItemText secondary="このアプリを共有" />
           </ListItem>
           <Divider />
-          <ListItem button onClick={handleURL} aria-label="repo">
+          <ListItem aria-label="copyright">
             <ListItemIcon>
-              <GitHubIcon style={{ color: common.black }} />
+              <Icon sx={{ color: grey }}>copyright</Icon>
             </ListItemIcon>
-            <ListItemText secondary="レポジトリ" />
+            <ListItemText secondary="2019 (c) sprout2000" />
           </ListItem>
         </List>
       </DrawerList>

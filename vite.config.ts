@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import react from '@vitejs/plugin-react';
@@ -6,59 +7,60 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   base: './',
   root: './src',
-  server: {
-    open: true,
-  },
+  publicDir: '../public',
+  server: { open: true },
   build: {
-    outDir: '../public',
+    outDir: '../dist',
     emptyOutDir: true,
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./vitest.setup.ts'],
+    deps: {
+      inline: ['vitest-canvas-mock'],
+    },
+    threads: false,
+    environmentOptions: {
+      jsdom: {
+        resources: 'usable',
+      },
+    },
+    coverage: {
+      clean: false,
+      enabled: true,
+      reporter: ['text', 'json-summary'],
+      reportsDirectory: '../coverage',
+    },
   },
   plugins: [
     react(),
     VitePWA({
       manifest: {
-        id: '/nenrei/',
-        name: '年齢計算',
+        name: '年齢計算アプリPWA',
         short_name: '年齢計算',
-        categories: ['business', 'health', 'utilities'],
-        description: '西暦と和暦の両方で年齢計算ができます。',
+        description: '元号と西暦の両方で年齢を計算できます',
         start_url: '.',
         display: 'standalone',
         orientation: 'portrait',
         theme_color: '#ff0033',
-        background_color: '#efeff4',
+        background_color: '#fff',
         icons: [
           {
+            src: 'icon-192x192.png',
             sizes: '192x192',
-            src: 'images/icon-192x192.png',
             type: 'image/png',
           },
           {
+            src: 'icon-512x512.png',
             sizes: '512x512',
-            src: 'images/icon-512x512.png',
             type: 'image/png',
           },
           {
+            src: 'icon-512x512-mask.png',
             sizes: '512x512',
-            src: 'images/icon-512x512-maskable.png',
             type: 'image/png',
             purpose: 'maskable',
-          },
-        ],
-        screenshots: [
-          {
-            sizes: '960x1360',
-            src: 'images/screenshot.png',
-            type: 'image/png',
-          },
-        ],
-        shortcuts: [
-          {
-            name: '年齢計算',
-            short_name: '年齢計算',
-            description: '西暦と和暦の両方で年齢計算ができます。',
-            url: '.',
-            icons: ['images/icon-96x96.png'],
           },
         ],
       },
