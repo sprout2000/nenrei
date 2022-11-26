@@ -78,7 +78,7 @@ const theme = createTheme({
 });
 
 export const App: React.FC = () => {
-  const [year, setYear] = useState(1989);
+  const [year, setYear] = useState(new Date().getFullYear() - 50);
   const [month, setMonth] = useState(4);
   const [qrOpen, setQrOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
