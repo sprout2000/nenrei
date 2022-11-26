@@ -1,7 +1,10 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { SideBar } from '../SideBar';
 
 test('render SideBar component', async () => {
+  window.open = vi.fn();
+
   render(
     <SideBar
       drawerOpen={true}
@@ -9,4 +12,6 @@ test('render SideBar component', async () => {
       toggleDrawer={() => vi.fn()}
     />
   );
+
+  await userEvent.click(screen.getByTestId('repo'));
 });

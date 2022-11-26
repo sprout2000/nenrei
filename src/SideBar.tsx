@@ -41,6 +41,10 @@ const DrawerAvatar = styled(Avatar)(({ theme }) => ({
 }));
 
 export const SideBar = (props: Props): JSX.Element => {
+  const handleURL = () => {
+    window.open('https://github.com/sprout2000/nenrei#readme', '_blank');
+  };
+
   return (
     <Drawer
       variant="temporary"
@@ -62,11 +66,11 @@ export const SideBar = (props: Props): JSX.Element => {
             <ListItemText secondary="このアプリを共有" />
           </ListItem>
           <Divider />
-          <ListItem aria-label="copyright">
+          <ListItem button onClick={handleURL} data-testid="repo">
             <ListItemIcon>
-              <Icon sx={{ color: grey }}>copyright</Icon>
+              <Icon sx={{ color: grey }}>launch</Icon>
             </ListItemIcon>
-            <ListItemText secondary="2019 (c) sprout2000" />
+            <ListItemText secondary="GitHub レポジトリ" />
           </ListItem>
         </List>
       </DrawerList>
