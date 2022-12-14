@@ -6,6 +6,7 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import ListItemButton from '@mui/material/ListItemButton';
 
 import { styled } from '@mui/material/styles';
 import { blue, grey } from '@mui/material/colors';
@@ -59,18 +60,26 @@ export const SideBar = (props: Props): JSX.Element => {
           <p>年齢計算 v{pjson.version}</p>
         </DrawerHeader>
         <List>
-          <ListItem button onClick={props.onQROpen} aria-label="share">
-            <ListItemIcon>
-              <Icon sx={{ color: blue[500] }}>share</Icon>
-            </ListItemIcon>
-            <ListItemText secondary="このアプリを共有" />
+          <ListItem disablePadding>
+            <ListItemButton onClick={props.onQROpen} aria-label="share">
+              <ListItemIcon>
+                <Icon sx={{ color: blue[500] }}>share</Icon>
+              </ListItemIcon>
+              <ListItemText secondary="このアプリを共有" />
+            </ListItemButton>
           </ListItem>
           <Divider />
-          <ListItem button onClick={handleURL} data-testid="repo">
-            <ListItemIcon>
-              <Icon sx={{ color: grey }}>launch</Icon>
-            </ListItemIcon>
-            <ListItemText secondary="GitHub レポジトリ" />
+          <ListItem disablePadding>
+            <ListItemButton
+              onClick={handleURL}
+              aria-label="repo"
+              data-testid="repo"
+            >
+              <ListItemIcon>
+                <Icon sx={{ color: grey }}>launch</Icon>
+              </ListItemIcon>
+              <ListItemText secondary="GitHub レポジトリ" />
+            </ListItemButton>
           </ListItem>
         </List>
       </DrawerList>
