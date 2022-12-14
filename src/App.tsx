@@ -14,7 +14,7 @@ import { QR } from './QR';
 import { SideBar } from './SideBar';
 import { TitleBar } from './TitleBar';
 
-import icon from './icon.png';
+import icon from './icon-128.png';
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
