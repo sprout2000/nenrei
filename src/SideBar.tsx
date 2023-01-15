@@ -1,4 +1,3 @@
-import Icon from '@mui/material/Icon';
 import List from '@mui/material/List';
 import Avatar from '@mui/material/Avatar';
 import Drawer from '@mui/material/Drawer';
@@ -8,8 +7,11 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemButton from '@mui/material/ListItemButton';
 
+import ShareIcon from '@mui/icons-material/Share';
+import GitHubIcon from '@mui/icons-material/GitHub';
+
 import { styled } from '@mui/material/styles';
-import { blue, grey } from '@mui/material/colors';
+import { blue, common } from '@mui/material/colors';
 
 import pjson from '../package.json';
 import icon from './icon.png';
@@ -63,7 +65,7 @@ export const SideBar = (props: Props): JSX.Element => {
           <ListItem disablePadding>
             <ListItemButton onClick={props.onQROpen} aria-label="share">
               <ListItemIcon>
-                <Icon sx={{ color: blue[500] }}>share</Icon>
+                <ShareIcon style={{ color: blue[500] }} />
               </ListItemIcon>
               <ListItemText secondary="このアプリを共有" />
             </ListItemButton>
@@ -76,7 +78,7 @@ export const SideBar = (props: Props): JSX.Element => {
               data-testid="repo"
             >
               <ListItemIcon>
-                <Icon sx={{ color: grey }}>launch</Icon>
+                <GitHubIcon style={{ color: common.black }} />
               </ListItemIcon>
               <ListItemText secondary="GitHub レポジトリ" />
             </ListItemButton>

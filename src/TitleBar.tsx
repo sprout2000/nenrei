@@ -1,9 +1,10 @@
 import Box from '@mui/material/Box';
-import Icon from '@mui/material/Icon';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
+
+import MenuIcon from '@mui/icons-material/Menu';
 
 type Props = {
   toggleDrawer: () => void;
@@ -24,7 +25,7 @@ export const TitleBar = (props: Props): JSX.Element => {
               sx={{ mr: 2 }}
               onClick={props.toggleDrawer}
             >
-              <Icon>menu</Icon>
+              <MenuIcon />
             </IconButton>
             <Typography>年齢計算</Typography>
           </Toolbar>
