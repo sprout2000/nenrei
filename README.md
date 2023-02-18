@@ -3,7 +3,7 @@
 [![GitHub license](https://img.shields.io/github/license/sprout2000/nenrei)](https://github.com/sprout2000/nenrei/blob/master/LICENSE.md)
 ![vitest](./coverage/badge.svg)
 
-西暦と元号の両方で年齢を計算できます。十二支の表示もあり。
+西暦と元号の両方で年齢を計算できます。十二支の表示付き。
 
 <img width="401" alt="2023-02-18-073249" src="https://user-images.githubusercontent.com/52094761/219812968-7eddf33d-08a3-483b-af80-4f3c6f93a464.png">
 
