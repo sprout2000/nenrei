@@ -40,6 +40,7 @@ export default defineConfig({
         short_name: '年齢計算',
         description: '元号と西暦の両方で年齢を計算できます',
         start_url: '.',
+        id: '/nenrei/',
         display: 'standalone',
         orientation: 'portrait',
         theme_color: '#ff0033',
