@@ -27,7 +27,7 @@
 1. Chrome で[年齢計算](https://sprout2000.github.io/nenrei/)を開く
 2. インストールバナーが表示された場合はタップ
 
-<img width="480" src="https://user-images.githubusercontent.com/52094761/219805167-f32b4f12-bdff-4620-ab45-aa62faa0816b.png" />
+<img width="480" src="https://user-images.githubusercontent.com/52094761/219824305-43949b06-d701-4ca6-ad47-80b9e09aa25e.png" />
 
 3. バナーが表示されないときは、右上メニューから「アプリをインストール」をタップ
 
