@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { QRCode } from 'react-qrcode-logo';
 
 import Backdrop from '@mui/material/Backdrop';
@@ -14,7 +15,7 @@ const QRBackdrop = styled(Backdrop)(({ theme }) => ({
   backgroundColor: 'rgba(0, 0, 0, 0.8)',
 }));
 
-export const QR = (props: Props): JSX.Element => {
+export const QR = memo((props: Props): JSX.Element => {
   return (
     <div>
       <QRBackdrop open={props.qrOpen} onClick={props.onClose}>
@@ -22,4 +23,6 @@ export const QR = (props: Props): JSX.Element => {
       </QRBackdrop>
     </div>
   );
-};
+});
+
+QR.displayName = 'QR';

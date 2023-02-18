@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -10,7 +12,7 @@ type Props = {
   toggleDrawer: () => void;
 };
 
-export const TitleBar = (props: Props): JSX.Element => {
+export const TitleBar = memo((props: Props): JSX.Element => {
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -33,4 +35,6 @@ export const TitleBar = (props: Props): JSX.Element => {
       </Box>
     </>
   );
-};
+});
+
+TitleBar.displayName = 'TitleBar';

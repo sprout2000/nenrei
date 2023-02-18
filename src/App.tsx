@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import Card from '@mui/material/Card';
 import Select from '@mui/material/Select';
@@ -77,42 +77,41 @@ const theme = createTheme({
   },
 });
 
-export const App: React.FC = () => {
+export const calc = (y: number, m: number): number => {
+  const birthday = y * 10000 + m * 100 + 1;
+  const today = new Date();
+  const target = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + 1;
+
+  return Math.floor((target - birthday) / 10000);
+};
+
+export const eto = (y: number): string => {
+  const es = ['庚', '辛', '壬', '癸', '甲', '乙', '丙', '丁', '戊', '己'];
+  const tos = [
+    '申（さる）',
+    '酉（とり）',
+    '戌（いぬ）',
+    '亥（いのしし）',
+    '子（ねずみ）',
+    '丑（うし）',
+    '寅（とら）',
+    '卯（うさぎ）',
+    '辰（たつ）',
+    '巳（へび）',
+    '午（うま）',
+    '未（ひつじ）',
+  ];
+
+  return `${es[y % 10]}${tos[y % 12]}`;
+};
+
+export const App = () => {
   const [year, setYear] = useState(new Date().getFullYear() - 50);
   const [month, setMonth] = useState(4);
   const [qrOpen, setQrOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const calc = (y: number, m: number): number => {
-    const birthday = y * 10000 + m * 100 + 1;
-    const today = new Date();
-    const target =
-      today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + 1;
-
-    return Math.floor((target - birthday) / 10000);
-  };
-
-  const eto = (y: number): string => {
-    const es = ['庚', '辛', '壬', '癸', '甲', '乙', '丙', '丁', '戊', '己'];
-    const tos = [
-      '申（さる）',
-      '酉（とり）',
-      '戌（いぬ）',
-      '亥（いのしし）',
-      '子（ねずみ）',
-      '丑（うし）',
-      '寅（とら）',
-      '卯（うさぎ）',
-      '辰（たつ）',
-      '巳（へび）',
-      '午（うま）',
-      '未（ひつじ）',
-    ];
-
-    return `${es[y % 10]}${tos[y % 12]}`;
-  };
-
-  const Wareki = (start: number, end: number): JSX.Element[] => {
+  const Wareki = useCallback((start: number, end: number) => {
     const items = [];
 
     for (let i = start; i <= end; i++) {
@@ -145,9 +144,9 @@ export const App: React.FC = () => {
     }
 
     return items;
-  };
+  }, []);
 
-  const Tsuki = (): JSX.Element[] => {
+  const Tsuki = useCallback(() => {
     const items = [];
 
     for (let i = 1; i <= 12; i++) {
@@ -159,16 +158,12 @@ export const App: React.FC = () => {
     }
 
     return items;
-  };
+  }, []);
 
-  const Years = Wareki(
-    new Date().getFullYear() - 100,
-    new Date().getFullYear()
-  );
-  const Months = Tsuki();
-
-  const toggleQR = () => setQrOpen(!qrOpen);
-  const toggleDrawer = () => setDrawerOpen(!drawerOpen);
+  const toggleQR = useCallback(() => setQrOpen((qrOpen) => !qrOpen), []);
+  const toggleDrawer = useCallback(() => {
+    setDrawerOpen((drawerOpen) => !drawerOpen);
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -212,20 +207,25 @@ export const App: React.FC = () => {
             <div>
               <FormContainer variant="outlined">
                 <Selector
+                  data-testid="years"
                   value={year}
                   onChange={(e) => setYear(Number(e.target.value))}
                 >
-                  {Years}
+                  {Wareki(
+                    new Date().getFullYear() - 100,
+                    new Date().getFullYear()
+                  )}
                 </Selector>
               </FormContainer>
             </div>
             <div>
               <FormContainer variant="outlined">
                 <Selector
+                  data-testid="months"
                   value={month}
                   onChange={(e) => setMonth(Number(e.target.value))}
                 >
-                  {Months}
+                  {Tsuki()}
                 </Selector>
               </FormContainer>
             </div>
