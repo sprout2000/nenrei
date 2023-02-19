@@ -13,6 +13,8 @@
 
 ## スマートフォンへのインストール方法
 
+![QR_840725](https://user-images.githubusercontent.com/52094761/219975190-ecd9df45-3e92-4c92-b653-fc8aefdb703d.png)
+
 ### iOS
 
 1. Safari で[年齢計算](https://sprout2000.github.io/nenrei/) (https://sprout2000.github.io/nenrei/) を開く
