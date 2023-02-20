@@ -17,7 +17,7 @@
 
 ### iOS
 
-1. Safari で[年齢計算](https://sprout2000.github.io/nenrei/) (https://sprout2000.github.io/nenrei/) を開く
+1. Safari で[年齢計算](https://sprout2000.github.io/nenrei/)（または上記QRコード）を開く
 2. 共有メニューから「ホーム画面に追加」をタップ
 3. 追加ボタンをタップ
 4. 自動的にホーム画面へアイコンが追加されます
@@ -26,7 +26,7 @@
 
 ### Android
 
-1. Chrome で[年齢計算](https://sprout2000.github.io/nenrei/) (https://sprout2000.github.io/nenrei/) を開く
+1. Chrome で[年齢計算](https://sprout2000.github.io/nenrei/)（または上記QRコード）を開く
 2. インストールバナーが表示された場合はタップ
 
 <img width="480" src="https://user-images.githubusercontent.com/52094761/219824305-43949b06-d701-4ca6-ad47-80b9e09aa25e.png" />
