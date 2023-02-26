@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
 import Card from '@mui/material/Card';
 import Select from '@mui/material/Select';
@@ -16,26 +16,28 @@ import { TitleBar } from './TitleBar';
 
 import icon from './icon-128.png';
 
-const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
-
 const Container = styled('div')({
-  textAlign: 'center',
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  height: '100%',
+  display: 'grid',
+  placeContent: 'center',
 });
 
-const Icon = styled('div')({
+const IconContainer = styled('div')({
   margin: '0 auto',
   padding: 0,
 });
 
-const CardDiv = styled(Card)({
-  margin: '1em auto',
+const Icon = styled('img')((src) => ({
+  src: src,
+  width: 64,
+}));
+
+const CardContainer = styled(Card)({
+  margin: '1em 0',
   width: '80vw',
   maxWidth: 400,
   color: '#666',
+  textAlign: 'center',
 });
 
 const Label = styled(Typography)({
@@ -47,7 +49,7 @@ const Label = styled(Typography)({
 
 const FormContainer = styled(FormControl)({
   minWidth: 250,
-  padding: 10,
+  padding: 5,
 });
 
 const Selector = styled(Select)({
@@ -61,7 +63,7 @@ const Answer = styled(Typography)({
 });
 
 const Age = styled('span')({
-  fontSize: '6em',
+  fontSize: '4em',
   color: '#1f1f21',
 });
 
@@ -111,7 +113,7 @@ export const App = () => {
   const [qrOpen, setQrOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const Wareki = useCallback((start: number, end: number) => {
+  const Wareki = (start: number, end: number) => {
     const items = [];
 
     for (let i = start; i <= end; i++) {
@@ -144,9 +146,9 @@ export const App = () => {
     }
 
     return items;
-  }, []);
+  };
 
-  const Tsuki = useCallback(() => {
+  const Tsuki = () => {
     const items = [];
 
     for (let i = 1; i <= 12; i++) {
@@ -158,80 +160,57 @@ export const App = () => {
     }
 
     return items;
-  }, []);
+  };
 
-  const toggleQR = useCallback(() => setQrOpen((qrOpen) => !qrOpen), []);
-  const toggleDrawer = useCallback(() => {
-    setDrawerOpen((drawerOpen) => !drawerOpen);
-  }, []);
+  const handletoggleQR = () => setQrOpen((qrOpen) => !qrOpen);
+  const handleToggleDrawer = () => setDrawerOpen((drawerOpen) => !drawerOpen);
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles
         styles={{
-          html: {
-            height: '100%',
-          },
-          body: {
-            margin: 0,
-            padding: 0,
-            fontFamily: '-apple-system, BlinkMacSystemFont, Roboto, sans-serif',
-            height: '100%',
-          },
-          '#root': {
-            margin: 0,
-            padding: 0,
-            fontFamily: '-apple-system, BlinkMacSystemFont, Roboto, sans-serif',
-            height: '100%',
-            backgroundColor: '#efeff4',
-            position: 'relative',
-            overflow: 'hidden',
-          },
+          body: { margin: 0, padding: 0, backgroundColor: '#efeff4' },
+          '#root': { height: '100vh', overflow: 'hidden' },
         }}
       />
-      <QR qrOpen={qrOpen} onClose={toggleQR} />
+      <TitleBar onToggleDrawer={handleToggleDrawer} />
       <SideBar
         drawerOpen={drawerOpen}
-        onQROpen={toggleQR}
-        toggleDrawer={toggleDrawer}
+        onToggleDrawer={handleToggleDrawer}
+        onToggleQR={handletoggleQR}
       />
-      <TitleBar toggleDrawer={toggleDrawer} />
+      <QR qrOpen={qrOpen} onClose={handletoggleQR} />
       <Container>
-        <Offset />
-        <Icon>
-          <img src={icon} width={64} height={64} alt="年齢計算" />
-        </Icon>
-        <CardDiv>
+        <IconContainer>
+          <Icon src={icon} />
+        </IconContainer>
+        <CardContainer>
           <CardContent>
             <Label>生まれ年と月</Label>
-            <div>
-              <FormContainer variant="outlined">
-                <Selector
-                  data-testid="years"
-                  value={year}
-                  onChange={(e) => setYear(Number(e.target.value))}
-                >
-                  {Wareki(
-                    new Date().getFullYear() - 100,
-                    new Date().getFullYear()
-                  )}
-                </Selector>
-              </FormContainer>
-            </div>
-            <div>
-              <FormContainer variant="outlined">
-                <Selector
-                  data-testid="months"
-                  value={month}
-                  onChange={(e) => setMonth(Number(e.target.value))}
-                >
-                  {Tsuki()}
-                </Selector>
-              </FormContainer>
-            </div>
+            <FormContainer>
+              <Selector
+                aria-label="years"
+                value={year}
+                onChange={(e) => setYear(Number(e.target.value))}
+              >
+                {Wareki(
+                  new Date().getFullYear() - 100,
+                  new Date().getFullYear()
+                )}
+              </Selector>
+            </FormContainer>
+            <FormContainer>
+              <Selector
+                aria-label="months"
+                value={month}
+                onChange={(e) => setMonth(Number(e.target.value))}
+              >
+                {Tsuki()}
+              </Selector>
+            </FormContainer>
           </CardContent>
-        </CardDiv>
-        <CardDiv>
+        </CardContainer>
+        <CardContainer>
           <CardContent>
             <Answer>年齢</Answer>
             <Typography>
@@ -241,7 +220,7 @@ export const App = () => {
               <Eto>{eto(year)}</Eto>
             </Typography>
           </CardContent>
-        </CardDiv>
+        </CardContainer>
       </Container>
     </ThemeProvider>
   );

@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import List from '@mui/material/List';
 import Avatar from '@mui/material/Avatar';
 import Drawer from '@mui/material/Drawer';
@@ -20,8 +18,8 @@ import icon from './icon.png';
 
 type Props = {
   drawerOpen: boolean;
-  onQROpen: () => void;
-  toggleDrawer: () => void;
+  onToggleQR: () => void;
+  onToggleDrawer: () => void;
 };
 
 const DrawerList = styled('div')(() => ({
@@ -45,18 +43,14 @@ const DrawerAvatar = styled(Avatar)(({ theme }) => ({
   height: theme.spacing(6),
 }));
 
-export const SideBar = memo((props: Props): JSX.Element => {
+export const SideBar = ({ drawerOpen, onToggleQR, onToggleDrawer }: Props) => {
   const handleURL = () => {
     window.open('https://github.com/sprout2000/nenrei#readme', '_blank');
   };
 
   return (
-    <Drawer
-      variant="temporary"
-      open={props.drawerOpen}
-      onClose={props.toggleDrawer}
-    >
-      <DrawerList role="presentation" onClick={props.toggleDrawer}>
+    <Drawer variant="temporary" open={drawerOpen} onClose={onToggleDrawer}>
+      <DrawerList role="presentation" onClick={onToggleDrawer}>
         <DrawerHeader>
           <DrawerAvatar>
             <img src={icon} />
@@ -65,7 +59,7 @@ export const SideBar = memo((props: Props): JSX.Element => {
         </DrawerHeader>
         <List>
           <ListItem disablePadding>
-            <ListItemButton onClick={props.onQROpen} aria-label="share">
+            <ListItemButton onClick={onToggleQR} aria-label="share">
               <ListItemIcon>
                 <ShareIcon style={{ color: blue[500] }} />
               </ListItemIcon>
@@ -74,11 +68,7 @@ export const SideBar = memo((props: Props): JSX.Element => {
           </ListItem>
           <Divider />
           <ListItem disablePadding>
-            <ListItemButton
-              onClick={handleURL}
-              aria-label="repo"
-              data-testid="repo"
-            >
+            <ListItemButton onClick={handleURL} aria-label="repo">
               <ListItemIcon>
                 <GitHubIcon style={{ color: common.black }} />
               </ListItemIcon>
@@ -89,6 +79,4 @@ export const SideBar = memo((props: Props): JSX.Element => {
       </DrawerList>
     </Drawer>
   );
-});
-
-SideBar.displayName = 'SideBar';
+};
