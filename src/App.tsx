@@ -27,11 +27,6 @@ const IconContainer = styled('div')({
   padding: 0,
 });
 
-const Icon = styled('img')((src) => ({
-  src: src,
-  width: 64,
-}));
-
 const CardContainer = styled(Card)({
   margin: '1em 0',
   width: '80vw',
@@ -182,7 +177,7 @@ export const App = () => {
       <QR qrOpen={qrOpen} onClose={handletoggleQR} />
       <Container>
         <IconContainer>
-          <Icon src={icon} />
+          <img src={icon} width={64} height={64} />
         </IconContainer>
         <CardContainer>
           <CardContent>
