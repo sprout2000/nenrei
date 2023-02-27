@@ -7,10 +7,10 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
 type Props = {
-  toggleDrawer: () => void;
+  onToggleDrawer: () => void;
 };
 
-export const TitleBar = (props: Props) => (
+export const TitleBar = ({ onToggleDrawer }: Props) => (
   <Box sx={{ flexGrow: 1 }}>
     <AppBar position="static">
       <Toolbar>
@@ -19,9 +19,8 @@ export const TitleBar = (props: Props) => (
           edge="start"
           color="inherit"
           aria-label="menu"
-          data-testid="menu"
           sx={{ mr: 2 }}
-          onClick={props.toggleDrawer}
+          onClick={onToggleDrawer}
         >
           <MenuIcon />
         </IconButton>

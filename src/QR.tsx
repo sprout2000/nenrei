@@ -14,9 +14,9 @@ const QRBackdrop = styled(Backdrop)(({ theme }) => ({
   backgroundColor: 'rgba(0, 0, 0, 0.8)',
 }));
 
-export const QR = (props: Props) => (
+export const QR = ({ qrOpen, onClose }: Props) => (
   <div>
-    <QRBackdrop open={props.qrOpen} onClick={props.onClose}>
+    <QRBackdrop open={qrOpen} onClick={onClose}>
       <QRCode value="https://sprout2000.github.io/nenrei" />
     </QRBackdrop>
   </div>

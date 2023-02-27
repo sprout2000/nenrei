@@ -134,7 +134,7 @@ export const App = () => {
       const wareki = i - offset;
 
       items.push(
-        <MenuItem key={i} value={i} data-testid={i}>
+        <MenuItem key={i} value={i} aria-label={`${i}`}>
           <Typography>
             {gengo}
             {wareki === 1 ? '元' : wareki}年 ({i})
@@ -160,8 +160,8 @@ export const App = () => {
     return items;
   };
 
-  const toggleQR = () => setQrOpen((qrOpen) => !qrOpen);
-  const toggleDrawer = () => setDrawerOpen((drawerOpen) => !drawerOpen);
+  const handleToggleQR = () => setQrOpen((qrOpen) => !qrOpen);
+  const handleToggleDrawer = () => setDrawerOpen((drawerOpen) => !drawerOpen);
 
   return (
     <ThemeProvider theme={theme}>
@@ -187,13 +187,13 @@ export const App = () => {
           },
         }}
       />
-      <QR qrOpen={qrOpen} onClose={toggleQR} />
+      <QR qrOpen={qrOpen} onClose={handleToggleQR} />
       <SideBar
         drawerOpen={drawerOpen}
-        onQROpen={toggleQR}
-        toggleDrawer={toggleDrawer}
+        onToggleQR={handleToggleQR}
+        onToggleDrawer={handleToggleDrawer}
       />
-      <TitleBar toggleDrawer={toggleDrawer} />
+      <TitleBar onToggleDrawer={handleToggleDrawer} />
       <Container>
         <Offset />
         <Icon>
@@ -205,7 +205,7 @@ export const App = () => {
             <div>
               <FormContainer variant="outlined">
                 <Selector
-                  data-testid="years"
+                  aria-label="years"
                   value={year}
                   onChange={(e) => setYear(Number(e.target.value))}
                 >
@@ -219,7 +219,7 @@ export const App = () => {
             <div>
               <FormContainer variant="outlined">
                 <Selector
-                  data-testid="months"
+                  aria-label="months"
                   value={month}
                   onChange={(e) => setMonth(Number(e.target.value))}
                 >
