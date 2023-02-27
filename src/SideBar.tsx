@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import List from '@mui/material/List';
 import Avatar from '@mui/material/Avatar';
 import Drawer from '@mui/material/Drawer';
@@ -45,7 +43,7 @@ const DrawerAvatar = styled(Avatar)(({ theme }) => ({
   height: theme.spacing(6),
 }));
 
-export const SideBar = memo((props: Props): JSX.Element => {
+export const SideBar = (props: Props) => {
   const handleURL = () => {
     window.open('https://github.com/sprout2000/nenrei#readme', '_blank');
   };
@@ -89,6 +87,4 @@ export const SideBar = memo((props: Props): JSX.Element => {
       </DrawerList>
     </Drawer>
   );
-});
-
-SideBar.displayName = 'SideBar';
+};
