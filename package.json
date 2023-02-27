@@ -1,13 +1,14 @@
 {
   "name": "nenrei",
-  "version": "6.0.8",
+  "version": "6.1.0",
   "description": "年齢計算アプリPWA",
   "license": "MIT",
-  "author": "sprout2000",
+  "author": {
+    "name": "sprout2000"
+  },
   "repository": {
     "url": "https://github.com/sprout2000/nenrei"
   },
-  "homepage": "https://sprout2000.github.io/nenrei",
   "type": "module",
   "scripts": {
     "dev": "vite",
