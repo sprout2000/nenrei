@@ -8,10 +8,10 @@ test('render SideBar component', async () => {
   render(
     <SideBar
       drawerOpen={true}
-      onQROpen={() => vi.fn()}
-      toggleDrawer={() => vi.fn()}
+      onToggleQR={() => vi.fn()}
+      onToggleDrawer={() => vi.fn()}
     />
   );
 
-  await userEvent.click(screen.getByTestId('repo'));
+  await userEvent.click(screen.getByLabelText('repo'));
 });

@@ -19,12 +19,12 @@ test('test eto()', () => {
 test('render App component #1', async () => {
   render(<App />);
 
-  await userEvent.click(screen.getByTestId('menu'));
+  await userEvent.click(screen.getByLabelText('menu'));
 
   const selectors = screen.getAllByRole('button');
   await userEvent.click(selectors[0]);
 
-  const ySelector = screen.getByTestId('years');
+  const ySelector = screen.getByLabelText('years');
   const yButton = within(ySelector).getByRole('button') as HTMLInputElement;
   fireEvent.mouseDown(yButton);
 
@@ -33,7 +33,7 @@ test('render App component #1', async () => {
   fireEvent.click(yOptions[yOptions.length - 1]);
   expect(yButton.textContent).toMatch(`${new Date().getFullYear()}`);
 
-  const mSelector = screen.getByTestId('months');
+  const mSelector = screen.getByLabelText('months');
   const mButton = within(mSelector).getByRole('button') as HTMLInputElement;
   fireEvent.mouseDown(mButton);
 
