@@ -1,48 +1,48 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import Card from '@mui/material/Card';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import Typography from '@mui/material/Typography';
-import CardContent from '@mui/material/CardContent';
-import FormControl from '@mui/material/FormControl';
-import GlobalStyles from '@mui/material/GlobalStyles';
+import Card from "@mui/material/Card";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import Typography from "@mui/material/Typography";
+import CardContent from "@mui/material/CardContent";
+import FormControl from "@mui/material/FormControl";
+import GlobalStyles from "@mui/material/GlobalStyles";
 
-import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 
-import { QR } from './QR';
-import { SideBar } from './SideBar';
-import { TitleBar } from './TitleBar';
+import { QR } from "./QR";
+import { SideBar } from "./SideBar";
+import { TitleBar } from "./TitleBar";
 
-import icon from './icon-128.png';
+import icon from "./icon-128.png";
 
-const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
+const Offset = styled("div")(({ theme }) => theme.mixins.toolbar);
 
-const Container = styled('div')({
-  textAlign: 'center',
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+const Container = styled("div")({
+  textAlign: "center",
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
 });
 
-const Icon = styled('div')({
-  margin: '0 auto',
+const Icon = styled("div")({
+  margin: "0 auto",
   padding: 0,
 });
 
 const CardDiv = styled(Card)({
-  margin: '1em auto',
-  width: '80vw',
+  margin: "1em auto",
+  width: "80vw",
   maxWidth: 400,
-  color: '#666',
+  color: "#666",
 });
 
 const Label = styled(Typography)({
-  fontWeight: 'bold',
-  color: 'rgb(0, 122, 255)',
-  letterSpacing: '0.25em',
-  userSelect: 'none',
+  fontWeight: "bold",
+  color: "rgb(0, 122, 255)",
+  letterSpacing: "0.25em",
+  userSelect: "none",
 });
 
 const FormContainer = styled(FormControl)({
@@ -55,24 +55,24 @@ const Selector = styled(Select)({
 });
 
 const Answer = styled(Typography)({
-  fontWeight: 'bold',
-  color: 'rgb(255, 45, 85)',
-  letterSpacing: '0.25em',
+  fontWeight: "bold",
+  color: "rgb(255, 45, 85)",
+  letterSpacing: "0.25em",
 });
 
-const Age = styled('span')({
-  fontSize: '6em',
-  color: '#1f1f21',
+const Age = styled("span")({
+  fontSize: "6em",
+  color: "#1f1f21",
 });
 
-const Eto = styled('span')({
-  userSelect: 'text',
+const Eto = styled("span")({
+  userSelect: "text",
 });
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#ff375f',
+      main: "#ff375f",
     },
   },
 });
@@ -86,20 +86,20 @@ export const calc = (y: number, m: number) => {
 };
 
 export const eto = (y: number) => {
-  const es = ['庚', '辛', '壬', '癸', '甲', '乙', '丙', '丁', '戊', '己'];
+  const es = ["庚", "辛", "壬", "癸", "甲", "乙", "丙", "丁", "戊", "己"];
   const tos = [
-    '申（さる）',
-    '酉（とり）',
-    '戌（いぬ）',
-    '亥（いのしし）',
-    '子（ねずみ）',
-    '丑（うし）',
-    '寅（とら）',
-    '卯（うさぎ）',
-    '辰（たつ）',
-    '巳（へび）',
-    '午（うま）',
-    '未（ひつじ）',
+    "申（さる）",
+    "酉（とり）",
+    "戌（いぬ）",
+    "亥（いのしし）",
+    "子（ねずみ）",
+    "丑（うし）",
+    "寅（とら）",
+    "卯（うさぎ）",
+    "辰（たつ）",
+    "巳（へび）",
+    "午（うま）",
+    "未（ひつじ）",
   ];
 
   return `${es[y % 10]}${tos[y % 12]}`;
@@ -115,20 +115,20 @@ export const App = () => {
     const items = [];
 
     for (let i = start; i <= end; i++) {
-      let gengo = '';
+      let gengo = "";
       let offset = 0;
 
       if (i < 1926) {
-        gengo = '大正';
+        gengo = "大正";
         offset = 1911;
       } else if (i < 1989) {
-        gengo = '昭和';
+        gengo = "昭和";
         offset = 1925;
       } else if (i < 2019) {
-        gengo = '平成';
+        gengo = "平成";
         offset = 1988;
       } else {
-        gengo = '令和';
+        gengo = "令和";
         offset = 2018;
       }
       const wareki = i - offset;
@@ -137,7 +137,7 @@ export const App = () => {
         <MenuItem key={i} value={i} aria-label={`${i}`}>
           <Typography>
             {gengo}
-            {wareki === 1 ? '元' : wareki}年 ({i})
+            {wareki === 1 ? "元" : wareki}年 ({i})
           </Typography>
         </MenuItem>
       );
@@ -168,22 +168,22 @@ export const App = () => {
       <GlobalStyles
         styles={{
           html: {
-            height: '100%',
+            height: "100%",
           },
           body: {
             margin: 0,
             padding: 0,
-            fontFamily: '-apple-system, BlinkMacSystemFont, Roboto, sans-serif',
-            height: '100%',
+            fontFamily: "-apple-system, BlinkMacSystemFont, Roboto, sans-serif",
+            height: "100%",
           },
-          '#root': {
+          "#root": {
             margin: 0,
             padding: 0,
-            fontFamily: '-apple-system, BlinkMacSystemFont, Roboto, sans-serif',
-            height: '100%',
-            backgroundColor: '#efeff4',
-            position: 'relative',
-            overflow: 'hidden',
+            fontFamily: "-apple-system, BlinkMacSystemFont, Roboto, sans-serif",
+            height: "100%",
+            backgroundColor: "#efeff4",
+            position: "relative",
+            overflow: "hidden",
           },
         }}
       />

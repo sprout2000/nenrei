@@ -1,8 +1,8 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { SideBar } from '../SideBar';
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { SideBar } from "../SideBar";
 
-test('render SideBar component', async () => {
+test("render SideBar component", async () => {
   window.open = vi.fn();
 
   render(
@@ -13,5 +13,5 @@ test('render SideBar component', async () => {
     />
   );
 
-  await userEvent.click(screen.getByLabelText('repo'));
+  await userEvent.click(screen.getByLabelText("repo"));
 });
