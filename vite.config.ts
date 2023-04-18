@@ -14,6 +14,7 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
+      registerType: "autoUpdate",
       manifest: {
         name: "年齢計算アプリPWA",
         short_name: "年齢計算",
