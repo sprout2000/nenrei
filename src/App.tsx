@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import { isForage } from "./lib/isForage";
+import * as localforage from "localforage";
 
 import Card from "@mui/material/Card";
 import Select from "@mui/material/Select";
@@ -162,6 +165,19 @@ export const App = () => {
 
   const handleToggleQR = () => setQrOpen((qrOpen) => !qrOpen);
   const handleToggleDrawer = () => setDrawerOpen((drawerOpen) => !drawerOpen);
+
+  useEffect(() => {
+    localforage.getItem("nenrei-20230501").then((value) => {
+      if (isForage(value)) {
+        setYear(value.year);
+        setMonth(value.month);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    localforage.setItem("nenrei-20230501", { year, month });
+  }, [year, month]);
 
   return (
     <ThemeProvider theme={theme}>
