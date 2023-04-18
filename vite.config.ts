@@ -1,4 +1,3 @@
-/// <reference types="vitest" />
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 import react from "@vitejs/plugin-react";
@@ -11,28 +10,6 @@ export default defineConfig({
   build: {
     outDir: "../dist",
     emptyOutDir: true,
-  },
-  test: {
-    globals: true,
-    environment: "jsdom",
-    setupFiles: ["./vitest.setup.ts"],
-    deps: {
-      inline: ["vitest-canvas-mock"],
-    },
-    threads: false,
-    environmentOptions: {
-      jsdom: {
-        resources: "usable",
-      },
-    },
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    coverage: {
-      clean: false,
-      enabled: true,
-      reporter: ["text", "json-summary"],
-      reportsDirectory: "../coverage",
-    },
   },
   plugins: [
     react(),

@@ -13,7 +13,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import { styled } from "@mui/material/styles";
 import { blue, common } from "@mui/material/colors";
 
-import pjson from "../package.json";
+import * as pjson from "../package.json";
 import icon from "./icon.png";
 
 type Props = {

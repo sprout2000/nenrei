@@ -1,10 +1,16 @@
-import "vitest-canvas-mock";
+import "jest-canvas-mock";
 import "@testing-library/jest-dom";
 
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { App, calc, eto } from "../App";
+
+// mock for localforage
+jest.mock("localforage", () => ({
+  setItem: jest.fn(),
+  getItem: jest.fn().mockResolvedValue([]),
+}));
 
 test("test calc()", () => {
   const thisYear = new Date().getFullYear();
