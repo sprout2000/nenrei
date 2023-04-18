@@ -4,6 +4,7 @@ import { SideBar } from "../SideBar";
 
 test("render SideBar component", async () => {
   window.open = jest.fn();
+  const openSpy = jest.spyOn(window, "open");
 
   render(
     <SideBar
@@ -14,4 +15,5 @@ test("render SideBar component", async () => {
   );
 
   await userEvent.click(screen.getByLabelText("repo"));
+  expect(openSpy).toHaveBeenCalled();
 });
