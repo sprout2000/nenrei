@@ -2,6 +2,8 @@
 
 [![GitHub license](https://img.shields.io/github/license/sprout2000/nenrei)](https://github.com/sprout2000/nenrei/blob/master/LICENSE.md)
 ![vitest](./coverage/badge.svg)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/sprout2000/nenrei/react)
+![GitHub package.json dependency version (dev dep on branch)](https://img.shields.io/github/package-json/dependency-version/sprout2000/nenrei/dev/typescript)
 
 西暦と元号の両方で年齢を計算できます。十二支の表示付き。
 
