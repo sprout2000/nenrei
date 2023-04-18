@@ -14,7 +14,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "jest"
+    "test": "jest --colors"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
