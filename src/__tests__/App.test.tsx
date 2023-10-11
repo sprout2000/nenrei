@@ -31,7 +31,7 @@ test("render App component #1", async () => {
   await userEvent.click(selectors[0]);
 
   const ySelector = screen.getByLabelText("years");
-  const yButton = within(ySelector).getByRole("button") as HTMLInputElement;
+  const yButton = within(ySelector).getByRole("combobox") as HTMLInputElement;
   fireEvent.mouseDown(yButton);
 
   const yList = within(screen.getByRole("presentation")).getByRole("listbox");
@@ -40,7 +40,7 @@ test("render App component #1", async () => {
   expect(yButton.textContent).toMatch(`${new Date().getFullYear()}`);
 
   const mSelector = screen.getByLabelText("months");
-  const mButton = within(mSelector).getByRole("button") as HTMLInputElement;
+  const mButton = within(mSelector).getByRole("combobox") as HTMLInputElement;
   fireEvent.mouseDown(mButton);
 
   const mList = within(screen.getByRole("presentation")).getByRole("listbox");
