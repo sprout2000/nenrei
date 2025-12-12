@@ -1,17 +1,15 @@
-import List from "@mui/material/List";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import ShareIcon from "@mui/icons-material/Share";
 import Avatar from "@mui/material/Avatar";
-import Drawer from "@mui/material/Drawer";
+import { blue, common } from "@mui/material/colors";
 import Divider from "@mui/material/Divider";
+import Drawer from "@mui/material/Drawer";
+import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import ListItemButton from "@mui/material/ListItemButton";
-
-import ShareIcon from "@mui/icons-material/Share";
-import GitHubIcon from "@mui/icons-material/GitHub";
-
 import { styled } from "@mui/material/styles";
-import { blue, common } from "@mui/material/colors";
 
 import * as pjson from "../package.json";
 import icon from "./icon.png";
@@ -53,7 +51,7 @@ export const SideBar = ({ drawerOpen, onToggleQR, onToggleDrawer }: Props) => {
       <DrawerList role="presentation" onClick={onToggleDrawer}>
         <DrawerHeader>
           <DrawerAvatar>
-            <img src={icon} />
+            <img src={icon} alt="年齢" />
           </DrawerAvatar>
           <p>年齢計算 v{pjson.version}</p>
         </DrawerHeader>

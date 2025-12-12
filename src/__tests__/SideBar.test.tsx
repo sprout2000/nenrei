@@ -11,7 +11,7 @@ test("render SideBar component", async () => {
       drawerOpen={true}
       onToggleQR={() => jest.fn()}
       onToggleDrawer={() => jest.fn()}
-    />
+    />,
   );
 
   await userEvent.click(screen.getByLabelText("repo"));

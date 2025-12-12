@@ -3,7 +3,7 @@ type Forage = {
   month: number;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// biome-ignore lint: correctness/noExplicitAny: <NO-EXPLANATION>
 export const isForage = (arg: any): arg is Forage => {
   return (
     typeof arg === "object" &&

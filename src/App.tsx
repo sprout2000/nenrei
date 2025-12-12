@@ -1,23 +1,18 @@
-import { useEffect, useState } from "react";
-
-import { isForage } from "./lib/isForage";
-import * as localforage from "localforage";
-
 import Card from "@mui/material/Card";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 import FormControl from "@mui/material/FormControl";
 import GlobalStyles from "@mui/material/GlobalStyles";
-
-import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
-
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import { createTheme, styled, ThemeProvider } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
+import * as localforage from "localforage";
+import { useEffect, useState } from "react";
+import icon from "./icon-128.png";
+import { isForage } from "./lib/isForage";
 import { QR } from "./QR";
 import { SideBar } from "./SideBar";
 import { TitleBar } from "./TitleBar";
-
-import icon from "./icon-128.png";
 
 const Offset = styled("div")(({ theme }) => theme.mixins.toolbar);
 
@@ -142,7 +137,7 @@ export const App = () => {
             {gengo}
             {wareki === 1 ? "元" : wareki}年 ({i})
           </Typography>
-        </MenuItem>
+        </MenuItem>,
       );
     }
 
@@ -156,7 +151,7 @@ export const App = () => {
       items.push(
         <MenuItem key={i} value={i}>
           <Typography>{i}月</Typography>
-        </MenuItem>
+        </MenuItem>,
       );
     }
 
@@ -227,7 +222,7 @@ export const App = () => {
                 >
                   {Wareki(
                     new Date().getFullYear() - 100,
-                    new Date().getFullYear()
+                    new Date().getFullYear(),
                   )}
                 </Selector>
               </FormContainer>
