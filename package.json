@@ -1,52 +1,29 @@
 {
   "name": "nenrei",
-  "version": "6.3.1",
-  "description": "年齢計算アプリPWA",
-  "license": "MIT",
-  "author": {
-    "name": "sprout2000"
-  },
-  "repository": {
-    "url": "https://github.com/sprout2000/nenrei"
-  },
+  "private": true,
+  "version": "7.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc --noEmit && vite build",
+    "build:github": "tsc --noEmit && vite build --mode github",
     "preview": "vite preview",
-    "test": "jest --colors",
-    "lint": "biome check --write ."
+    "preview:github": "vite preview --mode github",
+    "predeploy": "npm run build:github",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.1",
-    "@fontsource/roboto": "^5.2.9",
-    "@mui/icons-material": "^7.3.6",
-    "@mui/material": "^7.3.6",
-    "@vitejs/plugin-react": "^5.1.2",
-    "localforage": "^1.10.0",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
-    "react-qrcode-logo": "^4.0.0",
-    "vite-plugin-pwa": "^1.2.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "qrcode.react": "^4.2.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.9",
-    "@testing-library/dom": "^10.4.1",
-    "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.1",
-    "@testing-library/user-event": "^14.6.1",
-    "@types/jest": "^30.0.0",
-    "@types/node": "^25.0.2",
-    "@types/react": "^19.2.7",
-    "@types/react-dom": "^19.2.3",
-    "jest": "^30.2.0",
-    "jest-canvas-mock": "^2.5.2",
-    "jest-environment-jsdom": "^30.2.0",
-    "jsdom": "^27.3.0",
-    "ts-jest": "^29.4.6",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.9.3",
-    "vite": "^7.3.0"
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "gh-pages": "^6.3.0",
+    "typescript": "~5.6.3",
+    "vite": "^6.0.3",
+    "vite-plugin-pwa": "^0.21.1"
   }
 }

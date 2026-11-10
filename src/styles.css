@@ -1,0 +1,148 @@
+:root {
+  --bg: #f5f7fb;
+  --card: #fff;
+  --text: #1c2333;
+  --sub: #5c667a;
+  --accent: #2f5fd0;
+  --border: #dde3ee;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12151c;
+    --card: #1b2029;
+    --text: #e8ecf4;
+    --sub: #9aa5ba;
+    --accent: #7ea2ff;
+    --border: #2b3342;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.app { width: 100%; max-width: 480px; margin: 0 auto; padding: 16px; display: grid; gap: 14px; }
+.head { display: grid; justify-items: center; gap: 10px; margin-top: 8px; }
+.head img { width: 72px; height: 72px; border-radius: 16px; }
+h1 { font-size: 1.4rem; margin: 0; text-align: center; }
+h2 { font-size: 1rem; margin: 0 0 8px; color: var(--sub); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 16px; }
+label { display: block; font-weight: 600; margin-bottom: 8px; }
+.label-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+.label-row label { margin-bottom: 0; }
+.hint { font-size: 0.8rem; font-weight: 300; color: var(--sub); }
+.picker { display: flex; gap: 8px; }
+input[type='date'] {
+  flex: 1; min-width: 0; font: inherit; padding: 10px 12px;
+  border: 1px solid var(--border); border-radius: 10px; background: var(--bg); color: var(--text);
+}
+button {
+  font: inherit; padding: 10px 14px; border: 0; border-radius: 10px;
+  background: var(--accent); color: #fff; cursor: pointer;
+}
+.error { color: #d33; margin: 8px 0 0; font-size: 0.9rem; }
+.hero { text-align: center; }
+.age .num { font-size: 4rem; font-weight: 700; color: var(--accent); line-height: 1; }
+.age .unit { font-size: 1.4rem; margin-left: 4px; }
+.hero p { margin: 6px 0 0; color: var(--sub); }
+dl { margin: 0; }
+.row { display: flex; justify-content: space-between; padding: 8px 0; border-top: 1px solid var(--border); }
+.row:first-child { border-top: 0; }
+dt { color: var(--sub); }
+dd { margin: 0; font-weight: 600; }
+.note { color: var(--sub); font-size: 0.8rem; margin: 0; }
+
+/* ---- カレンダー ---- */
+.dp { position: relative; }
+.dp-trigger {
+  width: 100%; text-align: left; padding: 10px 12px;
+  background: var(--bg); color: var(--text); border: 1px solid var(--border);
+}
+.dp-pop {
+  position: absolute; z-index: 10; left: 0; right: 0; top: calc(100% + 6px);
+  background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+  padding: 12px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+.dp-row { display: flex; align-items: center; justify-content: space-between; gap: 4px; margin-bottom: 8px; }
+.dp-title { flex: 1; text-align: center; font-weight: 700; }
+.dp-title small { font-weight: 400; color: var(--sub); margin-left: 2px; }
+.dp-nav-btn {
+  background: transparent; color: var(--accent); border: 1px solid var(--border);
+  padding: 6px 8px; font-size: 0.85rem; min-width: 40px;
+}
+.dp-nav-btn:disabled, .dp-day:disabled { opacity: 0.3; cursor: default; }
+.dp-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.dp-week { text-align: center; font-size: 0.75rem; color: var(--sub); padding: 4px 0; }
+.dp-day {
+  background: transparent; color: var(--text); padding: 8px 0; border-radius: 8px; text-align: center;
+}
+.dp-day.today { outline: 1px solid var(--accent); }
+.dp-day.sel { background: var(--accent); color: #fff; }
+
+/* ---- ハンバーガーメニュー ---- */
+.menu-btn {
+  position: fixed; z-index: 50;
+  top: calc(env(safe-area-inset-top) + 8px);
+  left: calc(env(safe-area-inset-left) + 8px);
+  width: 44px; height: 44px; padding: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+  background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+}
+.menu-btn span { width: 20px; height: 2px; border-radius: 1px; background: var(--text); }
+
+.drawer-backdrop, .modal-backdrop {
+  position: fixed; inset: 0; background: rgba(0, 0, 0, 0.45);
+}
+.drawer-backdrop { z-index: 100; }
+.drawer {
+  position: absolute; top: 0; left: 0; bottom: 0; width: min(80vw, 320px);
+  background: var(--card); color: var(--text);
+  display: flex; flex-direction: column;
+  box-shadow: 8px 0 24px rgba(0, 0, 0, 0.25);
+  animation: drawer-in 0.2s ease-out;
+}
+@keyframes drawer-in { from { transform: translateX(-100%); } to { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .drawer { animation: none; } }
+
+.banner {
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; gap: 12px;
+  padding: calc(env(safe-area-inset-top) + 20px) 16px 20px;
+  background: linear-gradient(135deg, #2f5fd0, #1f3f9a);
+  color: #fff;
+}
+/* アイコンの白いリングをモチーフにした装飾 */
+.banner::after {
+  content: ''; position: absolute; right: -36px; bottom: -48px;
+  width: 128px; height: 128px; border-radius: 50%;
+  border: 14px solid rgba(255, 255, 255, 0.18);
+}
+.banner img { border-radius: 14px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); }
+.banner-title { font-size: 1.15rem; font-weight: 700; }
+.banner-version { font-size: 0.8rem; font-weight: 300; opacity: 0.9; margin-top: 2px; }
+
+.menu-list { list-style: none; margin: 0; padding: 8px; }
+.menu-list button {
+  width: 100%; text-align: left; padding: 14px 12px; border-radius: 10px;
+  background: transparent; color: var(--text);
+}
+.menu-list button:hover { background: var(--bg); }
+
+.modal-backdrop { z-index: 110; display: flex; align-items: center; justify-content: center; padding: 16px; }
+.modal {
+  background: var(--card); color: var(--text); border: 1px solid var(--border); border-radius: 16px;
+  padding: 20px; display: grid; justify-items: center; gap: 12px; text-align: center;
+  max-width: 100%;
+}
+.modal h2 { margin: 0; }
+.modal svg { border-radius: 8px; max-width: 100%; height: auto; }
+.modal-url { margin: 0; font-size: 0.8rem; color: var(--sub); word-break: break-all; max-width: 260px; }
