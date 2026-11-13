@@ -38,6 +38,16 @@ export default defineConfig(({ mode }) => {
               purpose: 'maskable',
             },
           ],
+          // 「Richer PWA install UI」用。sizes は実際の画像サイズと一致させること
+          screenshots: [
+            {
+              src: 'screenshot-narrow.png',
+              sizes: '540x720',
+              type: 'image/png',
+              form_factor: 'narrow',
+              label: '生年月日から年齢と干支を表示',
+            },
+          ],
         },
       }),
     ],
